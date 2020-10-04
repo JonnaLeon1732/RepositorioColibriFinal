@@ -39,41 +39,33 @@ public class Vendedor1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel_desCedron = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         Preciocedron = new javax.swing.JLabel();
         cedron = new javax.swing.JSpinner();
         nabo = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        col = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
         rabano = new javax.swing.JSpinner();
         cilantro = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        cebollin = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(733, 454));
+        setPreferredSize(new java.awt.Dimension(695, 540));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,9 +79,6 @@ public class Vendedor1 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 64, 240, 390));
 
-        jButton1.setText("Product3");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 93, 100, 70));
-
         jButton2.setText("Product1");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 89, 100, 70));
 
@@ -99,9 +88,6 @@ public class Vendedor1 extends javax.swing.JFrame {
 
         jButton3.setText("Product2");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 89, 100, 70));
-
-        jButton4.setText("Product6");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 242, 100, 70));
 
         jButton5.setText("Product4");
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 232, 100, 70));
@@ -122,10 +108,6 @@ public class Vendedor1 extends javax.swing.JFrame {
         jLabel4.setText("Nabo");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 93, -1, -1));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Col");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 93, -1, -1));
-
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Rabano");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
@@ -133,13 +115,6 @@ public class Vendedor1 extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Cilantro");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 247, -1, -1));
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Cebollin");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 247, -1, -1));
-
-        jButton7.setText("Agregar");
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 191, -1, -1));
 
         jButton8.setText("Agregar");
         getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 191, -1, -1));
@@ -158,21 +133,13 @@ public class Vendedor1 extends javax.swing.JFrame {
         jButton11.setText("Agregar");
         getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 350, -1, -1));
 
-        jButton12.setText("Agregar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 350, -1, -1));
-
         jButton13.setText("Regresar");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 444, -1, -1));
+        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, -1));
 
         jButton14.setText("Agregar al carrito");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +147,7 @@ public class Vendedor1 extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(639, 444, -1, -1));
+        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
 
         Preciocedron.setForeground(new java.awt.Color(255, 255, 255));
         Preciocedron.setText("0.50 ");
@@ -193,13 +160,6 @@ public class Vendedor1 extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("$0.40 c/u");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 165, -1, -1));
-
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("$0.60 c/u");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 165, -1, -1));
-
-        col.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        getContentPane().add(col, new org.netbeans.lib.awtextra.AbsoluteConstraints(795, 113, -1, -1));
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("$0.50 porcion");
@@ -215,13 +175,6 @@ public class Vendedor1 extends javax.swing.JFrame {
         jLabel13.setText("$0.25 porcion");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 318, -1, -1));
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("$0.25 porcion");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 318, -1, -1));
-
-        cebollin.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-        getContentPane().add(cebollin, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 267, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,17 +182,13 @@ public class Vendedor1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        Principal principal =new Principal();
-        principal.setVisible(true);
+        Vendedores vend = new Vendedores();
+        vend.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -298,36 +247,26 @@ public class Vendedor1 extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Preciocedron;
-    private javax.swing.JSpinner cebollin;
     private javax.swing.JSpinner cedron;
     private javax.swing.JSpinner cilantro;
-    private javax.swing.JSpinner col;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_desCedron;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

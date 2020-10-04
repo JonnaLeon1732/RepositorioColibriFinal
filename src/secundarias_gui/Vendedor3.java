@@ -370,8 +370,8 @@ public class Vendedor3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        Principal principal =new Principal();
-        principal.setVisible(true);
+        Vendedores vend = new Vendedores();
+        vend.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton13ActionPerformed
 
