@@ -5,7 +5,10 @@
  */
 package secundarias_gui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import principales_gui.Principal;
 
 /**
@@ -17,7 +20,9 @@ public class Vendedor2 extends javax.swing.JFrame {
     /**
      * Creates new form Vendedor2
      */
+    FondoPanel fondo=new FondoPanel();
     public Vendedor2() {
+        this.setContentPane(fondo);
         initComponents();
         setResizable(false);
         setTitle("COLIBRÍ");
@@ -72,6 +77,7 @@ public class Vendedor2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Vendedor 2");
 
         jTextArea1.setColumns(20);
@@ -79,6 +85,7 @@ public class Vendedor2 extends javax.swing.JFrame {
         jTextArea1.setText("Nombre:Magdalena Albarracin\nEdad: 65 años\nDireccion:Cinco esquinas\nperteneciente a la parroquia \nde Sayausi\nMotivo por el que vende:\nVive junto a su hija pero \npara no estresarse de \npasar en casa siembra y \ncosecha verduras para \nvenderas y tener su dinero \npara la subsistencia");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Productos Extra");
 
         jButton2.setText("Product1");
@@ -105,16 +112,22 @@ public class Vendedor2 extends javax.swing.JFrame {
 
         jButton14.setText("Agregar");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Zanahoria");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Papas Chaucha");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ajos");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Brocoli");
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Coliflor");
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nogal");
 
         jButton15.setText("Regresar");
@@ -131,16 +144,22 @@ public class Vendedor2 extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("$1 porcion");
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("$1 porcion");
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("$0.50 c/u");
 
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("$0.50 porcion");
 
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("$1 /50 unidades");
 
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("$0.40 c/u");
 
         zanahoria.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
@@ -373,7 +392,20 @@ public class Vendedor2 extends javax.swing.JFrame {
             }
         });
     }
-
+class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagenes/fondo_Vend.jpg")).getImage();
+            
+            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner ajo;
     private javax.swing.JSpinner brocoli;

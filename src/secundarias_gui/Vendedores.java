@@ -6,7 +6,10 @@
 package secundarias_gui;
 
 
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import principales_gui.Frutas;
 import principales_gui.Granos;
 import principales_gui.Hierbas;
@@ -23,9 +26,10 @@ public class Vendedores extends javax.swing.JFrame {
     /**
      * Creates new form Vendedores
      */
-    
+    FondoPanel fondo=new FondoPanel();
     public static int valor;
     public Vendedores() {
+        this.setContentPane(fondo);
         initComponents();
         setResizable(false);
         setTitle("COLIBRÍ");
@@ -59,8 +63,10 @@ public class Vendedores extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("VENDEDORES");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Vendedor 1");
 
         jTextArea1.setColumns(20);
@@ -75,6 +81,7 @@ public class Vendedores extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Vendedor 2");
 
         jTextArea2.setColumns(20);
@@ -89,6 +96,7 @@ public class Vendedores extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Vendedor 3");
 
         jTextArea3.setColumns(20);
@@ -120,9 +128,6 @@ public class Vendedores extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
@@ -144,16 +149,21 @@ public class Vendedores extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
-                .addGap(375, 375, 375)
-                .addComponent(btnsalirvendedor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(375, 375, 375)
+                        .addComponent(btnsalirvendedor))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(44, 44, 44)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -283,6 +293,20 @@ public class Vendedores extends javax.swing.JFrame {
     public void valor1 (int num){
         valor=num;
         
+    }
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagenes/fondo_Vend.jpg")).getImage();
+            
+            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnsalirvendedor;

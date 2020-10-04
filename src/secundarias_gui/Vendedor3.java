@@ -5,7 +5,10 @@
  */
 package secundarias_gui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import principales_gui.Principal;
 
 /**
@@ -17,7 +20,9 @@ public class Vendedor3 extends javax.swing.JFrame {
     /**
      * Creates new form Vendedor3
      */
+    FondoPanel fondo=new FondoPanel();
     public Vendedor3() {
+        this.setContentPane(fondo);
         initComponents();
         setResizable(false);
         setTitle("COLIBRÍ");
@@ -72,8 +77,10 @@ public class Vendedor3 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Vendedor 3");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Productos Extra");
 
         jTextArea1.setColumns(20);
@@ -119,28 +126,40 @@ public class Vendedor3 extends javax.swing.JFrame {
 
         jButton16.setText("Agregar");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Queso");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Mote");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Durazno");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Toronjil");
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Lechuga");
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Papa Chaucha");
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("$1.50 libra");
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("$0.50 porcion");
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("$1 / 10 unidades");
 
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("$0.50 porcion");
 
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("$0.50 c/u");
 
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("$1 porcion");
 
         queso.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
@@ -394,7 +413,20 @@ public class Vendedor3 extends javax.swing.JFrame {
             }
         });
     }
-
+class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagenes/fondo_Vend.jpg")).getImage();
+            
+            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner durazno;
     private javax.swing.JButton jButton10;
