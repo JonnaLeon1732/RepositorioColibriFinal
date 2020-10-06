@@ -8,7 +8,7 @@ import com.db4o.*;
 
 /**
  *
- * @author grupo2
+ * @author Grupo 2
  */
 public class Conexion {
 

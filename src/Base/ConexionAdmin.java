@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author CyberLink
+ * @author Grupo2
  */
 public class ConexionAdmin {
 
