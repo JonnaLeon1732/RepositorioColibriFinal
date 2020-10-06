@@ -12,13 +12,13 @@ package clases;
 public class Det_Factura implements Calcular_pag {
 
     private int num_Factura;
-    private int cod_producto;
+    private String cod_producto;
     private String descripcion_Pro;
     private double prec_uni;
     private double pre_total;
     private double total_pag;
 
-    public Det_Factura(int num_Factura, int cod_producto, String descripcion_Pro, double prec_uni, double pre_total, double total_pag) {
+    public Det_Factura(int num_Factura, String cod_producto, String descripcion_Pro, double prec_uni, double pre_total, double total_pag) {
         this.num_Factura = num_Factura;
         this.cod_producto = cod_producto;
         this.descripcion_Pro = descripcion_Pro;
@@ -32,11 +32,11 @@ public class Det_Factura implements Calcular_pag {
 
   
 
-    public int getCod_producto() {
+    public String getCod_producto() {
         return cod_producto;
     }
 
-    public void setCod_producto(int cod_producto) {
+    public void setCod_producto(String cod_producto) {
         this.cod_producto = cod_producto;
     }
 

@@ -3,6 +3,8 @@ package Base;
 import clases.Cliente;
 import clases.Proveedor;
 import clases.Repartidor;
+import clases.Enc_Factura;
+import clases.Det_Factura;
 import javax.swing.JOptionPane;
 import com.db4o.*;
 
@@ -24,6 +26,16 @@ public class Conexion {
     }
 
     public ObjectContainer BaseRepartidor() {
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseRepartidor\\Base.yap");
+        return contenedor;
+    }
+    
+    public ObjectContainer enca_fact() {
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseProveedor\\Base.yap");
+        return contenedor;
+    }
+
+    public ObjectContainer deta_fact() {
         ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseRepartidor\\Base.yap");
         return contenedor;
     }
@@ -188,7 +200,133 @@ public class Conexion {
             basep.set(modificar);
         }
     }
+    
+    //encabezado factura
+    public void CrearEnca(ObjectContainer basep, int num_fac, String ID_cliente, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Enc_Factura enca = new Enc_Factura(num_fac,nombre, apellido, ID_cliente, telefono, direccion, correo);
+        if (ComprobarEnca(basep, ID_cliente) != 0) {
+            JOptionPane.showMessageDialog(null, "Registro Existente");
+        } else {
+            basep.set(enca);
+            JOptionPane.showMessageDialog(null, "Registro Guardado");
+        }
 
+    }
+
+    public static int ComprobarEnca(ObjectContainer basep, String ID_cliente) {
+        Enc_Factura enca = new Enc_Factura(0,null, null, ID_cliente, null, null, null);
+        ObjectSet resultado = basep.get(enca);
+        return resultado.size();
+    }
+
+    public static void ConsultarEnca(ObjectContainer basep, String ID_cliente) {
+        Cliente cliente = new Cliente(ID_cliente, null, null, null, null, null, null);
+        Enc_Factura enca = new Enc_Factura(0,null, null, ID_cliente, null, null, null);
+        ObjectSet resultado = basep.get(cliente);
+        ObjectSet resultadoen = basep.get(enca);
+        while(resultado.hasNext()){
+            JOptionPane.showMessageDialog(null,resultado.next());
+            
+        }
+         while(resultadoen.hasNext()){
+           JOptionPane.showMessageDialog(null,resultadoen.next());
+           
+        }
+    }
+
+    public void EliminarEnca(ObjectContainer basep, int num_fac) {
+        Enc_Factura enca = new Enc_Factura(num_fac,null, null, null, null, null, null);
+        ObjectSet resultado = basep.get(enca);
+
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La factura no se encuentra");
+        } else {
+            Enc_Factura eliminar = (Enc_Factura) resultado.next();
+            basep.delete(eliminar);
+            JOptionPane.showMessageDialog(null, "La factura fue eliminada");
+        }
+    }
+
+    public void ModificarEnca(ObjectContainer basep, int num_fac, String ID_cliente, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Enc_Factura enca = new Enc_Factura(num_fac,null, null, ID_cliente, null, null, null);
+        ObjectSet resultado = basep.get(enca);
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El encabezado de la factura no se encuentra");
+        } else {
+            Enc_Factura modificar = (Enc_Factura) resultado.next();
+            modificar.setNom_cliente(nombre);
+            modificar.setApe_cliente(apellido);
+            modificar.setDireccion_cliente(direccion);
+            modificar.setTelefono_cliente(telefono);
+            modificar.setCorreo_cliente(correo);
+            JOptionPane.showMessageDialog(null, "El encabezado de la factura fue modificado");
+            basep.set(modificar);
+        }
+    }
+
+    //detalle de la factura
+    public void CrearDeta_Fac(ObjectContainer basep, int num_fac, String ID_cliente, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Enc_Factura enca = new Enc_Factura(num_fac,nombre, apellido, ID_cliente, telefono, direccion, correo);
+        if (ComprobarEnca(basep, ID_cliente) != 0) {
+            JOptionPane.showMessageDialog(null, "Registro Existente");
+        } else {
+            basep.set(enca);
+            JOptionPane.showMessageDialog(null, "Registro Guardado");
+        }
+
+    }
+
+    public static int ComprobarDeta_Fac(ObjectContainer basep, String ID_cliente) {
+        Enc_Factura enca = new Enc_Factura(0,null, null, ID_cliente, null, null, null);
+        ObjectSet resultado = basep.get(enca);
+        return resultado.size();
+    }
+
+    public static void ConsultarDeta_Fac(ObjectContainer basep, String ID_cliente) {
+        Cliente cliente = new Cliente(ID_cliente, null, null, null, null, null, null);
+        Enc_Factura enca = new Enc_Factura(0,null, null, ID_cliente, null, null, null);
+        ObjectSet resultado = basep.get(cliente);
+        ObjectSet resultadoen = basep.get(enca);
+        while(resultado.hasNext()){
+            JOptionPane.showMessageDialog(null,resultado.next());
+            
+        }
+         while(resultadoen.hasNext()){
+           JOptionPane.showMessageDialog(null,resultadoen.next());
+           
+        }
+    }
+
+    public void EliminarDeta_Fac(ObjectContainer basep, int num_fac) {
+        Enc_Factura enca = new Enc_Factura(num_fac,null, null, null, null, null, null);
+        ObjectSet resultado = basep.get(enca);
+
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La factura no se encuentra");
+        } else {
+            Enc_Factura eliminar = (Enc_Factura) resultado.next();
+            basep.delete(eliminar);
+            JOptionPane.showMessageDialog(null, "La factura fue eliminada");
+        }
+    }
+
+    public void ModificarDeta_Fac(ObjectContainer basep, int num_fac, String ID_cliente, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Enc_Factura enca = new Enc_Factura(num_fac,null, null, ID_cliente, null, null, null);
+        ObjectSet resultado = basep.get(enca);
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El encabezado de la factura no se encuentra");
+        } else {
+            Enc_Factura modificar = (Enc_Factura) resultado.next();
+            modificar.setNom_cliente(nombre);
+            modificar.setApe_cliente(apellido);
+            modificar.setDireccion_cliente(direccion);
+            modificar.setTelefono_cliente(telefono);
+            modificar.setCorreo_cliente(correo);
+            JOptionPane.showMessageDialog(null, "El encabezado de la factura fue modificado");
+            basep.set(modificar);
+        }
+    }
+    
     public void Cerrarbd(ObjectContainer basep) {
         basep.close();
     }
