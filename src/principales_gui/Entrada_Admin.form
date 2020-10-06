@@ -46,7 +46,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="TF_NomUsuario" pref="150" max="32767" attributes="0"/>
-                          <Component id="PF_contraseña" max="32767" attributes="0"/>
+                          <Component id="txt_contra" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -68,7 +68,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="PF_contraseña" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txt_contra" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -115,7 +115,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirAdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="PF_contrase&#xf1;a">
+    <Component class="javax.swing.JPasswordField" name="txt_contra">
     </Component>
     <Component class="javax.swing.JTextField" name="TF_NomUsuario">
       <Events>

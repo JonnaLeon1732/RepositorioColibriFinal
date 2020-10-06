@@ -5,6 +5,9 @@
  */
 package secundarias_gui;
 
+import Base.ConexionAdmin;
+import com.db4o.ObjectContainer;
+
 /**
  *
  * @author Grupo 2
@@ -42,7 +45,7 @@ public class Crear_Administrador extends javax.swing.JFrame {
         txt_direccion = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
         txt_apellido = new javax.swing.JTextField();
-        txt_contraseña = new javax.swing.JTextField();
+        txt_contrasena = new javax.swing.JTextField();
         txt_compararContraseña = new javax.swing.JTextField();
         txt_nomUsuario = new javax.swing.JTextField();
         txt_correo = new javax.swing.JTextField();
@@ -108,7 +111,7 @@ public class Crear_Administrador extends javax.swing.JFrame {
         getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 158, 171, -1));
         getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 196, 171, -1));
         getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 120, 171, -1));
-        getContentPane().add(txt_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 304, 171, -1));
+        getContentPane().add(txt_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 304, 171, -1));
         getContentPane().add(txt_compararContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 336, 171, -1));
         getContentPane().add(txt_nomUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 266, 171, -1));
         getContentPane().add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 234, 171, -1));
@@ -158,6 +161,11 @@ public class Crear_Administrador extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 390, -1, -1));
 
         jButton2.setText("GUARDAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, -1));
 
         lb_verificarContraseña.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -183,6 +191,14 @@ public class Crear_Administrador extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ConexionAdmin conexion=new ConexionAdmin();
+        ObjectContainer base=conexion.BaseUsuario();
+        conexion.CrearUsuario(base,txt_cedula.getText(),txt_nombre.getText(),txt_apellido.getText(),txt_telefono.getText(),
+                txt_direccion.getText(),txt_correo.getText(),txt_nomUsuario.getText(),txt_contrasena.getText());
+        conexion.Cerrarbd(base);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +263,7 @@ public class Crear_Administrador extends javax.swing.JFrame {
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_cedula;
     private javax.swing.JTextField txt_compararContraseña;
-    private javax.swing.JTextField txt_contraseña;
+    private javax.swing.JTextField txt_contrasena;
     private javax.swing.JTextField txt_correo;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_nomUsuario;

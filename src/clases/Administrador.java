@@ -13,16 +13,16 @@ public class Administrador extends Persona{
     
     private String correo;
     private String nom_usuario;
-    private String contraseña;
+    private String contrasena;
 
     public Administrador() {
     }
 
-    public Administrador(String correo, String nom_usuario, String contraseña, String ID, String nombre, String apellido, String telefono, String direccion) {
+    public Administrador( String ID, String nombre, String apellido, String telefono, String direccion, String correo, String nom_usuario, String contrasena) {
         super(ID, nombre, apellido, telefono, direccion);
         this.correo = correo;
         this.nom_usuario = nom_usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public String getCorreo() {
@@ -42,16 +42,16 @@ public class Administrador extends Persona{
     }
 
     public String getContraseña() {
-        return contraseña;
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContraseña(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     @Override
     public String toString() {
-        return  super.toString()+"Administrador{" + "correo=" + correo + ", nom_usuario=" + nom_usuario + ", contrase\u00f1a=" + contraseña + '}';
+        return  super.toString()+"Administrador{" + "correo=" + correo + ", nom_usuario=" + nom_usuario + ", contrase\u00f1a=" + contrasena + '}';
     }
 
     

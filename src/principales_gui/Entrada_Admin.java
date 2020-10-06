@@ -5,9 +5,12 @@
  */
 package principales_gui;
 
+import Base.ConexionAdmin;
+import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import reportes_gui.Reportes;
 
@@ -42,7 +45,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
 
         btnIngresar = new javax.swing.JButton();
         btnSalirAd = new javax.swing.JButton();
-        PF_contraseña = new javax.swing.JPasswordField();
+        txt_contra = new javax.swing.JPasswordField();
         TF_NomUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -110,7 +113,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(TF_NomUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(PF_contraseña))))
+                            .addComponent(txt_contra))))
                 .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
@@ -126,7 +129,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PF_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_contra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77)
@@ -140,10 +143,16 @@ public class Entrada_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
-        Reportes reportes =new Reportes();
-        reportes.setVisible(true);
-        this.setVisible(false);
+        ConexionAdmin conexion=new ConexionAdmin();
+        ObjectContainer base=conexion.BaseUsuario();
+        boolean valor=conexion.ConsultarUsuario(base,TF_NomUsuario.getText(),String.valueOf(txt_contra.getPassword()));
+        if (valor==true) {
+            this.setVisible(false);
+            new Reportes().setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"Usuario o contraseña Incorrectas");
+        }
+        conexion.Cerrarbd(base);
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -153,11 +162,11 @@ public class Entrada_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirAdActionPerformed
 
     private void TF_NomUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_NomUsuarioKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(TF_NomUsuario.getText().length()>=25)) {
-            evt.consume();
-
-        }
+//        char caracter=evt.getKeyChar();
+//        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(TF_NomUsuario.getText().length()>=25)) {
+//            evt.consume();
+//
+//        }
     }//GEN-LAST:event_TF_NomUsuarioKeyTyped
 
     /**
@@ -197,7 +206,6 @@ public class Entrada_Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField PF_contraseña;
     private javax.swing.JTextField TF_NomUsuario;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnSalirAd;
@@ -205,6 +213,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField txt_contra;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel{
         private Image imagen;

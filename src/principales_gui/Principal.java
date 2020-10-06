@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import secundarias_gui.Ayuda;
 import secundarias_gui.Carrito;
+import secundarias_gui.Crear_Administrador;
 import secundarias_gui.Vendedores;
 
 /**
@@ -332,8 +333,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-            Entrada_Admin admin = new Entrada_Admin();
-            admin.setVisible(true);
+       Entrada_Admin admin = new Entrada_Admin();
+           admin.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
