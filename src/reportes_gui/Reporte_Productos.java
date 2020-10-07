@@ -5,6 +5,7 @@
  */
 package reportes_gui;
 
+import Base.ConexionProducto;
 import clases.Producto;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -23,16 +24,19 @@ public class Reporte_Productos extends javax.swing.JFrame {
     /**
      * Creates new form Reporte_Productos
      */
-    public static final ArrayList<Producto> lista=new ArrayList<>();
+
     
     FondoPanel fondo=new FondoPanel();
     public Reporte_Productos() {
+        
         this.setContentPane(fondo);
+        ConexionProducto conexion=new ConexionProducto();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        tablaproducto.setModel(conexion.Productos());
     }
 
     /**
@@ -200,21 +204,10 @@ public class Reporte_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-       String buscar=txt_consul_identificacion.getText();
-        Reporte_Productos.Buscar(buscar);
+        
     }//GEN-LAST:event_btt_consultarActionPerformed
 
-    public static void Buscar(String codigo){
-        for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).equals(codigo)) {
-               Reporte_Productos p=new Reporte_Productos();
-                p.tablaproducto.add(p);
-                
-            }
-  
-            JOptionPane.showMessageDialog(null, "No existe");
-        }
-    }
+
     
     /**
      * @param args the command line arguments
@@ -250,37 +243,8 @@ public class Reporte_Productos extends javax.swing.JFrame {
             }
         });
     }
-     public void recibir(String codigo,String nombre,String descripcion,String existencia,String precio,String id){
-        
-        Producto producto = new Producto();
-        producto.setCodigo(codigo);
-        producto.setNombre(nombre);
-        producto.setDescripcion(descripcion);
-        producto.setS(existencia);
-        producto.setD(precio);
-        producto.setID_proveedor(id);
-        lista.add(producto);
-        mostrar();
-    }
-    
-    public void mostrar(){
 
-        String matris[][]=new String[lista.size()][6];
-        for (int i = 0; i < lista.size(); i++) {
-            matris[i][0]=lista.get(i).getCodigo();
-            matris[i][1]=lista.get(i).getNombre();
-            matris[i][2]=lista.get(i).getDescripcion();
-            matris[i][3]=lista.get(i).getS();
-            matris[i][4]=lista.get(i).getD();
-            matris[i][5]=lista.get(i).getID_proveedor();
-        }
-        tablaproducto.setModel(new javax.swing.table.DefaultTableModel(
-            matris,
-            new String [] {
-                "Codigo", "Nombre", "Descripcion", "Existencias", "Precio", "ID_Proveedor"
-            }
-        ));
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;

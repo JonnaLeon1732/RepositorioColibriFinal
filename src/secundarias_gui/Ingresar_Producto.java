@@ -5,12 +5,14 @@
  */
 package secundarias_gui;
 
+import Base.ConexionProducto;
+import com.db4o.ObjectContainer;
 import javax.swing.ImageIcon;
 import reportes_gui.Reporte_Productos;
 
 /**
  *
- * @author Usuario
+ * @author Productos
  */
 public class Ingresar_Producto extends javax.swing.JFrame {
 
@@ -138,7 +140,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         });
         getContentPane().add(txtexistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 228, 204, -1));
 
-        CB_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CB_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Proveedor 1", "Proveedor 2", "Proveedor 3", "Proveedor 4" }));
         getContentPane().add(CB_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 200, -1));
 
         txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -194,10 +196,10 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Reporte_Productos producto=new Reporte_Productos();
-        producto.recibir(txtcodigo.getText(),txtnombreproducto.getText(),txtdescripcion.getText(),txtexistencia.getText(),txtprecio.getText(),CB_proveedor.getSelectedItem().toString());
-        producto.setVisible(true);
-        this.setVisible(false);
+        ConexionProducto conexion=new ConexionProducto();
+        ObjectContainer base=conexion.BaseProducto();
+        conexion.CrearProducto(base, txtcodigo.getText(), txtnombreproducto.getText(), txtdescripcion.getText(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem());
+        conexion.Cerrarbd(base);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtnombreproductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreproductoKeyTyped
@@ -215,15 +217,15 @@ public class Ingresar_Producto extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtexistenciaKeyTyped
-
+    
     private void txtprecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')) {
-            Validar();
-            evt.consume();
-        }
+//        char caracter=evt.getKeyChar();
+//        if ((caracter<'0'| caracter>'9')) {
+//            Validar();
+//            evt.consume();
+//        }
     }//GEN-LAST:event_txtprecioKeyTyped
-
+    //validar para valores decimales maximo ingresar 2 decimales ya que es un precio
     private void txtdescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdescripcionKeyTyped
         char caracter=evt.getKeyChar();
         if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)) {

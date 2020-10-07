@@ -285,7 +285,7 @@ public class Conexion {
 
     public static void ConsultarDeta_Fac(ObjectContainer basep, String cod_prod) {
         Det_Factura detfac = new Det_Factura(0,cod_prod, null, 0, 0, 0);
-        Producto prod = new Producto(cod_prod,null,null,0,0,0,0,null);
+        Producto prod = new Producto(cod_prod,null,null,0,0,null);
         ObjectSet resultado = basep.get(prod);
         ObjectSet resultadofac = basep.get(detfac);
         while(resultado.hasNext()){

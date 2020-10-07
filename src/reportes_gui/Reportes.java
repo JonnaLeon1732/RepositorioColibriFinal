@@ -204,7 +204,7 @@ public class Reportes extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         Reporte_Productos productos = new Reporte_Productos();
-        productos.mostrar();
+        
         productos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnProductosActionPerformed
