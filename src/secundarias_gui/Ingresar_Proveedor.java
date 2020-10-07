@@ -28,7 +28,18 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
-    
+    public String generarid(){
+          String id=null;
+         int incrementado=1;
+       if(id==null){
+           
+       }else{
+           incrementado=Integer.parseInt(id);
+           incrementado=incrementado+1;
+           
+       }
+        return "00000"+incrementado;
+    }
      public boolean Validar(){
     
         if (  txtcedula.getText().isEmpty()) {
