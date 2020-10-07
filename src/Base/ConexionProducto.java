@@ -55,7 +55,7 @@ public class ConexionProducto {
         }
     }
     
-        public Producto[] ConsultarProducto(Producto objeto) {
+    public Producto[] ConsultarProducto(Producto objeto) {
         Producto[] producto = null;
         ObjectContainer base=BaseProducto();
         ObjectSet resultados = base.get(objeto);
@@ -86,6 +86,26 @@ public class ConexionProducto {
                 cli[4] = pro.getPrecio();
                 cli[5] = pro.getID_proveedor();
                 dtm.addRow(cli);
+            }
+        }
+        return dtm;
+    }
+    public DefaultTableModel EscojerProductos(String dato) {
+        String titulos[] = {"Codigo", "Producto","Existencia","Precio"};
+        DefaultTableModel dtm = new DefaultTableModel(null, titulos);
+        Producto producto = null;
+        Producto[] p = ConsultarProducto(producto);
+        if (p != null) {
+            for (Producto pro : p) {
+                Object[] cli = new Object[4];
+                if (dato.equals(pro.getDescripcion())) {
+                    cli[0] = pro.getCodigo();
+                    cli[1] = pro.getNombre();
+                    cli[2] = pro.getExistencias();
+                    cli[3] = pro.getPrecio();
+                    dtm.addRow(cli);
+                }
+
             }
         }
         return dtm;
