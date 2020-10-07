@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author CyberLink
+ * @author Grupo 2
  */
 public class ConexionProducto {
 

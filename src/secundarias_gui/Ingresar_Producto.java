@@ -26,29 +26,30 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
-    public boolean Validar(){
-    
-        if (  txtnombreproducto.getText().isEmpty()) {
-            txtnombreproducto.setText("*Campo Obligatorio");
-            return false;
-        } else {
-            txtnombreproducto.setText("");
-            
-        }if(txtdescripcion.getText().isEmpty()){
-            txtdescripcion.setText("*Campo Obligatorio");
-             return false;
-        }else{
-            txtdescripcion.setText("");
-            
-        } if(txtexistencia.getText().isEmpty()){
-            txtexistencia.setText("*Campo Obligatorio");
-             return false;
-        }else {
-        txtexistencia.setText("");
-        
-        }
-        return true;
-    }
+//    public boolean Validar(){
+//    
+//        if (  txtnombreproducto.getText().isEmpty()) {
+//            txtnombreproducto.setText("*Campo Obligatorio");
+//            return false;
+//        } else {
+//            txtnombreproducto.setText("");
+//            
+////        }if(txtdescripcion.getText().isEmpty()){
+////            txtdescripcion.setText("*Campo Obligatorio");
+////             return false;
+//        }else{
+////            txtdescripcion.setText("");
+//            
+//        } if(txtexistencia.getText().isEmpty()){
+//            txtexistencia.setText("*Campo Obligatorio");
+//             return false;
+//        }else {
+//        txtexistencia.setText("");
+//        
+//        }
+//        return true;
+//    }
+    //validar bien 
     
     
     @SuppressWarnings("unchecked")
@@ -66,7 +67,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         txtcodigo = new javax.swing.JTextField();
         txtnombreproducto = new javax.swing.JTextField();
-        txtdescripcion = new javax.swing.JTextField();
         txtexistencia = new javax.swing.JTextField();
         CB_proveedor = new javax.swing.JComboBox<>();
         txtprecio = new javax.swing.JTextField();
@@ -76,7 +76,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         lb_OBcedula3 = new javax.swing.JLabel();
         lb_OBcedula5 = new javax.swing.JLabel();
         lb_OBcedula4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        cbDescripcion = new javax.swing.JComboBox<>();
 
         lb_OBcedula.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula.setForeground(new java.awt.Color(204, 0, 0));
@@ -94,13 +94,13 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 142, -1, -1));
 
         jLabel4.setText("Existencia:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 231, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel5.setText("Codigo");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 58, -1, -1));
 
         jLabel6.setText("ID_Proveedor");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 304, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -126,32 +126,25 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         });
         getContentPane().add(txtnombreproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 93, 204, -1));
 
-        txtdescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtdescripcionKeyTyped(evt);
-            }
-        });
-        getContentPane().add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 139, 204, 69));
-
         txtexistencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtexistenciaKeyTyped(evt);
             }
         });
-        getContentPane().add(txtexistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 228, 204, -1));
+        getContentPane().add(txtexistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 204, -1));
 
         CB_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Proveedor 1", "Proveedor 2", "Proveedor 3", "Proveedor 4" }));
-        getContentPane().add(CB_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 200, -1));
+        getContentPane().add(CB_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 200, -1));
 
         txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtprecioKeyTyped(evt);
             }
         });
-        getContentPane().add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 266, 200, -1));
+        getContentPane().add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 200, -1));
 
         jLabel7.setText("Precio");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 266, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         lb_OBcedula1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula1.setForeground(new java.awt.Color(204, 0, 0));
@@ -173,18 +166,8 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         lb_OBcedula4.setForeground(new java.awt.Color(204, 0, 0));
         getContentPane().add(lb_OBcedula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 131, 20));
 
-        jLabel8.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.pinimg.com/564x/e4/32/22/e4322203782673d57e8af7d44718daa8.jpg")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -10, 600, 450));
+        cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verduras", "Lacteos", "Frutas", "Granos", "Hierbas", "Otros" }));
+        getContentPane().add(cbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,14 +181,14 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ConexionProducto conexion=new ConexionProducto();
         ObjectContainer base=conexion.BaseProducto();
-        conexion.CrearProducto(base, txtcodigo.getText(), txtnombreproducto.getText(), txtdescripcion.getText(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem());
+        conexion.CrearProducto(base, txtcodigo.getText(), txtnombreproducto.getText(), (String) cbDescripcion.getSelectedItem(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem());
         conexion.Cerrarbd(base);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtnombreproductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreproductoKeyTyped
         char caracter=evt.getKeyChar();
         if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtnombreproducto.getText().length()>=25)) {
-            Validar();
+//            Validar();
             evt.consume();
         }
     }//GEN-LAST:event_txtnombreproductoKeyTyped
@@ -213,7 +196,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private void txtexistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtexistenciaKeyTyped
        char caracter=evt.getKeyChar();
         if ((caracter<'0'| caracter>'9')) {
-            Validar();
+//            Validar();
             evt.consume();
         }
     }//GEN-LAST:event_txtexistenciaKeyTyped
@@ -225,14 +208,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
 //            evt.consume();
 //        }
     }//GEN-LAST:event_txtprecioKeyTyped
-    //validar para valores decimales maximo ingresar 2 decimales ya que es un precio
-    private void txtdescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdescripcionKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)) {
-            Validar();
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtdescripcionKeyTyped
 
     /**
      * @param args the command line arguments
@@ -271,6 +246,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_proveedor;
+    private javax.swing.JComboBox<String> cbDescripcion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -280,7 +256,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lb_OBcedula;
     private javax.swing.JLabel lb_OBcedula1;
     private javax.swing.JLabel lb_OBcedula2;
@@ -288,7 +263,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel lb_OBcedula4;
     private javax.swing.JLabel lb_OBcedula5;
     private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtdescripcion;
     private javax.swing.JTextField txtexistencia;
     private javax.swing.JTextField txtnombreproducto;
     private javax.swing.JTextField txtprecio;
