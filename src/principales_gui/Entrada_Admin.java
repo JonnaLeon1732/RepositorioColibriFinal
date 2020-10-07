@@ -153,7 +153,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Usuario o contraseña Incorrectas");
         }
         conexion.Cerrarbd(base);
-
+        System.out.println("hola bebe");
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnSalirAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAdActionPerformed
