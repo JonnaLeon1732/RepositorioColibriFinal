@@ -8,6 +8,7 @@ package principales_gui;
 import Base.ConexionProducto;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import secundarias_gui.Vendedores;
 
 /**
  *
@@ -54,6 +55,11 @@ public final class Verdurass extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Escojer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +93,7 @@ public final class Verdurass extends javax.swing.JFrame {
                 .addGap(276, 276, 276)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(131, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -119,6 +125,12 @@ public final class Verdurass extends javax.swing.JFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Vendedores vendedores=new Vendedores();
+        vendedores.setVisible(true);
+        this.setVisible(false); 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
