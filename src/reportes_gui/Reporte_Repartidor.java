@@ -20,7 +20,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
 
     public static final ArrayList<Repartidor> lista=new ArrayList<>();
     
-    
+     FondoPanel fondo=new FondoPanel();
     public Reporte_Repartidor() {
         initComponents();
         setLocationRelativeTo(null);

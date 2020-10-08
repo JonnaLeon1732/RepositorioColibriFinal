@@ -5,11 +5,14 @@
  */
 package secundarias_gui;
 
+import Base.Conexion;
 import clases.Cliente;
+import com.db4o.ObjectContainer;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import principales_gui.Principal;
 import reportes_gui.Reporte_Clientes;
+import static reportes_gui.Reporte_Clientes.lista;
 
 /**
  *
@@ -25,9 +28,21 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
+        lbid.setText(generarid());
     }
 
-    
+     public String generarid(){
+          String id=null;
+         int incrementado=1;
+       if(id==null){
+           
+       }else{
+           incrementado=Integer.parseInt(id);
+           incrementado=incrementado+1;
+           
+       }
+        return "00000"+incrementado;
+    }
      public boolean Validar(){
     
         if (  txt_cedula.getText().isEmpty()) {
@@ -95,6 +110,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
         lb_OBdireccion = new javax.swing.JLabel();
         lb_OBtelefono = new javax.swing.JLabel();
         lb_OBcorreo = new javax.swing.JLabel();
+        lbid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -111,7 +127,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 BTT_cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(BTT_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 303, -1, -1));
+        getContentPane().add(BTT_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         btt_registrar.setText("REGISTRAR");
         btt_registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +135,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 btt_registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btt_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 303, -1, -1));
+        getContentPane().add(btt_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         txt_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -129,7 +145,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 txt_cedulaKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 57, 215, -1));
+        getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 215, -1));
 
         txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -139,7 +155,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 txt_nombreKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 95, 215, -1));
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 215, -1));
 
         txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -149,7 +165,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 txt_apellidoKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 135, 215, -1));
+        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 215, -1));
 
         txt_correo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -159,11 +175,11 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 txt_correoKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 249, 215, -1));
+        getContentPane().add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 215, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Correo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
         txt_direccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -173,11 +189,11 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 txt_direccionKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 215, -1));
+        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 215, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Cédula:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 60, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -187,23 +203,23 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 txt_telefonoKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 210, 215, -1));
+        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 215, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Nombre:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 98, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Apellido:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 138, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Dirección:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("N° Celular:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 213, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 20));
 
         lb_OBcedula.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula.setForeground(new java.awt.Color(204, 0, 0));
@@ -223,13 +239,12 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
 
         lb_OBtelefono.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBtelefono.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 210, 131, 20));
+        getContentPane().add(lb_OBtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 131, 20));
 
         lb_OBcorreo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcorreo.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 131, 20));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("G:\\PROYECTO FINAL\\imagenes para la interfaz\\fondo_aguacate.png")); // NOI18N
+        getContentPane().add(lb_OBcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 131, 20));
+        getContentPane().add(lbid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 70, -1));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 350));
 
         pack();
@@ -264,7 +279,11 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Debe estar lleno todos los campos");
         }
-         
+         Conexion conexion=new Conexion();
+        ObjectContainer basep=conexion.BaseCliente();
+        conexion.CrearCLiente(basep,lbid.getText(),txt_correo.getText(),txt_cedula.getText(),txt_nombre.getText(),txt_apellido.getText(),txt_direccion.getText(),txt_telefono.getText());
+        conexion.Cerrarbd(basep);
+       
        
      
     }//GEN-LAST:event_btt_registrarActionPerformed
@@ -383,6 +402,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 new Ingreso_Clientes().setVisible(true);
             }
         });
+        
     }
  
 
@@ -403,6 +423,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel lb_OBdireccion;
     private javax.swing.JLabel lb_OBnombre;
     private javax.swing.JLabel lb_OBtelefono;
+    private javax.swing.JLabel lbid;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_cedula;
     private javax.swing.JTextField txt_correo;
@@ -410,4 +431,17 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
+ public void mostrar(){
+
+        String matris[][]=new String[lista.size()][6];
+        for (int i = 0; i < lista.size(); i++) {
+            matris[i][0]=lista.get(i).getID();
+            matris[i][1]=lista.get(i).getNombre();
+            matris[i][2]=lista.get(i).getApellido();
+            matris[i][3]=lista.get(i).getDireccion();
+            matris[i][4]=lista.get(i).getTelefono();
+            matris[i][5]=lista.get(i).getCorreo();
+        }
+       
+ }
 }

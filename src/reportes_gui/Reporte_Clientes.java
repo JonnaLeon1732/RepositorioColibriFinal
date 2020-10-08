@@ -42,7 +42,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        txt_consul_identificacion = new javax.swing.JTextField();
+        txtidentificacion = new javax.swing.JTextField();
         btt_limpiar = new javax.swing.JButton();
         btt_consultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -66,6 +66,11 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         });
 
         btt_consultar.setText("CONSULTAR");
+        btt_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_consultarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("REPORTE DE CLIENTES");
 
@@ -110,7 +115,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btt_consultar)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44)
                                 .addComponent(btt_limpiar))
                             .addComponent(jLabel1))
@@ -128,7 +133,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btt_consultar)
                     .addComponent(btt_limpiar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
@@ -148,8 +153,12 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
-      txt_consul_identificacion.setText("");
+      txtidentificacion.setText("");
     }//GEN-LAST:event_btt_limpiarActionPerformed
+
+    private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +233,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablacli;
-    private javax.swing.JTextField txt_consul_identificacion;
+    private javax.swing.JTextField txtidentificacion;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel{
         private Image imagen;

@@ -17,7 +17,7 @@ public class Conexion {
 
     //cliente
     public ObjectContainer BaseCliente() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseCliente\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseCli\\Base.yap");
         return contenedor;
     }
 
@@ -27,7 +27,7 @@ public class Conexion {
     }
 
     public ObjectContainer BaseRepartidor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseRepartidor\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseRep\\Base.yap");
         return contenedor;
     }
     

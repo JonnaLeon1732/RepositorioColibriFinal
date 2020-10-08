@@ -236,7 +236,9 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnClientes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes2ActionPerformed
-        // TODO add your handling code here:
+       Reporte_Clientes cliente=new Reporte_Clientes();
+       cliente.setVisible(true);
+       
     }//GEN-LAST:event_btnClientes2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
