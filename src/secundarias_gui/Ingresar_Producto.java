@@ -19,6 +19,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     /**
      * Creates new form Ingresar_Producto
      */
+    public static int valor=1;
     public Ingresar_Producto() {
         initComponents();
         setResizable(false);
@@ -61,11 +62,9 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        txtcodigo = new javax.swing.JTextField();
         txtnombreproducto = new javax.swing.JTextField();
         txtexistencia = new javax.swing.JTextField();
         CB_proveedor = new javax.swing.JComboBox<>();
@@ -96,9 +95,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         jLabel4.setText("Existencia:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        jLabel5.setText("Codigo");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 58, -1, -1));
-
         jLabel6.setText("ID_Proveedor");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
@@ -117,7 +113,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 339, -1, -1));
-        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 55, 204, -1));
 
         txtnombreproducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -179,9 +174,11 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String codigo;
         ConexionProducto conexion=new ConexionProducto();
         ObjectContainer base=conexion.BaseProducto();
-        conexion.CrearProducto(base, txtcodigo.getText(), txtnombreproducto.getText(), (String) cbDescripcion.getSelectedItem(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem());
+        codigo=conexion.Codigo(base);
+        conexion.CrearProducto(base,codigo, txtnombreproducto.getText(), (String) cbDescripcion.getSelectedItem(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem());
         conexion.Cerrarbd(base);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -253,7 +250,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lb_OBcedula;
@@ -262,7 +258,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel lb_OBcedula3;
     private javax.swing.JLabel lb_OBcedula4;
     private javax.swing.JLabel lb_OBcedula5;
-    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtexistencia;
     private javax.swing.JTextField txtnombreproducto;
     private javax.swing.JTextField txtprecio;

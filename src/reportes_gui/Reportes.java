@@ -167,6 +167,7 @@ public class Reportes extends javax.swing.JFrame {
         jMenu1.setBackground(new java.awt.Color(255, 153, 153));
         jMenu1.setText("Nuevo");
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
         jMenuItem4.setText("Revisar Datos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +176,7 @@ public class Reportes extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lapiz.png"))); // NOI18N
         jMenuItem1.setText("Crear Usuario");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

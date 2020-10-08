@@ -5,31 +5,39 @@
  */
 package principales_gui;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import Base.ConexionProducto;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import secundarias_gui.Vendedores;
 
 /**
  *
- * @author grupo2
+ * @author Grupo 2
  */
-public class Verduras extends javax.swing.JFrame {
+public final class Verduras extends javax.swing.JFrame {
 
     /**
-     * Creates new form Verduras
+     * Creates new form Verdurass
      */
-    FondoPanel fondo=new FondoPanel();
+    public static int dato;
     public Verduras() {
-       this.setContentPane(fondo);
+        ConexionProducto conexion=new ConexionProducto();
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("COLIBRÍ");
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
+        TablaVerduras.setModel(conexion.EscojerProductos("Verduras"));
+        seleccionarPersona();
     }
-
+    public void seleccionarPersona() {
+        TablaVerduras.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent Mouse_evt) {
+                if (Mouse_evt.getClickCount() == 1) {
+                    txtCodigo.setText(TablaVerduras.getValueAt(TablaVerduras.getSelectedRow(), 0).toString());
+                    dato=(int) TablaVerduras.getValueAt(TablaVerduras.getSelectedRow(), 2);
+                    jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
+                }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,222 +47,95 @@ public class Verduras extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaVerduras = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btnzanahoria = new javax.swing.JButton();
-        btnmora = new javax.swing.JButton();
-        btnbrocoli = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        coliflor = new javax.swing.JSpinner();
-        lechuga = new javax.swing.JSpinner();
-        remolacha = new javax.swing.JSpinner();
-        col = new javax.swing.JSpinner();
+        jSpinner1 = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("Escojer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+
+        TablaVerduras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaVerduras);
 
         jLabel1.setText("VERDURAS");
 
-        jButton2.setText("Producto 1");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Codigo");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("Col");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setText("Remolacha");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Lechuga");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Coliflor");
-
-        btnzanahoria.setText("Prducto10");
-        btnzanahoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnzanahoriaActionPerformed(evt);
-            }
-        });
-
-        btnmora.setText("Producto9");
-        btnmora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmoraActionPerformed(evt);
-            }
-        });
-
-        btnbrocoli.setText("Producto2");
-        btnbrocoli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbrocoliActionPerformed(evt);
-            }
-        });
-
-        jButton15.setBackground(new java.awt.Color(204, 204, 255));
-        jButton15.setText("ATRAS");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("$0.50 c/u");
-
-        jLabel3.setText("$0.35 c/u");
-
-        jLabel6.setText("$0.50 porcion ");
-
-        jLabel7.setText("$0.75 c/u");
-
-        coliflor.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-
-        lechuga.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-
-        remolacha.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
-
-        col.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnmora, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(139, 139, 139)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(coliflor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(129, 129, 129)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnbrocoli, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(lechuga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel12))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(remolacha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(108, 108, 108)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnzanahoria, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel13)
-                                            .addComponent(col, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGap(276, 276, 276)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jButton1)
+                .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel13))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnbrocoli, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(coliflor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lechuga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnmora, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnzanahoria, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(remolacha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(col, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(jButton15)
-                .addGap(63, 63, 63))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        Principal principal = new Principal();
-        principal.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton15ActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Vendedores vendedores=new Vendedores();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Vendedores vendedores=new Vendedores();
         vendedores.setVisible(true);
         this.setVisible(false); 
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void btnbrocoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbrocoliActionPerformed
-          Vendedores vendedores=new Vendedores();
-        vendedores.setVisible(true);
-        this.setVisible(false); 
-    }//GEN-LAST:event_btnbrocoliActionPerformed
-
-    private void btnmoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmoraActionPerformed
-         Vendedores vendedores=new Vendedores();
-        vendedores.setVisible(true);
-        this.setVisible(false); 
-    }//GEN-LAST:event_btnmoraActionPerformed
-
-    private void btnzanahoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnzanahoriaActionPerformed
-         Vendedores vendedores=new Vendedores();
-        vendedores.setVisible(true);
-        this.setVisible(false); 
-    }//GEN-LAST:event_btnzanahoriaActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +163,13 @@ public class Verduras extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Verduras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -292,37 +180,12 @@ public class Verduras extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbrocoli;
-    private javax.swing.JButton btnmora;
-    private javax.swing.JButton btnzanahoria;
-    private javax.swing.JSpinner col;
-    private javax.swing.JSpinner coliflor;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable TablaVerduras;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JSpinner lechuga;
-    private javax.swing.JSpinner remolacha;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
- class FondoPanel extends JPanel{
-        private Image imagen;
-        
-        @Override
-        public void paint(Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagenes/lacteos.jpg")).getImage();
-            
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-            
-            setOpaque(false);
-            
-            super.paint(g);
-        }
-    }
 }

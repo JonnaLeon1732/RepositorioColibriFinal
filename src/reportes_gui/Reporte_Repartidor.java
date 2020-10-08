@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import reportes_gui.Reportes;
+import Base.Conexion;
+import com.db4o.ObjectContainer;
+import javax.swing.table.TableModel;
 
 public class Reporte_Repartidor extends javax.swing.JFrame {
 
@@ -136,6 +139,11 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         getContentPane().add(btt_crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 43, -1, -1));
 
         btt_modificar.setText("MODIFICAR");
+        btt_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_modificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btt_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 43, -1, -1));
 
         btt_eliminar.setText("ELIMINAR");
@@ -186,6 +194,16 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
         txt_consul_identificacion.setText("");
     }//GEN-LAST:event_btt_limpiarActionPerformed
+
+    private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
+        // TODO add your handling code here:
+        Conexion conexion=new Conexion();
+        ObjectContainer basep=conexion.BaseCliente();
+        Repartidor cliente=new Repartidor();
+        conexion.ModificarRepartidor(basep, null, cliente.getCedula_repartidor(), null, null, null, null, null);
+        conexion.Cerrarbd(basep);
+        tablapro.setModel((TableModel) conexion.BaseRepartidor());
+    }//GEN-LAST:event_btt_modificarActionPerformed
 
     /**
      * @param args the command line arguments

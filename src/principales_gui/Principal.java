@@ -362,10 +362,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHierbasActionPerformed
 
     private void btnVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerdurasActionPerformed
-       Verdurass verduras = new Verdurass();
+       Verduras producto = new Verduras();
        Vendedores vender = new Vendedores();
        vender.valor1(1);
-       verduras.setVisible(true);
+       producto.setVisible(true);
        this.setVisible(false);
        
     }//GEN-LAST:event_btnVerdurasActionPerformed
