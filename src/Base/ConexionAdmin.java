@@ -20,6 +20,7 @@ public class ConexionAdmin {
     public ConexionAdmin() {
     }
     public ObjectContainer BaseUsuario(){
+        System.out.println("");
         ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseAdmin.yap");
         return contenedor;
     }
