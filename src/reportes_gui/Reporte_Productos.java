@@ -7,6 +7,7 @@ package reportes_gui;
 
 import Base.ConexionProducto;
 import clases.Producto;
+import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -113,6 +114,11 @@ public class Reporte_Productos extends javax.swing.JFrame {
         });
 
         btt_modificar.setText("MODIFICAR");
+        btt_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_modificarActionPerformed(evt);
+            }
+        });
 
         btt_eliminar.setText("ELIMINAR");
 
@@ -206,6 +212,11 @@ public class Reporte_Productos extends javax.swing.JFrame {
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
         
     }//GEN-LAST:event_btt_consultarActionPerformed
+
+    private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btt_modificarActionPerformed
 
 
     
