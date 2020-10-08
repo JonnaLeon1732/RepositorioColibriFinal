@@ -81,7 +81,5 @@ public class Producto {
         this.ID_proveedor = ID_proveedor;
     }
 
-    public static void vende() {
 
-    }
 }

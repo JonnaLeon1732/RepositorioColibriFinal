@@ -21,13 +21,13 @@ public class ConexionProducto {
 
     public ConexionProducto() {
     }
-        public ObjectContainer BaseProducto(){
+    public ObjectContainer BaseProducto(){
         ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseProduct.yap");
         return contenedor;
     }
     public void CrearProducto(ObjectContainer basep,String codigo, String nombre, String descripcion, int exitencias, double precio, String ID_proveedor){
         Producto producto=new Producto(codigo,nombre,descripcion,exitencias,precio,ID_proveedor);
-        if (ComprobarProducto(basep,codigo)!=0) {
+        if (ComprobarProducto(basep,nombre,ID_proveedor)!=0) {
             JOptionPane.showMessageDialog(null,"Registro Existente");
         }else{
             basep.set(producto);
@@ -35,8 +35,8 @@ public class ConexionProducto {
         }
     }
     
-    public static int ComprobarProducto(ObjectContainer basep,String codigo){
-        Producto producto=new Producto(codigo,null,null,0,0,null);
+    public static int ComprobarProducto(ObjectContainer basep,String nombre,String proveedor){
+        Producto producto=new Producto(null,nombre,null,0,0,proveedor);
         ObjectSet resultado=basep.get(producto);
         return resultado.size();
     }
@@ -48,11 +48,7 @@ public class ConexionProducto {
     public boolean ConsultarProducto(ObjectContainer basep,String codigo){
         Producto producto=new Producto(codigo,null,null,0,0,null);
         ObjectSet resultado=basep.get(producto);
-        if (resultado.size()==0) {
-            return false;
-        }else{
-            return true;
-        }
+        return !resultado.isEmpty();
     }
     
     public Producto[] ConsultarProducto(Producto objeto) {
@@ -91,23 +87,41 @@ public class ConexionProducto {
         return dtm;
     }
     public DefaultTableModel EscojerProductos(String dato) {
-        String titulos[] = {"Codigo", "Producto","Existencia","Precio"};
+        String titulos[] = {"Codigo", "Producto","Existencia","Precio","Proveedor"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Producto producto = null;
         Producto[] p = ConsultarProducto(producto);
         if (p != null) {
             for (Producto pro : p) {
-                Object[] cli = new Object[4];
+                Object[] cli = new Object[5];
                 if (dato.equals(pro.getDescripcion())) {
                     cli[0] = pro.getCodigo();
                     cli[1] = pro.getNombre();
                     cli[2] = pro.getExistencias();
                     cli[3] = pro.getPrecio();
+                    cli[4] = pro.getID_proveedor();
                     dtm.addRow(cli);
                 }
 
             }
         }
         return dtm;
+    }
+    public String Codigo(ObjectContainer basep) {
+        int generar;
+        boolean confirmar;
+        String codigo;
+        generar=(int) Math.floor(Math.random()*900+100);
+        codigo=generar+"";
+        do {
+            if (ConsultarProducto(basep,codigo)!=false) {
+                generar=(int) Math.floor(Math.random()*999+1);
+                codigo=generar+"";
+                confirmar=false;
+            }else{
+                confirmar=true;
+            }
+        } while (confirmar!=true);
+        return codigo;
     }
 }
