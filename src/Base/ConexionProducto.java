@@ -68,6 +68,7 @@ public class ConexionProducto {
     }
     
     public DefaultTableModel Productos() {
+        System.out.println("pedro");
         String titulos[] = {"Codigo", "Producto", "Descripción","Existencia","Precio","Proveedor"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Producto producto = null;
