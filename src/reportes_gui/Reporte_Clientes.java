@@ -206,7 +206,9 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         lista.add(cliente);
         mostrar();
     }
-    
+        public void mostrat(){
+            
+        }
     public void mostrar(){
 
         String matris[][]=new String[lista.size()][6];
