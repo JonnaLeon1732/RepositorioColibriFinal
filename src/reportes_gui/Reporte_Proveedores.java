@@ -237,7 +237,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         
         Proveedor proveedor = new Proveedor();
         proveedor.setID_proveedor(ID);
-        proveedor.setID(cedula);
+        proveedor.setCedula(cedula);
         proveedor.setNombre(nombre);
         proveedor.setApellido(apellido);
         proveedor.setDireccion(direccion);
@@ -251,7 +251,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         String matris[][]=new String[lista.size()][6];
         for (int i = 0; i < lista.size(); i++) {
             matris[i][0]=lista.get(i).getID_proveedor();
-            matris[i][1]=lista.get(i).getID();
+            matris[i][1]=lista.get(i).getCedula();
             matris[i][2]=lista.get(i).getNombre();
             matris[i][3]=lista.get(i).getApellido();
             matris[i][4]=lista.get(i).getDireccion();

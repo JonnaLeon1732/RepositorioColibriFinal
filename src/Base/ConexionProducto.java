@@ -5,7 +5,7 @@
  */
 package Base;
 
-import clases.Administrador;
+
 import clases.Producto;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;

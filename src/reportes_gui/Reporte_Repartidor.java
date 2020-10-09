@@ -36,7 +36,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         
         Repartidor repartidor = new Repartidor();
         
-        repartidor.setID(id);
+        repartidor.setCedula(id);
         repartidor.setCedula_repartidor(cedula);
         repartidor.setNombre(nombre);
         repartidor.setApellido(apellido);
@@ -52,7 +52,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
 
         String matris[][]=new String[lista.size()][7];
         for (int i = 0; i < lista.size(); i++) {
-            matris[i][0]=lista.get(i).getID();
+            matris[i][0]=lista.get(i).getCedula();
             matris[i][1]=lista.get(i).getCedula_repartidor();
             matris[i][2]=lista.get(i).getNombre();
             matris[i][3]=lista.get(i).getApellido();

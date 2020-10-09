@@ -10,7 +10,7 @@ package clases;
  * @author Grupo 2
  */
 public class Persona {
-    private String ID;
+    private String cedula;
     private String nombre;
     private String apellido;
     private String telefono;
@@ -20,19 +20,19 @@ public class Persona {
     }
 
     public Persona(String ID, String nombre, String apellido, String telefono, String direccion) {
-        this.ID = ID;
+        this.cedula = ID;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.direccion = direccion;
     }
 
-    public String getID() {
-        return ID;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -69,6 +69,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona" + "ID=" + ID + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion;
+        return "Persona" + "ID=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion;
     } 
 }

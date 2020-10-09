@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import secundarias_gui.Ayuda;
 import secundarias_gui.Carrito;
 import secundarias_gui.Crear_Administrador;
-import secundarias_gui.Vendedores;
 
 /**
  *
@@ -354,52 +353,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnHierbasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHierbasActionPerformed
-       Hierbas hierbas = new Hierbas();
-       Vendedores vender = new Vendedores();
-       vender.valor1(5);
-       hierbas.setVisible(true);
-       this.setVisible(false);
+
     }//GEN-LAST:event_btnHierbasActionPerformed
 
     private void btnVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerdurasActionPerformed
        Verduras producto = new Verduras();
-       Vendedores vender = new Vendedores();
-       vender.valor1(1);
        producto.setVisible(true);
        this.setVisible(false);
        
     }//GEN-LAST:event_btnVerdurasActionPerformed
 
     private void btnLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLacteosActionPerformed
-       Lacteos lacteos = new Lacteos();
-       Vendedores vender = new Vendedores();
-       vender.valor1(2);
-       lacteos.setVisible(true);
-       this.setVisible(false);
+
     }//GEN-LAST:event_btnLacteosActionPerformed
 
     private void btnFrutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrutasActionPerformed
-       Frutas frutas = new Frutas();
-       Vendedores vender = new Vendedores();
-       vender.valor1(3);
-       frutas.setVisible(true);
+       Frutas producto = new Frutas();
+       producto.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_btnFrutasActionPerformed
 
     private void btnGranosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranosActionPerformed
-       Granos granos = new Granos();
-       Vendedores vender = new Vendedores();
-       vender.valor1(4);
-       granos.setVisible(true);
-       this.setVisible(false);
+
     }//GEN-LAST:event_btnGranosActionPerformed
 
     private void btnOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtrosActionPerformed
-       Otros otros = new Otros();
-       Vendedores vender = new Vendedores();
-       vender.valor1(6);
-       otros.setVisible(true);
-       this.setVisible(false);
+
     }//GEN-LAST:event_btnOtrosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

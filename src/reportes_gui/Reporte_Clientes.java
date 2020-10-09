@@ -197,7 +197,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         public void recibir(String cedula,String nombre,String apellido,String direccion,String telefono, String correo){
         
         Cliente cliente = new Cliente();
-        cliente.setID(cedula);
+        cliente.setCedula(cedula);
         cliente.setNombre(nombre);
         cliente.setApellido(apellido);
         cliente.setDireccion(apellido);
@@ -213,7 +213,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
 
         String matris[][]=new String[lista.size()][6];
         for (int i = 0; i < lista.size(); i++) {
-            matris[i][0]=lista.get(i).getID();
+            matris[i][0]=lista.get(i).getCedula();
             matris[i][1]=lista.get(i).getNombre();
             matris[i][2]=lista.get(i).getApellido();
             matris[i][3]=lista.get(i).getDireccion();
