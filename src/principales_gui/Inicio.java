@@ -41,8 +41,8 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnContinuar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        btnContinua = new javax.swing.JButton();
+        btnSali = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -57,17 +57,17 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PROYECTO COLIBRÍ");
 
-        btnContinuar.setText("CONTINUAR");
-        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+        btnContinua.setText("CONTINUAR");
+        btnContinua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuarActionPerformed(evt);
+                btnContinuaActionPerformed(evt);
             }
         });
 
-        btnSalir.setText("SALIR");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnSali.setText("SALIR");
+        btnSali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+                btnSaliActionPerformed(evt);
             }
         });
 
@@ -121,9 +121,9 @@ public class Inicio extends javax.swing.JFrame {
                             .addGap(30, 30, 30)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(70, 70, 70)
-                            .addComponent(btnContinuar)
+                            .addComponent(btnContinua)
                             .addGap(47, 47, 47)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSali, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(0, 87, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -153,23 +153,23 @@ public class Inicio extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(20, 20, 20)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnContinuar)
-                                .addComponent(btnSalir))))
+                                .addComponent(btnContinua)
+                                .addComponent(btnSali))))
                     .addGap(0, 23, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+    private void btnContinuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuaActionPerformed
         Principal principal = new Principal();
         principal.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnContinuarActionPerformed
+    }//GEN-LAST:event_btnContinuaActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btnSaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaliActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_btnSaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +207,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnContinua;
+    private javax.swing.JButton btnSali;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

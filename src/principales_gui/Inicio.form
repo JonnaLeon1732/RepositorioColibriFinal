@@ -42,9 +42,9 @@
                           <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="190" max="-2" attributes="0"/>
                           <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-                          <Component id="btnContinuar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnContinua" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
-                          <Component id="btnSalir" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="btnSali" min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="87" max="32767" attributes="0"/>
@@ -81,8 +81,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnContinuar" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnContinua" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSali" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -104,20 +104,20 @@
         <Property name="text" type="java.lang.String" value="PROYECTO COLIBR&#xcd;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnContinuar">
+    <Component class="javax.swing.JButton" name="btnContinua">
       <Properties>
         <Property name="text" type="java.lang.String" value="CONTINUAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContinuarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContinuaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSalir">
+    <Component class="javax.swing.JButton" name="btnSali">
       <Properties>
         <Property name="text" type="java.lang.String" value="SALIR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaliActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

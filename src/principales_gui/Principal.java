@@ -120,44 +120,70 @@ public class Principal extends javax.swing.JFrame {
         btnCarrito.setBackground(new java.awt.Color(153, 153, 153));
         btnCarrito.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCarrito.setForeground(new java.awt.Color(255, 255, 255));
-        btnCarrito.setText("Carrito");
         btnCarrito.setBorder(null);
+        btnCarrito.setBorderPainted(false);
+        btnCarrito.setContentAreaFilled(false);
+        btnCarrito.setFocusPainted(false);
         btnCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCarritoActionPerformed(evt);
             }
         });
 
+        btnVerduras.setBorder(null);
+        btnVerduras.setBorderPainted(false);
+        btnVerduras.setContentAreaFilled(false);
+        btnVerduras.setFocusPainted(false);
         btnVerduras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerdurasActionPerformed(evt);
             }
         });
 
+        btnLacteos.setBorder(null);
+        btnLacteos.setBorderPainted(false);
+        btnLacteos.setContentAreaFilled(false);
+        btnLacteos.setFocusPainted(false);
         btnLacteos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLacteosActionPerformed(evt);
             }
         });
 
+        btnFrutas.setBorder(null);
+        btnFrutas.setBorderPainted(false);
+        btnFrutas.setContentAreaFilled(false);
+        btnFrutas.setFocusPainted(false);
         btnFrutas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFrutasActionPerformed(evt);
             }
         });
 
+        btnGranos.setBorder(null);
+        btnGranos.setBorderPainted(false);
+        btnGranos.setContentAreaFilled(false);
+        btnGranos.setFocusPainted(false);
         btnGranos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGranosActionPerformed(evt);
             }
         });
 
+        btnHierbas.setBorder(null);
+        btnHierbas.setBorderPainted(false);
+        btnHierbas.setContentAreaFilled(false);
+        btnHierbas.setFocusPainted(false);
         btnHierbas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHierbasActionPerformed(evt);
             }
         });
 
+        btnOtros.setBorder(null);
+        btnOtros.setBorderPainted(false);
+        btnOtros.setContentAreaFilled(false);
+        btnOtros.setFocusPainted(false);
         btnOtros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOtrosActionPerformed(evt);
@@ -353,7 +379,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnHierbasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHierbasActionPerformed
-
+       Hierbas producto = new Hierbas();
+       producto.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnHierbasActionPerformed
 
     private void btnVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerdurasActionPerformed
@@ -364,7 +392,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerdurasActionPerformed
 
     private void btnLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLacteosActionPerformed
-
+       Lacteos producto = new Lacteos();
+       producto.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnLacteosActionPerformed
 
     private void btnFrutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrutasActionPerformed
@@ -374,11 +404,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFrutasActionPerformed
 
     private void btnGranosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranosActionPerformed
-
+       Granos producto = new Granos();
+       producto.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnGranosActionPerformed
 
     private void btnOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtrosActionPerformed
-
+       Otros producto = new Otros();
+       producto.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnOtrosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

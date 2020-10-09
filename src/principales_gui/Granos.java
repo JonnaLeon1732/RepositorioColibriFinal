@@ -19,14 +19,14 @@ import javax.swing.JPanel;
  *
  * @author Grupo 2
  */
-public final class Frutas extends javax.swing.JFrame {
+public final class Granos extends javax.swing.JFrame {
 
     /**
      * Creates new form Verdurass
      */
     public static int dato;
     FondoPanel fondo=new FondoPanel();
-    public Frutas() {
+    public Granos() {
         this.setContentPane(fondo);
         ConexionProducto conexion=new ConexionProducto();
         initComponents();
@@ -35,16 +35,16 @@ public final class Frutas extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         btnAnadir.setIcon(setIcono("/iconos/carrito_de_compras.png",btnAnadir));
         btnAnadir.setPressedIcon(setIconoPresionado("/iconos/carrito_de_compras.png",btnAnadir,20,20));
-        TablaFrutas.setModel(conexion.EscojerProductos("Frutas"));
+        TablaGranos.setModel(conexion.EscojerProductos("Granos"));
         seleccionarPersona();
     }
     public void seleccionarPersona() {
-        TablaFrutas.addMouseListener(new MouseAdapter() {
+        TablaGranos.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
                 if (Mouse_evt.getClickCount() == 1) {
-                    txtCodigo.setText(TablaFrutas.getValueAt(TablaFrutas.getSelectedRow(), 0).toString());
-                    dato=(int) TablaFrutas.getValueAt(TablaFrutas.getSelectedRow(), 2);
+                    txtCodigo.setText(TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 0).toString());
+                    dato=(int) TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 2);
                     jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
                 }
             }
@@ -63,7 +63,7 @@ public final class Frutas extends javax.swing.JFrame {
         btnAnadir = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaFrutas = new javax.swing.JTable();
+        TablaGranos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
@@ -105,7 +105,7 @@ public final class Frutas extends javax.swing.JFrame {
             }
         });
 
-        TablaFrutas.setModel(new javax.swing.table.DefaultTableModel(
+        TablaGranos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -116,10 +116,10 @@ public final class Frutas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TablaFrutas);
+        jScrollPane1.setViewportView(TablaGranos);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("FRUTAS");
+        jLabel1.setText("GRANOS");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Codigo");
@@ -143,13 +143,10 @@ public final class Frutas extends javax.swing.JFrame {
         jLabel8.setToolTipText("");
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblNombre.setToolTipText("");
 
         lblApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblApellido.setToolTipText("");
 
         lblTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTelefono.setToolTipText("");
 
         jButton2.setText("Atras");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -331,13 +328,13 @@ public final class Frutas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Granos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Granos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Granos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Granos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -359,13 +356,13 @@ public final class Frutas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frutas().setVisible(true);
+                new Granos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaFrutas;
+    private javax.swing.JTable TablaGranos;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
