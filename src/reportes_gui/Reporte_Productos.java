@@ -202,7 +202,7 @@ public class Reporte_Productos extends javax.swing.JFrame {
     private void btt_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_crearActionPerformed
         Ingresar_Producto producto=new Ingresar_Producto();
         producto.setVisible(true);
-        
+        this.setVisible(false);
     }//GEN-LAST:event_btt_crearActionPerformed
 
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
