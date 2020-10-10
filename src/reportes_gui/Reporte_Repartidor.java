@@ -60,7 +60,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
             matris[i][5]=lista.get(i).getTelefono();
             matris[i][6]=lista.get(i).getNum_placa_moto();
         }
-        tablapro.setModel(new javax.swing.table.DefaultTableModel(
+        tablarep.setModel(new javax.swing.table.DefaultTableModel(
             matris,
             new String [] {
                  "ID","Cedula", "Nombre", "Apellido", "Dirección", "Telefono", "N° Placa"
@@ -74,7 +74,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablapro = new javax.swing.JTable();
+        tablarep = new javax.swing.JTable();
         atras = new javax.swing.JButton();
         btt_consultar = new javax.swing.JButton();
         btt_crear = new javax.swing.JButton();
@@ -86,10 +86,11 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REPORTE DE REPARTIDOR");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 11, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
-        tablapro.setModel(new javax.swing.table.DefaultTableModel(
+        tablarep.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -115,7 +116,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablapro);
+        jScrollPane1.setViewportView(tablarep);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 719, 242));
 
@@ -128,6 +129,11 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         getContentPane().add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 368, -1, -1));
 
         btt_consultar.setText("CONSULTAR");
+        btt_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_consultarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btt_consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 48, -1, -1));
 
         btt_crear.setText("CREAR");
@@ -179,15 +185,12 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_crearActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
-        int FilaSelec = tablapro.getSelectedRowCount();
-        if (FilaSelec >= 0) {
-            tablapro.remove(FilaSelec);
-            lista.remove(FilaSelec);
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "FILA NO SELECIONADA");
-            
-        }
+      Conexion conexion=new Conexion();
+      ObjectContainer basep=conexion.BaseRepartidor();
+      Repartidor rep=new Repartidor();
+       conexion.EliminarRepartidor(basep,rep.getCedula_repartidor());
+        conexion.Cerrarbd(basep);
+        tablarep.setModel((TableModel) conexion.BaseRepartidor());
       
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
@@ -198,12 +201,26 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
         // TODO add your handling code here:
         Conexion conexion=new Conexion();
-        ObjectContainer basep=conexion.BaseCliente();
-        Repartidor cliente=new Repartidor();
-        conexion.ModificarRepartidor(basep, null, cliente.getCedula_repartidor(), null, null, null, null, null);
+        ObjectContainer basep=conexion.BaseRepartidor();
+        Repartidor rep=new Repartidor();
+        conexion.ModificarRepartidor(basep, null, rep.getCedula_repartidor(), null, null, null, null, null);
         conexion.Cerrarbd(basep);
-        tablapro.setModel((TableModel) conexion.BaseRepartidor());
+        tablarep.setModel((TableModel) conexion.BaseRepartidor());
+        
+        Ingresar_Repartidor repa=new Ingresar_Repartidor();
+        repa.setVisible(true);
+        
     }//GEN-LAST:event_btt_modificarActionPerformed
+
+    private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
+        Conexion conexion=new Conexion();
+      ObjectContainer basep=conexion.BaseRepartidor();
+      Repartidor rep=new Repartidor();
+       conexion.ConsultarRepartidor(basep,rep.getCedula_repartidor());
+        conexion.Cerrarbd(basep);
+        tablarep.setModel((TableModel) conexion.BaseRepartidor());
+      
+    }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,7 +273,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     private javax.swing.JButton btt_modificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablapro;
+    private javax.swing.JTable tablarep;
     private javax.swing.JTextField txt_consul_identificacion;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel{

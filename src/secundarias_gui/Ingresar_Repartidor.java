@@ -19,8 +19,20 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
      */
     public Ingresar_Repartidor() {
         initComponents();
+        lbid.setText(generarid());
     }
-
+ public String generarid(){
+          String id=null;
+         int incrementado=1;
+       if(id==null){
+           
+       }else{
+           incrementado=Integer.parseInt(id);
+           incrementado=incrementado+1;
+           
+       }
+        return "00000"+incrementado;
+    }
     
     public boolean Validar(){
     
@@ -74,7 +86,6 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
         txtcedula = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
@@ -90,6 +101,7 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
         lb_OBplaca = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btnregistrar = new javax.swing.JButton();
+        lbid = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +135,6 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Teléfono:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 193, -1));
 
         txtcedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,8 +236,7 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("G:\\PROYECTO FINAL\\imagenes para la interfaz\\fondo_brocoli.png")); // NOI18N
+        getContentPane().add(lbid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 370));
 
         pack();
@@ -307,11 +317,11 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
 
         if(Validar()==true){
-            if ( txtcedula.getText().length()>=10){
-                if(txttelefono.getText().length()>=10 | (txttelefono.getText().length()>=9)){
+            if ( txtcedula.getText().length()==10){
+                if(txttelefono.getText().length()==10 | (txttelefono.getText().length()>=9)){
 
                     Reporte_Repartidor reporte=new Reporte_Repartidor();
-                    reporte.recibir(txtid.getText(),txtcedula.getText(),txtnombre.getText(),txtapellido.getText(),txtdireccion.getText(),txttelefono.getText(),txtplaca.getText());
+                    reporte.recibir(lbid.getText(),txtcedula.getText(),txtnombre.getText(),txtapellido.getText(),txtdireccion.getText(),txttelefono.getText(),txtplaca.getText());
                     reporte.setVisible(true);
                     this.setVisible(false);
 
@@ -377,10 +387,10 @@ public class Ingresar_Repartidor extends javax.swing.JFrame {
     private javax.swing.JLabel lb_OBnombre;
     private javax.swing.JLabel lb_OBplaca;
     private javax.swing.JLabel lb_OBtelefono;
+    private javax.swing.JLabel lbid;
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtdireccion;
-    private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtplaca;
     private javax.swing.JTextField txttelefono;

@@ -17,7 +17,7 @@ public class Conexion {
 
     //cliente
     public ObjectContainer BaseCliente() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseCli\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseCli\\BaseCli\\Base.yap");
         return contenedor;
     }
 
@@ -27,7 +27,7 @@ public class Conexion {
     }
 
     public ObjectContainer BaseRepartidor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseRep\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\Baserep\\Base.yap");
         return contenedor;
     }
     
@@ -156,8 +156,8 @@ public class Conexion {
     }
 
     //repartidor
-    public void CrearRepartidor(ObjectContainer basep, String ID, String cedula, String nombre, String apellido, String telefono, String direccion, String Num_placa_moto) {
-        Repartidor repartidor = new Repartidor(ID, cedula, nombre, apellido, telefono, direccion, Num_placa_moto);
+    public void CrearRepartidor(ObjectContainer basep,String ID,String cedula, String nombre, String apellido, String telefono, String direccion,String Num_placa_moto) {
+        Repartidor repartidor = new Repartidor(  ID,cedula, nombre, apellido, telefono,  direccion, Num_placa_moto);
         if (ComprobarRepartidor(basep, cedula) != 0) {
             JOptionPane.showMessageDialog(null, "Registro Existente");
         } else {
@@ -174,15 +174,24 @@ public class Conexion {
     }
 
     public void EliminarRepartidor(ObjectContainer basep, String cedula) {
-        Repartidor repartidor = new Repartidor(null, cedula, null, null, null, null, null);
+         Repartidor repartidor = new Repartidor(null, cedula, null, null, null, null, null);
         ObjectSet resultado = basep.get(repartidor);
 
         if (resultado.size() == 0) {
             JOptionPane.showMessageDialog(null, "El Repartidor no se encuentra");
         } else {
-            Cliente eliminar = (Cliente) resultado.next();
+            Repartidor eliminar = (Repartidor) resultado.next();
             basep.delete(eliminar);
             JOptionPane.showMessageDialog(null, "El Repartidor fue eliminado");
+        }
+    }
+      public boolean ConsultarRepartidor(ObjectContainer basep, String cedula) {
+        Repartidor repartidor = new Repartidor(null, cedula, null, null, null, null, null);
+        ObjectSet resultado = basep.get(repartidor);
+        if (resultado.size() == 0) {
+            return false;
+        } else {
+            return true;
         }
     }
 

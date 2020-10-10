@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import principales_gui.Principal;
 import reportes_gui.Reporte_Clientes;
 import static reportes_gui.Reporte_Clientes.lista;
+import java.util.*;
+
 
 /**
  *
@@ -260,8 +262,8 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     private void btt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registrarActionPerformed
        
         if(Validar()==true){
-            if ( txt_cedula.getText().length()>=10){
-             if(txt_telefono.getText().length()>=10 ){
+            if ( txt_cedula.getText().length()==10){
+             if(txt_telefono.getText().length()==10 ){
                if (txt_correo.getText().contains("@")& txt_correo.getText().contains(".")) {
                  
                    Factura f=new Factura();

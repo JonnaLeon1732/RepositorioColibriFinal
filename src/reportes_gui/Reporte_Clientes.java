@@ -5,13 +5,16 @@
  */
 package reportes_gui;
 
+import Base.Conexion;
 import clases.Cliente;
+import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
+import javax.swing.table.TableModel;
+import secundarias_gui.Ingreso_Clientes;
 /**
  *
  * @author Grupo 2
@@ -23,6 +26,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
      */
     public static final ArrayList<Cliente> lista=new ArrayList<>();
     FondoPanel fondo=new FondoPanel();
+    
     public Reporte_Clientes() {
         this.setContentPane(fondo);
         initComponents();
@@ -72,6 +76,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REPORTE DE CLIENTES");
 
         tablacli.setModel(new javax.swing.table.DefaultTableModel(
@@ -129,14 +134,14 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btt_consultar)
                     .addComponent(btt_limpiar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -157,7 +162,13 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        // TODO add your handling code here:
+        Conexion conexion=new Conexion();
+      ObjectContainer basep=conexion.BaseCliente();
+      Cliente cliente=new Cliente();
+       conexion.ConsultarCliente(basep,cliente.getCedula());
+        conexion.Cerrarbd(basep);
+        tablacli.setModel((TableModel) conexion.BaseRepartidor());
+      
     }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**
@@ -206,9 +217,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         lista.add(cliente);
         mostrar();
     }
-        public void mostrat(){
-            
-        }
+     
     public void mostrar(){
 
         String matris[][]=new String[lista.size()][6];

@@ -20,7 +20,7 @@ public class ConexionAdmin {
     public ConexionAdmin() {
     }
     public ObjectContainer BaseUsuario(){
-        ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseAdmin.yap");
+        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\Baseadm\\BaseAdmin.yap");
         return contenedor;
     }
     public void CrearUsuario(ObjectContainer basep, String ID, String nombre, String apellido, String telefono, String direccion, String correo, String nom_usuario, String contrasena){
