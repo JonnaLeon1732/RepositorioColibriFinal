@@ -17,27 +17,27 @@ public class Conexion {
 
     //cliente
     public ObjectContainer BaseCliente() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseCli\\BaseCli\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
         return contenedor;
     }
 
     public ObjectContainer BaseProveedor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseProveedor\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
         return contenedor;
     }
 
     public ObjectContainer BaseRepartidor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\Baserep\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
         return contenedor;
     }
     
     public ObjectContainer enca_fact() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseProveedor\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\ase.yap");
         return contenedor;
     }
 
     public ObjectContainer deta_fact() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Base\\BaseRepartidor\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
         return contenedor;
     }
 

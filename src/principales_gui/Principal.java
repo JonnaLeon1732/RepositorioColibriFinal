@@ -34,26 +34,26 @@ public class Principal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        btnFrutas.setIcon(setIcono("/iconos/frutas.png",btnFrutas));
-        btnFrutas.setPressedIcon(setIconoPresionado("/iconos/frutas.png",btnFrutas,20,20));
+        btnFrutas.setIcon(setIcono("/iconos/frutas_1.png",btnFrutas));
+        btnFrutas.setPressedIcon(setIconoPresionado("/iconos/frutas_1.png",btnFrutas,20,20));
         
-        btnLacteos.setIcon(setIcono("/iconos/lacteos.png",btnLacteos));
-        btnLacteos.setPressedIcon(setIconoPresionado("/iconos/lacteos.png",btnLacteos,20,20));
+        btnLacteos.setIcon(setIcono("/iconos/productos-lacteos.png",btnLacteos));
+        btnLacteos.setPressedIcon(setIconoPresionado("/iconos/productos-lacteos.png",btnLacteos,20,20));
         
-        btnOtros.setIcon(setIcono("/iconos/otros.png",btnOtros));
-        btnOtros.setPressedIcon(setIconoPresionado("/iconos/otros.png",btnOtros,20,20));
+        btnOtros.setIcon(setIcono("/iconos/comida.png",btnOtros));
+        btnOtros.setPressedIcon(setIconoPresionado("/iconos/comida.png",btnOtros,20,20));
         
-        btnGranos.setIcon(setIcono("/iconos/granos.png",btnGranos));
-        btnGranos.setPressedIcon(setIconoPresionado("/iconos/granos.png",btnGranos,20,20));
+        btnGranos.setIcon(setIcono("/iconos/maiz.png",btnGranos));
+        btnGranos.setPressedIcon(setIconoPresionado("/iconos/maiz.png",btnGranos,20,20));
         
-        btnVerduras.setIcon(setIcono("/iconos/verduras.png",btnVerduras));
-        btnVerduras.setPressedIcon(setIconoPresionado("/iconos/verduras.png",btnVerduras,20,20));
+        btnVerduras.setIcon(setIcono("/iconos/verduras_1.png",btnVerduras));
+        btnVerduras.setPressedIcon(setIconoPresionado("/iconos/verduras_1.png",btnVerduras,20,20));
         
-        btnHierbas.setIcon(setIcono("/iconos/hierbas.png",btnHierbas));
-        btnHierbas.setPressedIcon(setIconoPresionado("/iconos/hierbas.png",btnHierbas,20,20));
+        btnHierbas.setIcon(setIcono("/iconos/romero.png",btnHierbas));
+        btnHierbas.setPressedIcon(setIconoPresionado("/iconos/romero.png",btnHierbas,20,20));
         
-        btnCarrito.setIcon(setIcono("/iconos/carro-de-la-compra.png",btnCarrito));
-        btnCarrito.setPressedIcon(setIconoPresionado("/iconos/carro-de-la-compra.png",btnCarrito,20,20));
+        btnCarrito.setIcon(setIcono("/iconos/carrito-de-compras.png",btnCarrito));
+        btnCarrito.setPressedIcon(setIconoPresionado("/iconos/carrito-de-compras.png",btnCarrito,20,20));
     }
 //    private void Cerrar(){
 //        String botones[] = {"Cerrar","Cancelar"};
@@ -190,16 +190,28 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Verduras");
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Lacteos");
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Frutas");
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Granos");
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Hierbas");
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Otros");
 
         jMenu1.setText("Principal");
@@ -268,9 +280,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btnVerduras, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGranos, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLacteos, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHierbas, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnHierbas, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(btnLacteos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(156, 156, 156)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,25 +304,33 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(255, 255, 255)
                 .addComponent(jLabel23)
                 .addGap(116, 116, 116))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(252, 252, 252))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(320, 320, 320)
-                            .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 135, Short.MAX_VALUE)))
+                    .addContainerGap(77, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(606, 606, 606)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVerduras, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLacteos, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFrutas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnVerduras, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFrutas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLacteos, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -326,18 +346,12 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(jLabel22)
                     .addComponent(jLabel23))
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(0, 29, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 13, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(17, 17, 17)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel3))
-                        .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 362, Short.MAX_VALUE)))
+                    .addGap(0, 83, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(0, 378, Short.MAX_VALUE)))
         );
 
         pack();
@@ -498,7 +512,7 @@ public class Principal extends javax.swing.JFrame {
         
         @Override
         public void paint(Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagenes/lacteos.jpg")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/imagenes/fondo_Principal.jpg")).getImage();
             
             g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
             
