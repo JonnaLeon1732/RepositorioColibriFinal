@@ -14,6 +14,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import reportes_gui.Reporte_Proveedores;
 
 /**
  *
@@ -43,9 +44,14 @@ public final class Granos extends javax.swing.JFrame {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
                 if (Mouse_evt.getClickCount() == 1) {
+                    Reporte_Proveedores proveedor=new Reporte_Proveedores();
                     txtCodigo.setText(TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 0).toString());
                     dato=(int) TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 2);
                     jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
+                    lblCodigo.setText(TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 4).toString());
+                    lblNombre.setText(proveedor.Productos(lblCodigo.getText(),"nombre"));
+                    lblApellido.setText(proveedor.Productos(lblCodigo.getText(),"apellido"));
+                    lblTelefono.setText(proveedor.Productos(lblCodigo.getText(),"telefono"));
                 }
             }
         });
