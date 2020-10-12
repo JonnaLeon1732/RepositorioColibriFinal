@@ -22,7 +22,7 @@ public class ConexionProveedor {
     public ConexionProveedor() {
     }
     public ObjectContainer BaseProveedor(){
-        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\stefa\\Desktop\\BaseProveedor.yap");
+        ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseProveedor.yap");
         return contenedor;
     }
     public void CrearProveedor(ObjectContainer basep,String codigo_prov, String ID, String nombre, String apellido, String telefono, String direccion){
@@ -36,7 +36,7 @@ public class ConexionProveedor {
     }
     
     public static int ComprobarProveedor(ObjectContainer basep,String nombre,String ID){
-        Proveedor prov=new Proveedor(null,ID,nombre,null,null,null);
+        Proveedor prov=new Proveedor(null,ID,null,null,null,null);
         ObjectSet resultado=basep.get(prov);
         return resultado.size();
     }
@@ -51,7 +51,7 @@ public class ConexionProveedor {
         return !resultado.isEmpty();
     }
     
-    public Proveedor[] ConsultarProducto(Proveedor objeto) {
+    public Proveedor[] ConsultarProv(Proveedor objeto) {
         Proveedor[] prov = null;
         ObjectContainer base=BaseProveedor();
         ObjectSet resultados = base.get(objeto);
@@ -84,7 +84,7 @@ public class ConexionProveedor {
         String titulos[] = {"Codigo", "Cédula", "Nombre","Apellido","Teléfono","Dirección"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Proveedor prov = null;
-        Proveedor[] p = ConsultarProducto(prov);
+        Proveedor[] p = ConsultarProv(prov);
         if (p != null) {
             for (Proveedor pro : p) {
                 Object[] cli = new Object[6];
@@ -99,36 +99,15 @@ public class ConexionProveedor {
         }
         return dtm;
     }
-//    public DefaultTableModel EscojerProveedor(String dato) {
-//        String titulos[] = {"Codigo", "Producto","Existencia","Precio","Proveedor"};
-//        DefaultTableModel dtm = new DefaultTableModel(null, titulos);
-//        Producto producto = null;
-//        Producto[] p = ConsultarProducto(producto);
-//        if (p != null) {
-//            for (Producto pro : p) {
-//                Object[] cli = new Object[5];
-//                if (dato.equals(pro.getDescripcion())) {
-//                    cli[0] = pro.getCodigo();
-//                    cli[1] = pro.getNombre();
-//                    cli[2] = pro.getExistencias();
-//                    cli[3] = pro.getPrecio();
-//                    cli[4] = pro.getID_proveedor();
-//                    dtm.addRow(cli);
-//                }
-//
-//            }
-//        }
-//        return dtm;
-//    }
     public String Codigo(ObjectContainer basep) {
         int generar;
         boolean confirmar;
         String codigo;
-        generar=(int) Math.floor(Math.random()*900+100);
+        generar=(int) Math.floor(Math.random()*90000+10000);
         codigo=generar+"";
         do {
             if (ConsultarProveedor(basep,codigo)!=false) {
-                generar=(int) Math.floor(Math.random()*999+1);
+        generar=(int) Math.floor(Math.random()*90000+10000);
                 codigo=generar+"";
                 confirmar=false;
             }else{
@@ -137,4 +116,5 @@ public class ConexionProveedor {
         } while (confirmar!=true);
         return codigo;
     }
+
 }

@@ -25,6 +25,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
+        CB_proveedor.setModel(new ConexionProducto().Proveedor());
     }
 
 //    public boolean Validar(){
@@ -128,7 +129,6 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         });
         getContentPane().add(txtexistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 204, -1));
 
-        CB_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Proveedor 1", "Proveedor 2", "Proveedor 3", "Proveedor 4" }));
         getContentPane().add(CB_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 200, -1));
 
         txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -180,7 +180,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         ConexionProducto conexion=new ConexionProducto();
         ObjectContainer base=conexion.BaseProducto();
         codigo=conexion.Codigo(base);
-        conexion.CrearProducto(base,codigo, txtnombreproducto.getText(), (String) cbDescripcion.getSelectedItem(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem()); 
+        conexion.CrearProducto(base,codigo, txtnombreproducto.getText(), (String) cbDescripcion.getSelectedItem(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem().toString()); 
         conexion.Cerrarbd(base);
         
     }//GEN-LAST:event_btnRegistrarActionPerformed

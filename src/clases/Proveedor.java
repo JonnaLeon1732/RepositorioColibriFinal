@@ -33,6 +33,6 @@ public class Proveedor extends Persona {
     }
     @Override
     public String toString() {
-        return "Proveedor{" + "ID_proveedor=" + codigo_prov + '}';
+        return codigo_prov;
     } 
 }

@@ -35,7 +35,28 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablaproveedor.setModel(conexion.Proveedor());
     }
-
+    public String Productos(String codigo,String accion){
+        ConexionProveedor conexion=new ConexionProveedor();
+        String valor="";
+        tablaproveedor.setModel(conexion.Proveedor());
+        for (int i = 0; i < tablaproveedor.getRowCount(); i++) {
+            if (tablaproveedor.getValueAt(i, 0).equals(codigo)) {
+                tablaproveedor.changeSelection(i, 2, false, false);
+            }
+        }
+        switch (accion){
+            case "nombre":
+                    valor=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 2).toString();
+                break;
+            case "apellido":
+                    valor=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 3).toString();
+                break;
+            case "telefono":
+                    valor=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 4).toString();
+                break;
+        }
+        return valor;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -202,7 +223,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         ObjectContainer base = conex.BaseProveedor();
         conex.EliminarProveedor(base, null);
         conex.Cerrarbd(base);
-        tablaproveedor.setModel(conex.Proveedor());
+        tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
@@ -259,7 +280,10 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private javax.swing.JTable tablaproveedor;
     private javax.swing.JTextField txt_consul_identificacion;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel{
+    public void tabla(){
+        tablaproveedor.setModel(new ConexionProveedor().Proveedor());
+    }
+    class FondoPanel extends JPanel{
         private Image imagen;
         
         @Override

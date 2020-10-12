@@ -7,9 +7,11 @@ package Base;
 
 
 import clases.Producto;
+import clases.Proveedor;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +24,7 @@ public class ConexionProducto {
     public ConexionProducto() {
     }
     public ObjectContainer BaseProducto(){
-        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\stefa\\Desktop\\BaseProduct.yap");
+        ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseProduct.yap");
         return contenedor;
     }
     public void CrearProducto(ObjectContainer basep,String codigo, String nombre, String descripcion, int exitencias, double precio, String ID_proveedor){
@@ -51,7 +53,7 @@ public class ConexionProducto {
         return !resultado.isEmpty();
     }
     
-    public Producto[] ConsultarProducto(Producto objeto) {
+    public Producto[] ConsultarProd(Producto objeto) {
         Producto[] producto = null;
         ObjectContainer base=BaseProducto();
         ObjectSet resultados = base.get(objeto);
@@ -71,7 +73,7 @@ public class ConexionProducto {
         String titulos[] = {"Codigo", "Producto", "Descripción","Existencia","Precio","Proveedor"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Producto producto = null;
-        Producto[] p = ConsultarProducto(producto);
+        Producto[] p = ConsultarProd(producto);
         if (p != null) {
             for (Producto pro : p) {
                 Object[] cli = new Object[6];
@@ -86,11 +88,25 @@ public class ConexionProducto {
         }
         return dtm;
     }
+    public DefaultComboBoxModel Proveedor(){
+        DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
+        Proveedor prov=null;
+        Proveedor[] p= new ConexionProveedor().ConsultarProv(prov);
+        if (p != null) {
+            for (Proveedor pro : p) {
+                Object[] cli;
+                cli = new Object[6];
+                cli[0] = pro.getCodigo_prov();
+                dcbm.addElement(pro);
+            }
+        }
+        return dcbm;
+    }
     public DefaultTableModel EscojerProductos(String dato) {
         String titulos[] = {"Codigo", "Producto","Existencia","Precio","Proveedor"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Producto producto = null;
-        Producto[] p = ConsultarProducto(producto);
+        Producto[] p = ConsultarProd(producto);
         if (p != null) {
             for (Producto pro : p) {
                 Object[] cli = new Object[5];
@@ -115,7 +131,7 @@ public class ConexionProducto {
         codigo=generar+"";
         do {
             if (ConsultarProducto(basep,codigo)!=false) {
-                generar=(int) Math.floor(Math.random()*999+1);
+        generar=(int) Math.floor(Math.random()*900+100);
                 codigo=generar+"";
                 confirmar=false;
             }else{

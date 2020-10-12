@@ -293,14 +293,15 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txttelefonoKeyTyped
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        this.setVisible(false);
-        new Reporte_Proveedores().setVisible(true);
         String codigo;
         ConexionProveedor conexion=new ConexionProveedor();
         ObjectContainer base=conexion.BaseProveedor();
         codigo=conexion.Codigo(base);
         conexion.CrearProveedor(base,codigo, txtcedula.getText(),txtnombre.getText(),txtapellido.getText(),txttelefono.getText(),txtdireccion.getText()); 
         conexion.Cerrarbd(base);
+        this.setVisible(false);
+        new Reporte_Proveedores().setVisible(true);
+        new Reporte_Proveedores().tabla();
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

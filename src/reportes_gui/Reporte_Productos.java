@@ -39,7 +39,7 @@ public class Reporte_Productos extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
         tablaproducto.setModel(conexion.Productos());
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
