@@ -17,7 +17,7 @@ public class Conexion {
 
     //cliente
     public ObjectContainer BaseCliente() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\stefa\\Desktop\\Base.yap");
         return contenedor;
     }
 
@@ -27,17 +27,17 @@ public class Conexion {
 //    }
 
     public ObjectContainer BaseRepartidor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\stefa\\Desktop\\Base.yap");
         return contenedor;
     }
     
     public ObjectContainer enca_fact() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\ase.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\stefa\\Desktop\\Base.yap");
         return contenedor;
     }
 
     public ObjectContainer deta_fact() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\stefa\\Desktop\\Base.yap");
         return contenedor;
     }
 

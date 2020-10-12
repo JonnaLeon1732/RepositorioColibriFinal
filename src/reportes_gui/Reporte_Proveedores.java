@@ -7,6 +7,7 @@ package reportes_gui;
 
 import Base.ConexionProveedor;
 import clases.Proveedor;
+import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -88,6 +89,11 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         });
 
         btt_consultar.setText("CONSULTAR");
+        btt_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_consultarActionPerformed(evt);
+            }
+        });
 
         btt_crear.setText("CREAR");
         btt_crear.addActionListener(new java.awt.event.ActionListener() {
@@ -192,8 +198,16 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
-   
+        ConexionProveedor conex = new ConexionProveedor();
+        ObjectContainer base = conex.BaseProveedor();
+        conex.EliminarProveedor(base, null);
+        conex.Cerrarbd(base);
+        tablaproveedor.setModel(conex.Proveedor());
     }//GEN-LAST:event_btt_eliminarActionPerformed
+
+    private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -22,7 +22,7 @@ public class ConexionProducto {
     public ConexionProducto() {
     }
     public ObjectContainer BaseProducto(){
-        ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseProduct.yap");
+        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\stefa\\Desktop\\BaseProduct.yap");
         return contenedor;
     }
     public void CrearProducto(ObjectContainer basep,String codigo, String nombre, String descripcion, int exitencias, double precio, String ID_proveedor){
