@@ -47,6 +47,49 @@ public class ConexionProducto {
         basep.close();
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public boolean ConsultarProducto(ObjectContainer basep,String codigo){
         Producto producto=new Producto(codigo,null,null,0,0,null);
         ObjectSet resultado=basep.get(producto);

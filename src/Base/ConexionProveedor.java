@@ -51,6 +51,51 @@ public class ConexionProveedor {
         return !resultado.isEmpty();
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public Proveedor[] ConsultarProv(Proveedor objeto) {
         Proveedor[] prov = null;
         ObjectContainer base=BaseProveedor();
