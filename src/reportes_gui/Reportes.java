@@ -213,7 +213,7 @@ public class Reportes extends javax.swing.JFrame {
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
         Reporte_Proveedores proveedores = new Reporte_Proveedores();
-        proveedores.mostrar();
+        
         proveedores.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnProveedoresActionPerformed

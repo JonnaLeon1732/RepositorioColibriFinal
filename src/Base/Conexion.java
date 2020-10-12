@@ -21,10 +21,10 @@ public class Conexion {
         return contenedor;
     }
 
-    public ObjectContainer BaseProveedor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
-        return contenedor;
-    }
+//    public ObjectContainer BaseProveedor() {
+//        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
+//        return contenedor;
+//    }
 
     public ObjectContainer BaseRepartidor() {
         ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\Base.yap");
@@ -98,62 +98,62 @@ public class Conexion {
         }
     }
 
-    //proveedor
-    public void CrearProveedor(ObjectContainer basep, String ID_proveedor, String ID, String nombre, String apellido, String telefono, String direccion) {
-        Proveedor proveedor = new Proveedor(ID_proveedor, ID, nombre, apellido, telefono, direccion);
-        if (ComprobarProveedor(basep, ID_proveedor) != 0) {
-            JOptionPane.showMessageDialog(null, "Registro Existente");
-        } else {
-            basep.set(proveedor);
-            JOptionPane.showMessageDialog(null, "Registro Guardado");
-        }
-
-    }
-
-    public static int ComprobarProveedor(ObjectContainer basep, String ID_proveedor) {
-        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
-        ObjectSet resultado = basep.get(proveedor);
-        return resultado.size();
-    }
-
-    public boolean ConsultarProveedor(ObjectContainer basep, String ID_proveedor) {
-        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
-        ObjectSet resultado = basep.get(proveedor);
-        if (resultado.size() == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public void EliminarProveedor(ObjectContainer basep, String ID_proveedor) {
-        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
-        ObjectSet resultado = basep.get(proveedor);
-
-        if (resultado.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Proveedor no se encuentra");
-        } else {
-            Cliente eliminar = (Cliente) resultado.next();
-            basep.delete(eliminar);
-            JOptionPane.showMessageDialog(null, "El Proveedor fue eliminado");
-        }
-    }
-
-    public void ModificarProveedor(ObjectContainer basep, String ID_proveedor, String ID, String nombre, String apellido, String telefono, String direccion) {
-        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
-        ObjectSet resultado = basep.get(proveedor);
-        if (resultado.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Proveedor no se encuentra");
-        } else {
-            Proveedor modificar = (Proveedor) resultado.next();
-            modificar.setNombre(nombre);
-            modificar.setApellido(apellido);
-            modificar.setDireccion(direccion);
-            modificar.setTelefono(telefono);
-            JOptionPane.showMessageDialog(null, "El Proveedor fue modificado");
-            basep.set(modificar);
-        }
-    }
+//    //proveedor
+//    public void CrearProveedor(ObjectContainer basep, String ID_proveedor, String ID, String nombre, String apellido, String telefono, String direccion) {
+//        Proveedor proveedor = new Proveedor(ID_proveedor, ID, nombre, apellido, telefono, direccion);
+//        if (ComprobarProveedor(basep, ID_proveedor) != 0) {
+//            JOptionPane.showMessageDialog(null, "Registro Existente");
+//        } else {
+//            basep.set(proveedor);
+//            JOptionPane.showMessageDialog(null, "Registro Guardado");
+//        }
+//
+//    }
+//
+//    public static int ComprobarProveedor(ObjectContainer basep, String ID_proveedor) {
+//        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
+//        ObjectSet resultado = basep.get(proveedor);
+//        return resultado.size();
+//    }
+//
+//    public boolean ConsultarProveedor(ObjectContainer basep, String ID_proveedor) {
+//        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
+//        ObjectSet resultado = basep.get(proveedor);
+//        if (resultado.size() == 0) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+//
+//    public void EliminarProveedor(ObjectContainer basep, String ID_proveedor) {
+//        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
+//        ObjectSet resultado = basep.get(proveedor);
+//
+//        if (resultado.size() == 0) {
+//            JOptionPane.showMessageDialog(null, "El Proveedor no se encuentra");
+//        } else {
+//            Cliente eliminar = (Cliente) resultado.next();
+//            basep.delete(eliminar);
+//            JOptionPane.showMessageDialog(null, "El Proveedor fue eliminado");
+//        }
+//    }
+//
+//    public void ModificarProveedor(ObjectContainer basep, String ID_proveedor, String ID, String nombre, String apellido, String telefono, String direccion) {
+//        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
+//        ObjectSet resultado = basep.get(proveedor);
+//        if (resultado.size() == 0) {
+//            JOptionPane.showMessageDialog(null, "El Proveedor no se encuentra");
+//        } else {
+//            Proveedor modificar = (Proveedor) resultado.next();
+//            modificar.setNombre(nombre);
+//            modificar.setApellido(apellido);
+//            modificar.setDireccion(direccion);
+//            modificar.setTelefono(telefono);
+//            JOptionPane.showMessageDialog(null, "El Proveedor fue modificado");
+//            basep.set(modificar);
+//        }
+//    }
 
     //repartidor
     public void CrearRepartidor(ObjectContainer basep,String ID,String cedula, String nombre, String apellido, String telefono, String direccion,String Num_placa_moto) {

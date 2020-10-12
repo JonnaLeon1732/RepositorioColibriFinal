@@ -7,6 +7,8 @@
 package secundarias_gui;
 
 
+import Base.ConexionProveedor;
+import com.db4o.ObjectContainer;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import reportes_gui.Reporte_Proveedores;
@@ -23,57 +25,45 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     public Ingresar_Proveedor() {
         initComponents();
         setResizable(false);
-        
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
-    public String generarid(){
-          String id=null;
-         int incrementado=1;
-       if(id==null){
-           
-       }else{
-           incrementado=Integer.parseInt(id);
-           incrementado=incrementado+1;
-           
-       }
-        return "00000"+incrementado;
-    }
-     public boolean Validar(){
-    
-        if (  txtcedula.getText().isEmpty()) {
-            lb_OBcedula.setText("*Campo Obligatorio");
-            return false;
-        } else {
-            lb_OBcedula.setText("");
-            
-        }if(txtnombre.getText().isEmpty()){
-            lb_OBnombre.setText("*Campo Obligatorio");
-             return false;
-        }else{
-            lb_OBnombre.setText("");
-            
-        } if(txtapellido.getText().isEmpty()){
-            lb_OBapellido.setText("*Campo Obligatorio");
-             return false;
-        }else {
-        lb_OBapellido.setText("");
-        
-        }if(txtdireccion.getText().isEmpty()){
-            lb_OBdireccion.setText("*Campo Obligatorio");
-            return false; 
-        }else {
-        lb_OBdireccion.setText("");
-        
-        }if(txttelefono.getText().isEmpty()){
-            lb_OBtelefono.setText("*Campo Obligatorio");
-           return false;  
-        }else {
-         lb_OBtelefono.setText("");
-        }
-        return true;
-    }
+
+//     public boolean Validar(){
+//    
+//        if (  txtcedula.getText().isEmpty()) {
+//            lb_OBcedula.setText("*Campo Obligatorio");
+//            return false;
+//        } else {
+//            lb_OBcedula.setText("");
+//            
+//        }if(txtnombre.getText().isEmpty()){
+//            lb_OBnombre.setText("*Campo Obligatorio");
+//             return false;
+//        }else{
+//            lb_OBnombre.setText("");
+//            
+//        } if(txtapellido.getText().isEmpty()){
+//            lb_OBapellido.setText("*Campo Obligatorio");
+//             return false;
+//        }else {
+//        lb_OBapellido.setText("");
+//        
+//        }if(txtdireccion.getText().isEmpty()){
+//            lb_OBdireccion.setText("*Campo Obligatorio");
+//            return false; 
+//        }else {
+//        lb_OBdireccion.setText("");
+//        
+//        }if(txttelefono.getText().isEmpty()){
+//            lb_OBtelefono.setText("*Campo Obligatorio");
+//           return false;  
+//        }else {
+//         lb_OBtelefono.setText("");
+//        }
+//        return true;
+//    }
     
     
     @SuppressWarnings("unchecked")
@@ -87,15 +77,13 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        btnregistrar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         txtcedula = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
         txtdireccion = new javax.swing.JTextField();
         txttelefono = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
         lb_OBcedula = new javax.swing.JLabel();
         lb_OBnombre = new javax.swing.JLabel();
         lb_OBapellido = new javax.swing.JLabel();
@@ -133,11 +121,11 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Dirección:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Teléfono:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,13 +135,13 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
 
-        btnregistrar.setText("REGISTRAR");
-        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnregistrarActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         txtcedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,24 +184,19 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
                 txtdireccionKeyTyped(evt);
             }
         });
-        getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 193, -1));
+        getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 193, -1));
 
         txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txttelefonoKeyTyped(evt);
             }
         });
-        getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 193, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("ID");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 193, -1));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("REGISTRO PROVEEDOR");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 165, -1));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 193, -1));
 
         lb_OBcedula.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula.setForeground(new java.awt.Color(204, 0, 0));
@@ -256,13 +239,13 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtcedulaActionPerformed
 
     private void txtcedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyTyped
-    char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')|(txtcedula.getText().length()==10)) {
-            Validar();
-            evt.consume();
-        }else{
-            lb_OBcedula.setText("*Cédula Invalido");
-        }
+//    char caracter=evt.getKeyChar();
+//        if ((caracter<'0'| caracter>'9')|(txtcedula.getText().length()==10)) {
+//            Validar();
+//            evt.consume();
+//        }else{
+//            lb_OBcedula.setText("*Cédula Invalido");
+//        }
     }//GEN-LAST:event_txtcedulaKeyTyped
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -270,11 +253,11 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
-      char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtnombre.getText().length()>=25)) {
-            Validar();
-            evt.consume();
-        }
+//      char caracter=evt.getKeyChar();
+//        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtnombre.getText().length()>=25)) {
+//            Validar();
+//            evt.consume();
+//        }
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
@@ -282,53 +265,44 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtapellidoActionPerformed
 
     private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtapellido.getText().length()>=25)) {
-            Validar();
-            evt.consume();
-        }
+//        char caracter=evt.getKeyChar();
+//        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtapellido.getText().length()>=25)) {
+//            Validar();
+//            evt.consume();
+//        }
     }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
-       if (txtdireccion.getText().length() >= 50) {
-           
-            JOptionPane.showMessageDialog(rootPane, "Limite excedido");
-            Validar();
-            
-            evt.consume();
-        }
+//       if (txtdireccion.getText().length() >= 50) {
+//           
+//            JOptionPane.showMessageDialog(rootPane, "Limite excedido");
+//            Validar();
+//            
+//            evt.consume();
+//        }
     }//GEN-LAST:event_txtdireccionKeyTyped
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')|(txttelefono.getText().length()>=10)) {
-            Validar();
-            evt.consume();
-        }else{
-            lb_OBtelefono.setText("*Teléfono Invalido");
-        }
+//        char caracter=evt.getKeyChar();
+//        if ((caracter<'0'| caracter>'9')|(txttelefono.getText().length()>=10)) {
+//            Validar();
+//            evt.consume();
+//        }else{
+//            lb_OBtelefono.setText("*Teléfono Invalido");
+//        }
     }//GEN-LAST:event_txttelefonoKeyTyped
 
-    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        this.setVisible(false);
+        new Reporte_Proveedores().setVisible(true);
+        String codigo;
+        ConexionProveedor conexion=new ConexionProveedor();
+        ObjectContainer base=conexion.BaseProveedor();
+        codigo=conexion.Codigo(base);
+        conexion.CrearProveedor(base,codigo, txtcedula.getText(),txtnombre.getText(),txtapellido.getText(),txttelefono.getText(),txtdireccion.getText()); 
+        conexion.Cerrarbd(base);
         
-        if(Validar()==true){
-            if ( txtcedula.getText().length()>=10){
-             if(txttelefono.getText().length()>=10 | (txttelefono.getText().length()>=9)){
-               
-                Reporte_Proveedores reporte=new Reporte_Proveedores();
-                reporte.recibir(txtid.getText(),txtcedula.getText(),txtnombre.getText(),txtapellido.getText(),txtdireccion.getText(),txttelefono.getText());
-                reporte.setVisible(true);
-                this.setVisible(false);
-
-             }else{JOptionPane.showMessageDialog(this, "El número telefonico no es correcto");}
-            }else{JOptionPane.showMessageDialog(this, "El número de cédula no es correcto");}
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "Debe estar lleno todos los campos");
-        }
-        
-        
-    }//GEN-LAST:event_btnregistrarActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Reporte_Proveedores reporte = new Reporte_Proveedores();
@@ -372,7 +346,7 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnregistrar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -381,7 +355,6 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lb_OBapellido;
     private javax.swing.JLabel lb_OBcedula;
@@ -391,7 +364,6 @@ public class Ingresar_Proveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtdireccion;
-    private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables

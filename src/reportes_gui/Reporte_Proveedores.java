@@ -5,6 +5,7 @@
  */
 package reportes_gui;
 
+import Base.ConexionProveedor;
 import clases.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,16 +21,18 @@ import secundarias_gui.Ingresar_Proveedor;
  */
 public class Reporte_Proveedores extends javax.swing.JFrame {
   
-   public static final ArrayList<Proveedor> lista=new ArrayList<>();
+   
     
     FondoPanel fondo=new FondoPanel();
     public Reporte_Proveedores() {
         this.setContentPane(fondo);
+        ConexionProveedor conexion=new ConexionProveedor();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
+        tablaproveedor.setModel(conexion.Proveedor());
     }
 
     /**
@@ -44,7 +47,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         ingresar_Proveedor1 = new secundarias_gui.Ingresar_Proveedor();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablapro = new javax.swing.JTable();
+        tablaproveedor = new javax.swing.JTable();
         atras = new javax.swing.JButton();
         btt_consultar = new javax.swing.JButton();
         btt_crear = new javax.swing.JButton();
@@ -57,7 +60,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
 
         jLabel1.setText("REPORTE DE PROVEEDORES");
 
-        tablapro.setModel(new javax.swing.table.DefaultTableModel(
+        tablaproveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -72,10 +75,10 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Cédula", "Nombre", "Apellido", "Dirección", "Telefono"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
-        jScrollPane1.setViewportView(tablapro);
+        jScrollPane1.setViewportView(tablaproveedor);
 
         atras.setText("ATRAS");
         atras.addActionListener(new java.awt.event.ActionListener() {
@@ -189,14 +192,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
-       int FilaSelec = tablapro.getSelectedRow();
-        if (FilaSelec >= 0) {
-            tablapro.remove(FilaSelec);
-            //tabla.removeRow(FilaSelec);
-            lista.remove(FilaSelec);
-        } else {
-            JOptionPane.showMessageDialog(this, "FILA NO SELECIONADA");
-        }
+   
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     /**
@@ -233,37 +229,9 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
             }
         });
     }
-    public void recibir(String ID,String cedula,String nombre,String apellido,String direccion,String telefono){
-        
-        Proveedor proveedor = new Proveedor();
-        proveedor.setID_proveedor(ID);
-        proveedor.setCedula(cedula);
-        proveedor.setNombre(nombre);
-        proveedor.setApellido(apellido);
-        proveedor.setDireccion(direccion);
-        proveedor.setTelefono(telefono);
-        lista.add(proveedor);
-        mostrar();
-    }
+   
     
-    public void mostrar(){
-
-        String matris[][]=new String[lista.size()][6];
-        for (int i = 0; i < lista.size(); i++) {
-            matris[i][0]=lista.get(i).getID_proveedor();
-            matris[i][1]=lista.get(i).getCedula();
-            matris[i][2]=lista.get(i).getNombre();
-            matris[i][3]=lista.get(i).getApellido();
-            matris[i][4]=lista.get(i).getDireccion();
-            matris[i][5]=lista.get(i).getTelefono();
-        }
-        tablapro.setModel(new javax.swing.table.DefaultTableModel(
-            matris,
-            new String [] {
-                "Código", "Cedula", "Nombre", "Apellido", "Dirección", "Telefono"
-            }
-        ));
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;
     private javax.swing.JButton btt_consultar;
@@ -274,7 +242,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private secundarias_gui.Ingresar_Proveedor ingresar_Proveedor1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablapro;
+    private javax.swing.JTable tablaproveedor;
     private javax.swing.JTextField txt_consul_identificacion;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel{

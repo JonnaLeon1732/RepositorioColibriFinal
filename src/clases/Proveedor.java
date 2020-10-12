@@ -10,29 +10,29 @@ package clases;
  * @author Grupo 2
  */
 public class Proveedor extends Persona {
-    private String ID_proveedor;
+    private String codigo_prov;
 
-    public Proveedor(String ID_proveedor, String ID, String nombre, String apellido, String telefono, String direccion) {
+    public Proveedor(String codigo_prov, String ID, String nombre, String apellido, String telefono, String direccion) {
         super(ID, nombre, apellido, telefono, direccion);
-        this.ID_proveedor = ID_proveedor;
+        this.codigo_prov = codigo_prov;
     }
 
     public Proveedor() {
     }
     
 
-    public String getID_proveedor() {
-        return ID_proveedor;
+    public String getCodigo_prov() {
+        return codigo_prov;
     }
 
-    public void setID_proveedor(String ID_proveedor) {
-        this.ID_proveedor = ID_proveedor;
+    public void setCodigo_prov(String codigo_prov) {
+        this.codigo_prov = codigo_prov;
     }
     public static void proveeer(){
         
     }
     @Override
     public String toString() {
-        return "Proveedor{" + "ID_proveedor=" + ID_proveedor + '}';
+        return "Proveedor{" + "ID_proveedor=" + codigo_prov + '}';
     } 
 }

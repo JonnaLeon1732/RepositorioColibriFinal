@@ -1,0 +1,127 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Base;
+
+
+import clases.Proveedor;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Grupo 2
+ */
+public class ConexionProveedor {
+
+    public ConexionProveedor() {
+    }
+    public ObjectContainer BaseProveedor(){
+        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\PC\\Documents\\NetBeansProjects\\RepositorioColibri\\Base\\BaseProveedor.yap");
+        return contenedor;
+    }
+    public void CrearProveedor(ObjectContainer basep,String codigo_prov, String ID, String nombre, String apellido, String telefono, String direccion){
+        Proveedor prov=new Proveedor(codigo_prov,ID,nombre,apellido,telefono,direccion);
+        if (ComprobarProveedor(basep,nombre,ID)!=0) {
+            JOptionPane.showMessageDialog(null,"Registro Existente");
+        }else{
+            basep.set(prov);
+            JOptionPane.showMessageDialog(null,"Registro Guardado");
+        }
+    }
+    
+    public static int ComprobarProveedor(ObjectContainer basep,String nombre,String ID){
+        Proveedor prov=new Proveedor(null,ID,nombre,null,null,null);
+        ObjectSet resultado=basep.get(prov);
+        return resultado.size();
+    }
+    
+    public void Cerrarbd(ObjectContainer basep){
+        basep.close();
+    }
+    
+    public boolean ConsultarProveedor(ObjectContainer basep,String codigo){
+        Proveedor prov=new Proveedor(codigo,null,null,null,null,null);
+        ObjectSet resultado=basep.get(prov);
+        return !resultado.isEmpty();
+    }
+    
+    public Proveedor[] ConsultarProducto(Proveedor objeto) {
+        Proveedor[] prov = null;
+        ObjectContainer base=BaseProveedor();
+        ObjectSet resultados = base.get(objeto);
+        int i = 0;
+        if (resultados.hasNext()) {
+            prov = new Proveedor[resultados.size()];
+            while (resultados.hasNext()) {
+                prov[i] = (Proveedor) resultados.next();
+                i++;
+            }
+        }
+        Cerrarbd(base);
+        return prov;
+    }
+    
+    public DefaultTableModel Proveedor() {
+        String titulos[] = {"Codigo", "Cédula", "Nombre","Apellido","Teléfono","Dirección"};
+        DefaultTableModel dtm = new DefaultTableModel(null, titulos);
+        Proveedor prov = null;
+        Proveedor[] p = ConsultarProducto(prov);
+        if (p != null) {
+            for (Proveedor pro : p) {
+                Object[] cli = new Object[6];
+                cli[0] = pro.getCodigo_prov();
+                cli[1] = pro.getCedula();
+                cli[2] = pro.getNombre();
+                cli[3] = pro.getApellido();
+                cli[4] = pro.getTelefono();
+                cli[5] = pro.getDireccion();
+                dtm.addRow(cli);
+            }
+        }
+        return dtm;
+    }
+//    public DefaultTableModel EscojerProveedor(String dato) {
+//        String titulos[] = {"Codigo", "Producto","Existencia","Precio","Proveedor"};
+//        DefaultTableModel dtm = new DefaultTableModel(null, titulos);
+//        Producto producto = null;
+//        Producto[] p = ConsultarProducto(producto);
+//        if (p != null) {
+//            for (Producto pro : p) {
+//                Object[] cli = new Object[5];
+//                if (dato.equals(pro.getDescripcion())) {
+//                    cli[0] = pro.getCodigo();
+//                    cli[1] = pro.getNombre();
+//                    cli[2] = pro.getExistencias();
+//                    cli[3] = pro.getPrecio();
+//                    cli[4] = pro.getID_proveedor();
+//                    dtm.addRow(cli);
+//                }
+//
+//            }
+//        }
+//        return dtm;
+//    }
+    public String Codigo(ObjectContainer basep) {
+        int generar;
+        boolean confirmar;
+        String codigo;
+        generar=(int) Math.floor(Math.random()*900+100);
+        codigo=generar+"";
+        do {
+            if (ConsultarProveedor(basep,codigo)!=false) {
+                generar=(int) Math.floor(Math.random()*999+1);
+                codigo=generar+"";
+                confirmar=false;
+            }else{
+                confirmar=true;
+            }
+        } while (confirmar!=true);
+        return codigo;
+    }
+}
