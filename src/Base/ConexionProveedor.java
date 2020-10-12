@@ -52,50 +52,6 @@ public class ConexionProveedor {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public Proveedor[] ConsultarProv(Proveedor objeto) {
         Proveedor[] prov = null;
         ObjectContainer base=BaseProveedor();

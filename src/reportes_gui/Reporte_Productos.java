@@ -121,6 +121,11 @@ public class Reporte_Productos extends javax.swing.JFrame {
         });
 
         btt_eliminar.setText("ELIMINAR");
+        btt_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_eliminarActionPerformed(evt);
+            }
+        });
 
         btt_limpiar.setText("LIMPIAR");
         btt_limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -210,13 +215,21 @@ public class Reporte_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        
+        ConexionProducto conexion=new ConexionProducto();
+        ObjectContainer basep=conexion.BaseProducto();
+        Producto pro=new Producto();
+        conexion.ConsultarProducto(basep,pro.getCodigo());
+        conexion.Cerrarbd(basep);
+        tablaproducto.setModel(conexion.Productos());
     }//GEN-LAST:event_btt_consultarActionPerformed
 
     private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
-        // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btt_modificarActionPerformed
+
+    private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
+
+    }//GEN-LAST:event_btt_eliminarActionPerformed
 
 
     

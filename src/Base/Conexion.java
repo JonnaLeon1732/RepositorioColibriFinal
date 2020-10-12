@@ -8,6 +8,7 @@ import clases.Det_Factura;
 import clases.Producto;
 import javax.swing.JOptionPane;
 import com.db4o.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -334,6 +335,42 @@ public class Conexion {
             JOptionPane.showMessageDialog(null, "El detalle de la factura fue modificado");
             basep.set(modificar);
         }
+    }
+    
+    public Cliente[] ConsultaCliente(clases.Cliente objeto) {
+        Cliente[] clie = null;
+        ObjectContainer base=BaseCliente();
+        ObjectSet resultados = base.get(objeto);
+        int i = 0;
+        if (resultados.hasNext()) {
+            clie = new Cliente[resultados.size()];
+            while (resultados.hasNext()) {
+                clie[i] = (Cliente) resultados.next();
+                i++;
+            }
+        }
+        Cerrarbd(base);
+        return clie;
+    }
+    
+    public DefaultTableModel Cliente() {
+        String titulos[] = {"Cédula", "Nombre", "Apellido","Dirección","Teléfono","Correo"};
+        DefaultTableModel dtm = new DefaultTableModel(null, titulos);
+        Cliente te = null;
+        Cliente[] p = ConsultaCliente(te);
+        if (p != null) {
+            for (Cliente pro : p) {
+                Object[] cli = new Object[6];
+                cli[0] = pro.getCedula();
+                cli[1] = pro.getNombre();
+                cli[2] = pro.getApellido();
+                cli[3] = pro.getDireccion();
+                cli[4] = pro.getTelefono();
+                cli[5] = pro.getCorreo();
+                dtm.addRow(cli);
+            }
+        }
+        return dtm;
     }
     
     public void Cerrarbd(ObjectContainer basep) {

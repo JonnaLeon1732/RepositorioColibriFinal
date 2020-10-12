@@ -5,8 +5,10 @@
  */
 package reportes_gui;
 
+import Base.Conexion;
 import Base.ConexionProveedor;
 import clases.Proveedor;
+import clases.Repartidor;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -124,6 +126,11 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         });
 
         btt_modificar.setText("MODIFICAR");
+        btt_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_modificarActionPerformed(evt);
+            }
+        });
 
         btt_eliminar.setText("ELIMINAR");
         btt_eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -221,14 +228,25 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
         ConexionProveedor conex = new ConexionProveedor();
         ObjectContainer base = conex.BaseProveedor();
-        conex.EliminarProveedor(base, null);
+        Proveedor prov = new Proveedor();
+        conex.EliminarProveedor(base, prov.getCedula());
         conex.Cerrarbd(base);
         tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
         // TODO add your handling code here:
+        ConexionProveedor conexion=new ConexionProveedor();
+        ObjectContainer basep=conexion.BaseProveedor();
+        Proveedor provee=new Proveedor();
+        conexion.ConsultarProveedor(basep,provee.getCedula());
+        conexion.Cerrarbd(basep);
+        tablaproveedor.setModel(conexion.Proveedor());
     }//GEN-LAST:event_btt_consultarActionPerformed
+
+    private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
+
+    }//GEN-LAST:event_btt_modificarActionPerformed
 
     /**
      * @param args the command line arguments
