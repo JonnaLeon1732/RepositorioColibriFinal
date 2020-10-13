@@ -28,6 +28,11 @@ public class Producto {
 
     public Producto() {
     }
+
+    public Producto(String codigo, int existencias) {
+        this.codigo = codigo;
+        this.existencias = existencias;
+    }
     
 
     

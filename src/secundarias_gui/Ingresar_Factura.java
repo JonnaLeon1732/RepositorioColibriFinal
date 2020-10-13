@@ -1,6 +1,7 @@
 package secundarias_gui;
 
 import Base.ConexionFactura;
+import Base.ConexionProducto;
 import com.db4o.ObjectContainer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -467,6 +468,10 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
                     Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()),
                     Double.parseDouble(TablaFactura.getValueAt(i, 4).toString()));
             conexion.Cerrarbd(base);
+            ConexionProducto conex=new ConexionProducto();
+            ObjectContainer base2 = conex.BaseProducto();
+            conex.ModificarProducto(base2, TablaFactura.getValueAt(i, 0).toString(),Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()));
+            conex.Cerrarbd(base2);
         }
         precio = 0;
         new Carrito().reinicio();

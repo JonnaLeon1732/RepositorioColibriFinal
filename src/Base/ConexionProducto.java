@@ -44,6 +44,18 @@ public class ConexionProducto {
         return resultado.size();
     }
 
+    public void ModificarProducto(ObjectContainer basep, String codigo,int exitencias) {
+        Producto producto = new Producto(codigo,0);
+        ObjectSet resultado = basep.get(producto);
+        if (resultado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El producto no se encuentra");
+        } else {
+            Producto modificar = (Producto) resultado.next();
+            modificar.setExistencias(modificar.getExistencias()-exitencias);
+            basep.set(modificar);
+        }
+    }
+
     public void Cerrarbd(ObjectContainer basep) {
         basep.close();
     }
@@ -144,7 +156,8 @@ public class ConexionProducto {
         } while (confirmar != true);
         return codigo;
     }
-        public String factura(ObjectContainer basep) {
+
+    public String factura(ObjectContainer basep) {
         int generar;
         boolean confirmar;
         String codigo;

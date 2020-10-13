@@ -28,12 +28,7 @@ public class ConexionFactura {
 
     public void CrearFactura(ObjectContainer basep, String cod_factura, String fecha, String num_factura, String cod_prov, String cod_prod, String nom_prod, String tip_prod, int cant, double precio_Total) {
         Factura factura = new Factura(cod_factura, fecha, num_factura, cod_prov, cod_prod, nom_prod, tip_prod, cant, precio_Total);
-        if (ComprobarFactura(basep, cod_factura) != 0) {
-            JOptionPane.showMessageDialog(null, "Registro Existente");
-        } else {
             basep.set(factura);
-            JOptionPane.showMessageDialog(null, "Registro Guardado");
-        }
     }
 
     public static int ComprobarFactura(ObjectContainer basep, String cod_factura) {

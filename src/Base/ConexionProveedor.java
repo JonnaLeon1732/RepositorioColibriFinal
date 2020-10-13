@@ -67,7 +67,7 @@ public class ConexionProveedor {
         Cerrarbd(base);
         return prov;
     }
-
+    
     public void EliminarProveedor(ObjectContainer basep, String ID_proveedor) {
         Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
         ObjectSet resultado = basep.get(proveedor);
