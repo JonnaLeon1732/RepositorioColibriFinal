@@ -1,16 +1,20 @@
 package secundarias_gui;
 
+import Base.ConexionFactura;
+import com.db4o.ObjectContainer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import principales_gui.Principal;
+import reportes_gui.Reporte_Productos;
 
-public final class Factura extends javax.swing.JFrame {
+public final class Ingresar_Factura extends javax.swing.JFrame {
 
     public static int numFactura = 0;
     public static double precio = 0;
 
-    public Factura() {
+    public Ingresar_Factura() {
         initComponents();
         setResizable(false);
         setTitle("COLIBRÍ");
@@ -26,6 +30,32 @@ public final class Factura extends javax.swing.JFrame {
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
         return formatofecha.format(fecha);
     }
+//    private String Cliente(String codigo, String accion) {
+//        String valor = "";
+//        for (int i = 0; i < TablaFactura.getRowCount(); i++) {
+//            if (TablaFactura.getValueAt(i, 0).equals(codigo)) {
+//                TablaFactura.changeSelection(i, 0, false, false);
+//            }
+//        }
+//        switch (accion) {
+//            case "Producto":
+//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow, 0).toString();
+//                break;
+//            case "nombre":
+//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 1).toString();
+//                break;
+//            case "tipo":
+//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 2).toString();
+//                break;
+//            case "cantidad":
+//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 3).toString();
+//                break;
+//            case "precio":
+//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 4).toString();
+//                break;
+//        }
+//        return valor;
+//    }
 
     public void Confirmar(boolean dato) {
         if (dato == true) {
@@ -372,6 +402,9 @@ public final class Factura extends javax.swing.JFrame {
         Principal p = new Principal();
         p.setVisible(true);
         this.setVisible(false);
+        precio = 0;
+        numFactura = 0;
+
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
@@ -418,6 +451,26 @@ public final class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_numeroFACMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String codigo;
+        for (int i = 0; i < TablaFactura.getRowCount(); i++) {
+            ConexionFactura conexion = new ConexionFactura();
+            ObjectContainer base = conexion.BaseFactura();
+            codigo = conexion.Codigo(base);
+            conexion.CrearFactura(base,
+                    codigo,
+                    lb_fecha.getText(),
+                    lb_numeroFAC.getText(),
+                    new Reporte_Productos().Productos(TablaFactura.getValueAt(i, 0).toString()),
+                    TablaFactura.getValueAt(i, 0).toString(),
+                    TablaFactura.getValueAt(i, 1).toString(),
+                    TablaFactura.getValueAt(i, 2).toString(),
+                    Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()),
+                    Double.parseDouble(TablaFactura.getValueAt(i, 4).toString()));
+            conexion.Cerrarbd(base);
+        }
+        precio = 0;
+        new Carrito().reinicio();
+        JOptionPane.showMessageDialog(null, "Compra Exitosa");
         new Principal().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -453,20 +506,21 @@ public final class Factura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Factura().setVisible(true);
+                new Ingresar_Factura().setVisible(true);
             }
         });
     }
@@ -511,16 +565,10 @@ public final class Factura extends javax.swing.JFrame {
     }
 
     private void nFactura() {
-        numFactura++;
-        if (numFactura < 10) {
-            lb_numeroFAC.setText("00" + numFactura);
-        } else {
-            if (numFactura < 100) {
-                lb_numeroFAC.setText("0" + numFactura);
-            } else {
-                lb_numeroFAC.setText(numFactura + "");
-            }
-        }
+        ConexionFactura conexion = new ConexionFactura();
+        ObjectContainer base = conexion.BaseFactura();
+        lb_numeroFAC.setText(conexion.Facture(base));
+        conexion.Cerrarbd(base);
     }
 
     private void mostrar() {

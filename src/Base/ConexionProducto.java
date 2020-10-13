@@ -144,4 +144,21 @@ public class ConexionProducto {
         } while (confirmar != true);
         return codigo;
     }
+        public String factura(ObjectContainer basep) {
+        int generar;
+        boolean confirmar;
+        String codigo;
+        generar = (int) Math.floor(Math.random() * 900 + 100);
+        codigo = generar + "";
+        do {
+            if (ConsultarProducto(basep, codigo) != false) {
+                generar = (int) Math.floor(Math.random() * 900 + 100);
+                codigo = generar + "";
+                confirmar = false;
+            } else {
+                confirmar = true;
+            }
+        } while (confirmar != true);
+        return codigo;
+    }
 }

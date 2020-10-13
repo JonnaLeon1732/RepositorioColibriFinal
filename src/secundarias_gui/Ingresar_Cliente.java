@@ -241,7 +241,7 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
 
     private void btt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registrarActionPerformed
         ConexionCliente conexion = new ConexionCliente();
-        Factura factura=new Factura();
+        Ingresar_Factura factura=new Ingresar_Factura();
         ObjectContainer base = conexion.BaseCliente();
         conexion.CrearCliente(base, txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtDireccion.getText(), txtCorreo.getText());
         conexion.Cerrarbd(base);

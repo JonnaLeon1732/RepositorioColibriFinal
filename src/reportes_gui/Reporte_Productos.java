@@ -10,9 +10,7 @@ import clases.Producto;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import secundarias_gui.Ingresar_Producto;
 
@@ -38,7 +36,18 @@ public class Reporte_Productos extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
         tablaproducto.setModel(conexion.Productos());
     }
-
+        public String Productos(String codigo) {
+        ConexionProducto conexion = new ConexionProducto();
+        String valor = "";
+        tablaproducto.setModel(conexion.Productos());
+        for (int i = 0; i < tablaproducto.getRowCount(); i++) {
+            if (tablaproducto.getValueAt(i, 0).equals(codigo)) {
+                tablaproducto.changeSelection(i, 0, false, false);
+            }
+        }
+        valor = tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 5).toString();
+        return valor;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

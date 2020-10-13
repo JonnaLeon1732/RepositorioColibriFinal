@@ -5,7 +5,6 @@
  */
 package reportes_gui;
 
-
 import Base.ConexionCliente;
 import clases.Cliente;
 import java.awt.Graphics;
@@ -13,6 +12,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
 /**
  *
  * @author Grupo 2
@@ -22,11 +22,11 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     /**
      * Creates new form Reporte_Clientes
      */
-    public static final ArrayList<Cliente> lista=new ArrayList<>();
-    FondoPanel fondo=new FondoPanel();
-    
+    public static final ArrayList<Cliente> lista = new ArrayList<>();
+    FondoPanel fondo = new FondoPanel();
+
     public Reporte_Clientes() {
-        ConexionCliente conexion=new ConexionCliente();
+        ConexionCliente conexion = new ConexionCliente();
         this.setContentPane(fondo);
         initComponents();
         setLocationRelativeTo(null);
@@ -35,7 +35,8 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
         tablaClientes.setModel(conexion.Cliente());
     }
-        public String Cliente(String codigo, String accion) {
+
+    public String Cliente(String codigo, String accion) {
         ConexionCliente conexion = new ConexionCliente();
         String valor = "";
         tablaClientes.setModel(conexion.Cliente());
@@ -189,12 +190,12 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
-      txtidentificacion.setText("");
+        txtidentificacion.setText("");
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
 
-      
+
     }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**
@@ -231,8 +232,9 @@ public class Reporte_Clientes extends javax.swing.JFrame {
             }
         });
     }
-        public void recibir(String cedula,String nombre,String apellido,String direccion,String telefono, String correo){
-        
+
+    public void recibir(String cedula, String nombre, String apellido, String direccion, String telefono, String correo) {
+
         Cliente cliente = new Cliente();
         cliente.setCedula(cedula);
         cliente.setNombre(nombre);
@@ -243,23 +245,23 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         lista.add(cliente);
         mostrar();
     }
-     
-    public void mostrar(){
 
-        String matris[][]=new String[lista.size()][6];
+    public void mostrar() {
+
+        String matris[][] = new String[lista.size()][6];
         for (int i = 0; i < lista.size(); i++) {
-            matris[i][0]=lista.get(i).getCedula();
-            matris[i][1]=lista.get(i).getNombre();
-            matris[i][2]=lista.get(i).getApellido();
-            matris[i][3]=lista.get(i).getDireccion();
-            matris[i][4]=lista.get(i).getTelefono();
-            matris[i][5]=lista.get(i).getCorreo();
+            matris[i][0] = lista.get(i).getCedula();
+            matris[i][1] = lista.get(i).getNombre();
+            matris[i][2] = lista.get(i).getApellido();
+            matris[i][3] = lista.get(i).getDireccion();
+            matris[i][4] = lista.get(i).getTelefono();
+            matris[i][5] = lista.get(i).getCorreo();
         }
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
-            matris,
-            new String [] {
-                "Cedula", "Nombre", "Apellido", "Dirección", "Telefono", "Correo"
-            }
+                matris,
+                new String[]{
+                    "Cedula", "Nombre", "Apellido", "Dirección", "Telefono", "Correo"
+                }
         ));
     }
 
@@ -272,17 +274,18 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtidentificacion;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel{
+class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/fondo4.jpg")).getImage();
-            
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-            
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
             setOpaque(false);
-            
+
             super.paint(g);
         }
     }

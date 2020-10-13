@@ -185,7 +185,7 @@ public final class OpcionesCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnConsumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsumActionPerformed
-        Factura factura = new Factura();
+        Ingresar_Factura factura = new Ingresar_Factura();
         factura.Client("9999999999", "Consumidor Final", "----", "-----", "----", "----");
         factura.setVisible(true);
         this.setVisible(false);
@@ -203,7 +203,7 @@ public final class OpcionesCompra extends javax.swing.JFrame {
         boolean confirmar = conexion.ConsultarCliente(base, txt_Cedula.getText());
         conexion.Cerrarbd(base);
         if (confirmar == true) {
-            Factura factura = new Factura();
+            Ingresar_Factura factura = new Ingresar_Factura();
             factura.Client(cliente.Cliente(txt_Cedula.getText(), "cedula"),cliente.Cliente(txt_Cedula.getText(), "nombre"),
                     cliente.Cliente(txt_Cedula.getText(), "apellido"),cliente.Cliente(txt_Cedula.getText(), "telefono"),
                     cliente.Cliente(txt_Cedula.getText(), "direccion"),cliente.Cliente(txt_Cedula.getText(), "correo"));

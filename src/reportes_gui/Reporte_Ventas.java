@@ -5,6 +5,7 @@
  */
 package reportes_gui;
 
+import Base.ConexionFactura;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -21,12 +22,14 @@ public class Reporte_Ventas extends javax.swing.JFrame {
      */
     FondoPanel fondo=new FondoPanel();
     public Reporte_Ventas() {
+        ConexionFactura conexion=new ConexionFactura();
         this.setContentPane(fondo);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        tbl_mostrar_venta.setModel(conexion.Factura());
     }
 
     /**
