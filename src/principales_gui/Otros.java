@@ -13,8 +13,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import reportes_gui.Reporte_Proveedores;
+import secundarias_gui.Carrito;
 
 /**
  *
@@ -26,36 +28,40 @@ public final class Otros extends javax.swing.JFrame {
      * Creates new form Verdurass
      */
     public static int dato;
-    FondoPanel fondo=new FondoPanel();
+    FondoPanel fondo = new FondoPanel();
+    public static boolean confirmar = false;
     public Otros() {
         this.setContentPane(fondo);
-        ConexionProducto conexion=new ConexionProducto();
+        ConexionProducto conexion = new ConexionProducto();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        btnAnadir.setIcon(setIcono("/iconos/carrito_de_compras.png",btnAnadir));
-        btnAnadir.setPressedIcon(setIconoPresionado("/iconos/carrito_de_compras.png",btnAnadir,20,20));
+        btnAnadir.setIcon(setIcono("/iconos/carrito_de_compras.png", btnAnadir));
+        btnAnadir.setPressedIcon(setIconoPresionado("/iconos/carrito_de_compras.png", btnAnadir, 20, 20));
         TablaOtros.setModel(conexion.EscojerProductos("Otros"));
         seleccionarPersona();
     }
+
     public void seleccionarPersona() {
         TablaOtros.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
                 if (Mouse_evt.getClickCount() == 1) {
-                    Reporte_Proveedores proveedor=new Reporte_Proveedores();
+                    confirmar = true;
+                    Reporte_Proveedores proveedor = new Reporte_Proveedores();
                     txtCodigo.setText(TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 0).toString());
-                    dato=(int) TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 2);
-                    jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
+                    dato = (int) TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 2);
+                    spCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
                     lblCodigo.setText(TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 4).toString());
-                    lblNombre.setText(proveedor.Productos(lblCodigo.getText(),"nombre"));
-                    lblApellido.setText(proveedor.Productos(lblCodigo.getText(),"apellido"));
-                    lblTelefono.setText(proveedor.Productos(lblCodigo.getText(),"telefono"));
+                    lblNombre.setText(proveedor.Productos(lblCodigo.getText(), "nombre"));
+                    lblApellido.setText(proveedor.Productos(lblCodigo.getText(), "apellido"));
+                    lblTelefono.setText(proveedor.Productos(lblCodigo.getText(), "telefono"));
                 }
             }
         });
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,9 +76,9 @@ public final class Otros extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaOtros = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        spCantidad = new javax.swing.JSpinner();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
@@ -124,15 +130,15 @@ public final class Otros extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaOtros);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("OTROS");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("OTROS");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Codigo");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 1));
+        spCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,10 +214,10 @@ public final class Otros extends javax.swing.JFrame {
                                 .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(309, 309, 309)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(262, 262, 262)
-                                .addComponent(jLabel1))
+                                .addComponent(lblTitulo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addComponent(lblNombre))
@@ -272,10 +278,10 @@ public final class Otros extends javax.swing.JFrame {
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jLabel1))
+                                .addComponent(lblTitulo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(142, 142, 142)
                                 .addComponent(lblCodigo))
@@ -318,11 +324,23 @@ public final class Otros extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+        Carrito carrito = new Carrito();
+        if (confirmar == true) {
+            int seleccion = JOptionPane.showConfirmDialog(null, "Desea agregar al carrito", "Confirmación Carrito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (seleccion == 0) {
+                carrito.Ingresar(lblCodigo.getText(),
+                        TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 0).toString(),
+                        TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 1).toString(),
+                        lblTitulo.getText(),
+                        Integer.parseInt(spCantidad.getValue().toString()),
+                        Double.parseDouble(TablaOtros.getValueAt(TablaOtros.getSelectedRow(), 3).toString()));
+            }
 
+        }
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Principal principal=new Principal();
+        Principal principal = new Principal();
         principal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -381,7 +399,6 @@ public final class Otros extends javax.swing.JFrame {
     private javax.swing.JTable TablaOtros;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -396,40 +413,44 @@ public final class Otros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JSpinner spCantidad;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
-    public Icon setIcono(String url,JButton boton){
-        ImageIcon icon=new ImageIcon(getClass().getResource(url));
-        
-        int ancho=boton.getWidth();
-        int alto=boton.getHeight();
-        ImageIcon icono=new ImageIcon(icon.getImage().getScaledInstance(ancho, alto,Image.SCALE_DEFAULT));
+    public Icon setIcono(String url, JButton boton) {
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+
+        int ancho = boton.getWidth();
+        int alto = boton.getHeight();
+        ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
         return icono;
     }
-    public Icon setIconoPresionado(String url,JButton boton,int ancho,int altura){
-        ImageIcon icon =new ImageIcon(getClass().getResource(url));
-        int width=boton.getWidth()-ancho;
-        int height=boton.getHeight()-altura;
-        
-        ImageIcon icono=new ImageIcon(icon.getImage().getScaledInstance(width, height,Image.SCALE_DEFAULT));
+
+    public Icon setIconoPresionado(String url, JButton boton, int ancho, int altura) {
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        int width = boton.getWidth() - ancho;
+        int height = boton.getHeight() - altura;
+
+        ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
         return icono;
     }
-    class FondoPanel extends JPanel{
+
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/productos.jpg")).getImage();
-            
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-            
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
             setOpaque(false);
-            
+
             super.paint(g);
         }
     }

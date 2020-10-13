@@ -22,7 +22,7 @@ public class ConexionProveedor {
     public ConexionProveedor() {
     }
     public ObjectContainer BaseProveedor(){
-        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\PC\\Documents\\NetBeansProjects\\RepositorioColibriFinal\\Base\\BaseProveedor.yap");
+        ObjectContainer contenedor=Db4o.openFile("C:\\Program Files\\Colibri\\BaseProveedor.yap");
         return contenedor;
     }
     public void CrearProveedor(ObjectContainer basep,String codigo_prov, String ID, String nombre, String apellido, String telefono, String direccion){

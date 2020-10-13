@@ -2,7 +2,7 @@
 package secundarias_gui;
 
 
-import clases.Enc_Factura;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,84 +13,15 @@ import principales_gui.Principal;
 public class Factura extends javax.swing.JFrame {
 
     
-     public static final ArrayList<Enc_Factura> lista=new ArrayList<>();
+     
       
     public Factura() {
         initComponents();
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        lb_fecha.setText(fecha());
-        lb_numeroFAC.setText(NumeroIncre());
-        txt_cargoAdicional.setText(Adicional());
     }
 
-      public static String Adicional(){
-      Carrito c=new Carrito();
-       double a;
-          if (c.CAR_adicional()==true) {
-              a=1;
-          }else{
-          a=0;
-          }
-          String b=String.valueOf(a);
-      return b;  
-      }
-      
-    
-      
-    public static String fecha(){
-    Date fecha=new Date();
-        SimpleDateFormat formatofecha=new SimpleDateFormat("dd/MM/YYYY");
-        return formatofecha.format(fecha);
-    }
-    
-    
-    public static String NumeroIncre(){
-        int a=0;
-        if(a>=a){
-        a++;
-        }
-    return "00000"+a;
-    }
-    
-    public void recibir(String cedula,String nombre,String apellido,String direccion,String telefono, String correo){
-        
-        Enc_Factura enc_fac=new Enc_Factura();
-        enc_fac.setID_cliente(cedula);
-        enc_fac.setNom_cliente(nombre);
-        enc_fac.setApe_cliente(apellido);
-        enc_fac.setDireccion_cliente(direccion);
-        enc_fac.setTelefono_cliente(telefono);
-        enc_fac.setCorreo_cliente(correo);
-        
-        lista.add(enc_fac);
-        mostrar();
-    }
-    
-    public void mostrar(){
-
-        String matris[][]=new String[lista.size()][6];
-        for (int i = 0; i < lista.size(); i++) {
-            Factura fac=new Factura();
-            matris[i][0]=lista.get(i).getID_cliente();
-            matris[i][1]=lista.get(i).getNom_cliente();
-            matris[i][2]=lista.get(i).getApe_cliente();
-            matris[i][3]=lista.get(i).getDireccion_cliente();
-            matris[i][4]=lista.get(i).getTelefono_cliente();
-            matris[i][5]=lista.get(i).getCorreo_cliente();
-            
-            txt_cedula.setText(matris[i][0]);
-            txt_nombre.setText(matris[i][1]);
-            txt_Apellido.setText(matris[i][2]);
-            txt_direccion.setText(matris[i][3]);
-            txt_telefono.setText(matris[i][4]);
-            txt_correo.setText(matris[i][5]);
-            
-        }
-        
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -462,7 +393,7 @@ public class Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_telefonoKeyTyped
 
     private void lb_fechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lb_fechaKeyReleased
-      fecha();
+
     }//GEN-LAST:event_lb_fechaKeyReleased
 
     private void lb_numeroFACKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lb_numeroFACKeyReleased

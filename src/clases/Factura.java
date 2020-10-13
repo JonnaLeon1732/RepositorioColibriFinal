@@ -11,7 +11,7 @@ package clases;
  */
 public class Factura {
     private int num_Factura;
-  private String fecha;
+    private String fecha;
 
     public Factura(int num_Factua, String fecha) {
         this.num_Factura = num_Factura;

@@ -13,8 +13,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import reportes_gui.Reporte_Proveedores;
+import secundarias_gui.Carrito;
 
 /**
  *
@@ -26,6 +28,7 @@ public final class Granos extends javax.swing.JFrame {
      * Creates new form Verdurass
      */
     public static int dato;
+    public static boolean confirmar = false;
     FondoPanel fondo=new FondoPanel();
     public Granos() {
         this.setContentPane(fondo);
@@ -44,10 +47,11 @@ public final class Granos extends javax.swing.JFrame {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
                 if (Mouse_evt.getClickCount() == 1) {
+                    confirmar = true;
                     Reporte_Proveedores proveedor=new Reporte_Proveedores();
                     txtCodigo.setText(TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 0).toString());
                     dato=(int) TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 2);
-                    jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
+                    spCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
                     lblCodigo.setText(TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 4).toString());
                     lblNombre.setText(proveedor.Productos(lblCodigo.getText(),"nombre"));
                     lblApellido.setText(proveedor.Productos(lblCodigo.getText(),"apellido"));
@@ -70,9 +74,9 @@ public final class Granos extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaGranos = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        spCantidad = new javax.swing.JSpinner();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
@@ -124,15 +128,15 @@ public final class Granos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaGranos);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GRANOS");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("GRANOS");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Codigo");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 1));
+        spCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 0, 1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,10 +212,10 @@ public final class Granos extends javax.swing.JFrame {
                                 .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(309, 309, 309)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(262, 262, 262)
-                                .addComponent(jLabel1))
+                                .addComponent(lblTitulo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addComponent(lblNombre))
@@ -272,10 +276,10 @@ public final class Granos extends javax.swing.JFrame {
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jLabel1))
+                                .addComponent(lblTitulo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(142, 142, 142)
                                 .addComponent(lblCodigo))
@@ -318,7 +322,19 @@ public final class Granos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+        Carrito carrito = new Carrito();
+        if (confirmar == true) {
+            int seleccion = JOptionPane.showConfirmDialog(null, "Desea agregar al carrito", "Confirmación Carrito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (seleccion == 0) {
+                carrito.Ingresar(lblCodigo.getText(),
+                        TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 0).toString(),
+                        TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 1).toString(),
+                        lblTitulo.getText(),
+                        Integer.parseInt(spCantidad.getValue().toString()),
+                        Double.parseDouble(TablaGranos.getValueAt(TablaGranos.getSelectedRow(), 3).toString()));
+            }
 
+        }
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -381,7 +397,6 @@ public final class Granos extends javax.swing.JFrame {
     private javax.swing.JTable TablaGranos;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -396,11 +411,12 @@ public final class Granos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JSpinner spCantidad;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
     public Icon setIcono(String url,JButton boton){

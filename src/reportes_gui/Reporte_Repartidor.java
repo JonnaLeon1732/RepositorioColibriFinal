@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import reportes_gui.Reportes;
-import Base.Conexion;
 import com.db4o.ObjectContainer;
 import javax.swing.table.TableModel;
 
@@ -185,13 +184,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_crearActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
-      Conexion conexion=new Conexion();
-      ObjectContainer basep=conexion.BaseRepartidor();
-      Repartidor rep=new Repartidor();
-       conexion.EliminarRepartidor(basep,rep.getCedula_repartidor());
-        conexion.Cerrarbd(basep);
-        tablarep.setModel((TableModel) conexion.BaseRepartidor());
-      
+
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
@@ -199,27 +192,11 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
-        // TODO add your handling code here:
-        Conexion conexion=new Conexion();
-        ObjectContainer basep=conexion.BaseRepartidor();
-        Repartidor rep=new Repartidor();
-        conexion.ModificarRepartidor(basep, null, rep.getCedula_repartidor(), null, null, null, null, null);
-        conexion.Cerrarbd(basep);
-        tablarep.setModel((TableModel) conexion.BaseRepartidor());
-        
-        Ingresar_Repartidor repa=new Ingresar_Repartidor();
-        repa.setVisible(true);
-        
+
     }//GEN-LAST:event_btt_modificarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        Conexion conexion=new Conexion();
-      ObjectContainer basep=conexion.BaseRepartidor();
-      Repartidor rep=new Repartidor();
-       conexion.ConsultarRepartidor(basep,rep.getCedula_repartidor());
-        conexion.Cerrarbd(basep);
-        tablarep.setModel((TableModel) conexion.BaseRepartidor());
-      
+
     }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**

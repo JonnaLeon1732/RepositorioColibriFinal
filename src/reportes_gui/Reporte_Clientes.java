@@ -5,7 +5,7 @@
  */
 package reportes_gui;
 
-import Base.Conexion;
+
 import clases.Cliente;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
@@ -162,12 +162,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-      Conexion conexion=new Conexion();
-      ObjectContainer basep=conexion.BaseCliente();
-      Cliente cliente=new Cliente();
-      conexion.ConsultarCliente(basep,cliente.getCedula());
-      conexion.Cerrarbd(basep);
-      tablacli.setModel(conexion.Cliente());
+
       
     }//GEN-LAST:event_btt_consultarActionPerformed
 

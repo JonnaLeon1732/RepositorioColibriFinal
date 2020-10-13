@@ -5,7 +5,7 @@
  */
 package secundarias_gui;
 
-import Base.Conexion;
+
 import clases.Cliente;
 import com.db4o.ObjectContainer;
 import javax.swing.ImageIcon;
@@ -267,8 +267,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                if (txt_correo.getText().contains("@")& txt_correo.getText().contains(".")) {
                  
                    Factura f=new Factura();
-                   f.recibir(txt_cedula.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_direccion.getText(), txt_telefono.getText(), txt_correo.getText());
-                   
+
                    Reporte_Clientes rc=new Reporte_Clientes();
                    rc.recibir(txt_cedula.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_direccion.getText(), txt_telefono.getText(), txt_correo.getText());
                    f.setVisible(true);
@@ -281,13 +280,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Debe estar lleno todos los campos");
         }
-         Conexion conexion=new Conexion();
-        ObjectContainer basep=conexion.BaseCliente();
-        conexion.CrearCLiente(basep,lbid.getText(),txt_correo.getText(),txt_cedula.getText(),txt_nombre.getText(),txt_apellido.getText(),txt_direccion.getText(),txt_telefono.getText());
-        conexion.Cerrarbd(basep);
-       
-       
-     
+
     }//GEN-LAST:event_btt_registrarActionPerformed
 
     private void txt_cedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cedulaKeyReleased

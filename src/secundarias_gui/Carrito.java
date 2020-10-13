@@ -1,12 +1,16 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package secundarias_gui;
-import secundarias_gui.Factura;
+
+import clases.Carro;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,28 +20,39 @@ import principales_gui.Principal;
  *
  * @author Grupo 2
  */
-public class Carrito extends javax.swing.JFrame {
+public final class Carrito extends javax.swing.JFrame {
 
     /**
      * Creates new form Carrito
      */
-    FondoPanel fondo=new FondoPanel();
+    public static ArrayList<Carro> lista = new ArrayList<>();
+    public static String codigo="";
+    FondoPanel fondo = new FondoPanel();
+
     public Carrito() {
         this.setContentPane(fondo);
         initComponents();
+        mostrar();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
+        seleccionarPersona();
     }
-   
-    public boolean CAR_adicional(){
-        if (!jCheckBox1.isSelected()) {
-        return false;
-        }
-        return true;
+        public void seleccionarPersona() {
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent Mouse_evt) {
+                if (Mouse_evt.getClickCount() == 1) {
+                    codigo=jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                }
+            }
+        });
     }
-    
+    public boolean CAR_adicional() {
+        return jCheckBox1.isSelected();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,28 +68,29 @@ public class Carrito extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("LISTA DE PRODUCTOS");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CARRO DE COMPRAS");
 
-        btncomprar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btncomprar.setText("COMPRAR");
-        btncomprar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btncomprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncomprarActionPerformed(evt);
             }
         });
 
-        btncancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btncancelar.setText("CANCELAR");
-        btncancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncancelarActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Eliminar Producto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,6 +105,7 @@ public class Carrito extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Envio a domicilio, cargo adicional $1,00 ");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,25 +122,22 @@ public class Carrito extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(171, 171, 171)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jCheckBox1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(btncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(btncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(202, 202, 202))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,20 +150,20 @@ public class Carrito extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btncomprar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncomprarActionPerformed
-            Ingreso_Clientes cli=new Ingreso_Clientes();
-            cli.setVisible(true);
-            this.setVisible(false);
+        Ingreso_Clientes cli = new Ingreso_Clientes();
+        cli.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btncomprarActionPerformed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
@@ -159,12 +173,27 @@ public class Carrito extends javax.swing.JFrame {
     }//GEN-LAST:event_btncancelarActionPerformed
 
     private void jCheckBox1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckBox1KeyTyped
-      
+
     }//GEN-LAST:event_jCheckBox1KeyTyped
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         CAR_adicional();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if ("".equals(codigo)) {
+            JOptionPane.showMessageDialog(null,"No se ha seleccionado nada");
+        }else{
+            String valor=codigo;
+            int pos=ObtenerPosicion(valor);
+            if (pos!=-1) {
+                lista.remove(pos);
+                JOptionPane.showMessageDialog(null,"Producto Eliminado del Carrito");
+                mostrar();
+                codigo="";
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,18 +240,75 @@ public class Carrito extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel{
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagenes/carrito.jpeg")).getImage();
-            
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-            
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/productos.jpg")).getImage();
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
             setOpaque(false);
-            
+
             super.paint(g);
         }
+    }
+
+    public void Ingresar(String cod_prov, String cod_prod, String nomb_prod, String tipo, int cantidad, double precio) {
+        if (Consultar(cod_prod) == true) {
+            Carro carro = new Carro();
+            carro.setCod_prov(cod_prov);
+            carro.setCod_prod(cod_prod);
+            carro.setNom_prod(nomb_prod);
+            carro.setTip_prod(cod_prod);
+            carro.setCant(cantidad);
+            carro.setPrecio_Total(cantidad * precio);
+            lista.add(carro);
+            JOptionPane.showMessageDialog(null, "Producto Agregado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Usted ya ingreso el producto de ese Proveedor");
+        }
+    }
+
+    public void mostrar() {
+        String matris[][] = new String[lista.size()][6];
+        for (int i = 0; i < lista.size(); i++) {
+            matris[i][0] = lista.get(i).getCod_prov();
+            matris[i][1] = lista.get(i).getCod_prod();
+            matris[i][2] = lista.get(i).getNom_prod();
+            matris[i][3] = lista.get(i).getTip_prod();
+            matris[i][4] = lista.get(i).getCant() + "";
+            matris[i][5] = lista.get(i).getPrecio_Total() + "";
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                matris,
+                new String[]{
+                    "Codigo Proveedor", "Codigo Producto", "Nombre Producto", "Tipo", "Cantidad", "Precio Total"
+                }
+        ));
+
+    }
+
+    private Boolean Consultar(String codigo) {
+        mostrar();
+        boolean confirmar = true;
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            if (jTable1.getValueAt(i, 1).equals(codigo)) {
+                jTable1.changeSelection(i, 2, false, false);
+                confirmar = false;
+            }
+        }
+        return confirmar;
+    }
+    private int ObtenerPosicion(String valor){
+        for (int i = 0; i < lista.size(); i++) {
+            Carro c=lista.get(i);
+            if (valor.equalsIgnoreCase(c.getCod_prod())) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

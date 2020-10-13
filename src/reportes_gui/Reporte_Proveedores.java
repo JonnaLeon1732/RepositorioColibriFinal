@@ -5,16 +5,12 @@
  */
 package reportes_gui;
 
-import Base.Conexion;
 import Base.ConexionProveedor;
 import clases.Proveedor;
-import clases.Repartidor;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import secundarias_gui.Ingresar_Proveedor;
 
@@ -23,13 +19,12 @@ import secundarias_gui.Ingresar_Proveedor;
  * @author Grupo 2
  */
 public class Reporte_Proveedores extends javax.swing.JFrame {
-  
-   
-    
-    FondoPanel fondo=new FondoPanel();
+
+    FondoPanel fondo = new FondoPanel();
+
     public Reporte_Proveedores() {
         this.setContentPane(fondo);
-        ConexionProveedor conexion=new ConexionProveedor();
+        ConexionProveedor conexion = new ConexionProveedor();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -37,28 +32,30 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablaproveedor.setModel(conexion.Proveedor());
     }
-    public String Productos(String codigo,String accion){
-        ConexionProveedor conexion=new ConexionProveedor();
-        String valor="";
+
+    public String Productos(String codigo, String accion) {
+        ConexionProveedor conexion = new ConexionProveedor();
+        String valor = "";
         tablaproveedor.setModel(conexion.Proveedor());
         for (int i = 0; i < tablaproveedor.getRowCount(); i++) {
             if (tablaproveedor.getValueAt(i, 0).equals(codigo)) {
                 tablaproveedor.changeSelection(i, 2, false, false);
             }
         }
-        switch (accion){
+        switch (accion) {
             case "nombre":
-                    valor=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 2).toString();
+                valor = tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 2).toString();
                 break;
             case "apellido":
-                    valor=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 3).toString();
+                valor = tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 3).toString();
                 break;
             case "telefono":
-                    valor=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 4).toString();
+                valor = tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 4).toString();
                 break;
         }
         return valor;
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -222,7 +219,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_crearActionPerformed
 
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
-       txt_consul_identificacion.setText("");
+        txt_consul_identificacion.setText("");
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
@@ -236,10 +233,10 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
         // TODO add your handling code here:
-        ConexionProveedor conexion=new ConexionProveedor();
-        ObjectContainer basep=conexion.BaseProveedor();
-        Proveedor provee=new Proveedor();
-        conexion.ConsultarProveedor(basep,provee.getCedula());
+        ConexionProveedor conexion = new ConexionProveedor();
+        ObjectContainer basep = conexion.BaseProveedor();
+        Proveedor provee = new Proveedor();
+        conexion.ConsultarProveedor(basep, provee.getCedula());
         conexion.Cerrarbd(basep);
         tablaproveedor.setModel(conexion.Proveedor());
     }//GEN-LAST:event_btt_consultarActionPerformed
@@ -282,9 +279,8 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
             }
         });
     }
-   
-    
-   
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;
     private javax.swing.JButton btt_consultar;
@@ -298,20 +294,22 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private javax.swing.JTable tablaproveedor;
     private javax.swing.JTextField txt_consul_identificacion;
     // End of variables declaration//GEN-END:variables
-    public void tabla(){
+    public void tabla() {
         tablaproveedor.setModel(new ConexionProveedor().Proveedor());
     }
-    class FondoPanel extends JPanel{
+
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/fondo4.jpg")).getImage();
-            
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-            
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
             setOpaque(false);
-            
+
             super.paint(g);
         }
     }

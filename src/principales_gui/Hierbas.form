@@ -54,11 +54,11 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="309" pref="309" max="-2" attributes="0"/>
-                              <Component id="jSpinner1" min="-2" pref="67" max="-2" attributes="0"/>
+                              <Component id="spCantidad" min="-2" pref="67" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="262" pref="262" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="110" pref="110" max="-2" attributes="0"/>
@@ -142,11 +142,11 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
-                              <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
+                              <Component id="spCantidad" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="142" pref="142" max="-2" attributes="0"/>
@@ -237,7 +237,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -259,7 +259,7 @@
         <Property name="text" type="java.lang.String" value="Codigo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="spCantidad">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="0" maximum="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
