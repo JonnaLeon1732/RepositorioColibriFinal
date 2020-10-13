@@ -11,27 +11,17 @@ package clases;
  */
 public class Cliente extends Persona{
  
-    private String ID_cliente;
+    
     private String correo;
 
-    public Cliente(String ID_cliente, String correo, String ID, String nombre, String apellido, String telefono, String direccion) {
+    public Cliente(String correo, String ID, String nombre, String apellido, String telefono, String direccion) {
         super(ID, nombre, apellido, telefono, direccion);
-        this.ID_cliente = ID_cliente;
         this.correo = correo;
     }
 
     public Cliente() {
     }
-    
-
-    public String getID_cliente() {
-        return ID_cliente;
-    }
-
-    public void setID_cliente(String ID_cliente) {
-        this.ID_cliente = ID_cliente;
-    }
-
+   
     public String getCorreo() {
         return correo;
     }
@@ -43,10 +33,5 @@ public class Cliente extends Persona{
     public static void comprar() {
 
     }
-
-    @Override
-    public String toString() {
-        return "Client" + "ID_cliente=" + ID_cliente + ", correo=" + correo;
-    }   
 }
 

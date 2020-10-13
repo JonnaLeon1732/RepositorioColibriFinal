@@ -11,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import principales_gui.Entrada_Admin;
 import principales_gui.Principal;
-import reportes_gui.Reporte_Repartidor;
 import secundarias_gui.*;
 
 /**
@@ -46,11 +45,9 @@ public class Reportes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         btnVentas = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
-        btnRepartidor = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -83,10 +80,6 @@ public class Reportes extends javax.swing.JFrame {
         jLabel4.setText("REPORTES DE PROVEEDORES");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("REPORTE DE REPARTIDORES");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
-
         btnVentas.setBackground(new java.awt.Color(0, 0, 0));
         btnVentas.setForeground(new java.awt.Color(255, 255, 0));
         btnVentas.setText("Escojer");
@@ -117,16 +110,6 @@ public class Reportes extends javax.swing.JFrame {
         });
         getContentPane().add(btnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
-        btnRepartidor.setBackground(new java.awt.Color(0, 0, 0));
-        btnRepartidor.setForeground(new java.awt.Color(255, 255, 0));
-        btnRepartidor.setText("Escojer");
-        btnRepartidor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRepartidorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRepartidor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
-
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 0));
         jButton1.setText("Atras");
@@ -135,7 +118,7 @@ public class Reportes extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 0));
@@ -145,7 +128,7 @@ public class Reportes extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 62, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 62, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("REPORTE DE CLIENTES");
@@ -218,12 +201,6 @@ public class Reportes extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
-    private void btnRepartidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepartidorActionPerformed
-        Reporte_Repartidor rp=new Reporte_Repartidor();
-        rp.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnRepartidorActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         Entrada_Admin admin = new Entrada_Admin ();
@@ -294,7 +271,6 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JButton btnClientes2;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
-    private javax.swing.JButton btnRepartidor;
     private javax.swing.JButton btnVentas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -302,7 +278,6 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;

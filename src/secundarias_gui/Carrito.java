@@ -67,9 +67,9 @@ public final class Carrito extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CARRO DE COMPRAS");
+        jLabel1.setText("CARRITO DE COMPRAS");
 
         btncomprar.setText("COMPRAR");
         btncomprar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,8 +161,8 @@ public final class Carrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncomprarActionPerformed
-        Ingreso_Clientes cli = new Ingreso_Clientes();
-        cli.setVisible(true);
+        OpcionesCompra opc = new OpcionesCompra();
+        opc.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btncomprarActionPerformed
 

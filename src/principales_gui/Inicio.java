@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Jonnathan Leon
+ * @author Grupo 2
  */
 public class Inicio extends javax.swing.JFrame {
 

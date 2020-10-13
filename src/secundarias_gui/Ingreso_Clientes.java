@@ -8,12 +8,15 @@ package secundarias_gui;
 
 import clases.Cliente;
 import com.db4o.ObjectContainer;
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import principales_gui.Principal;
 import reportes_gui.Reporte_Clientes;
 import static reportes_gui.Reporte_Clientes.lista;
 import java.util.*;
+import javax.swing.JPanel;
 
 
 /**
@@ -25,67 +28,16 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     /**
      * Creates new form Ingreso_Clientes
      */
+    FondoPanel fondo = new FondoPanel();
     public Ingreso_Clientes() {
+        this.setContentPane(fondo);
         initComponents();
+        setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        lbid.setText(generarid());
+        
     }
 
-     public String generarid(){
-          String id=null;
-         int incrementado=1;
-       if(id==null){
-           
-       }else{
-           incrementado=Integer.parseInt(id);
-           incrementado=incrementado+1;
-           
-       }
-        return "00000"+incrementado;
-    }
-     public boolean Validar(){
-    
-        if (  txt_cedula.getText().isEmpty()) {
-            lb_OBcedula.setText("*Campo Obligatorio");
-            return false;
-        } else {
-            lb_OBcedula.setText("");
-            
-        }if(txt_nombre.getText().isEmpty()){
-            lb_OBnombre.setText("*Campo Obligatorio");
-             return false;
-        }else{
-            lb_OBnombre.setText("");
-            
-        } if(txt_apellido.getText().isEmpty()){
-            lb_OBapellido.setText("*Campo Obligatorio");
-             return false;
-        }else {
-        lb_OBapellido.setText("");
-        
-        }if(txt_direccion.getText().isEmpty()){
-            lb_OBdireccion.setText("*Campo Obligatorio");
-            return false; 
-        }else {
-        lb_OBdireccion.setText("");
-        
-        }if(txt_telefono.getText().isEmpty()){
-            lb_OBtelefono.setText("*Campo Obligatorio");
-           return false;  
-        }else {
-         lb_OBtelefono.setText("");
-        }if(txt_correo.getText().isEmpty()){
-            lb_OBcorreo.setText("*Campo Obligatorio");
-           return false; 
-        }else{
-        lb_OBcorreo.setText("");
-        }
-        return true;
-    }
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -94,34 +46,25 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         BTT_cancelar = new javax.swing.JButton();
         btt_registrar = new javax.swing.JButton();
-        txt_cedula = new javax.swing.JTextField();
-        txt_nombre = new javax.swing.JTextField();
-        txt_apellido = new javax.swing.JTextField();
-        txt_correo = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txt_direccion = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txt_telefono = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lb_OBcedula = new javax.swing.JLabel();
-        lb_OBapellido = new javax.swing.JLabel();
-        lb_OBnombre = new javax.swing.JLabel();
-        lb_OBdireccion = new javax.swing.JLabel();
-        lb_OBtelefono = new javax.swing.JLabel();
-        lb_OBcorreo = new javax.swing.JLabel();
-        lbid = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO DEL CLIENTE");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 165, -1));
 
         BTT_cancelar.setText("CANCELAR");
         BTT_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +72,6 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 BTT_cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(BTT_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         btt_registrar.setText("REGISTRAR");
         btt_registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,238 +79,232 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 btt_registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btt_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
-        txt_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_cedulaKeyReleased(evt);
+                txtDireccionKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_cedulaKeyTyped(evt);
+                txtDireccionKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 215, -1));
 
-        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_nombreKeyReleased(evt);
+                txtCedulaKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_nombreKeyTyped(evt);
+                txtCedulaKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 215, -1));
 
-        txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_apellidoKeyReleased(evt);
+                txtCorreoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_apellidoKeyTyped(evt);
+                txtCorreoKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 215, -1));
 
-        txt_correo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_correoKeyReleased(evt);
+                txtTelefonoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_correoKeyTyped(evt);
+                txtTelefonoKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 215, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Correo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
-        txt_direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_direccionKeyReleased(evt);
+                txtNombreKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_direccionKeyTyped(evt);
+                txtNombreKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 215, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cédula:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_telefonoKeyReleased(evt);
+                txtApellidoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_telefonoKeyTyped(evt);
+                txtApellidoKeyTyped(evt);
             }
         });
-        getContentPane().add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 215, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Apellido:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Dirección:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("N° Celular:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 20));
 
-        lb_OBcedula.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcedula.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 57, 131, 20));
-
-        lb_OBapellido.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBapellido.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 135, 131, 20));
-
-        lb_OBnombre.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBnombre.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 95, 131, 20));
-
-        lb_OBdireccion.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBdireccion.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 166, 131, 20));
-
-        lb_OBtelefono.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBtelefono.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 131, 20));
-
-        lb_OBcorreo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcorreo.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 131, 20));
-        getContentPane().add(lbid, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 70, -1));
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 350));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(BTT_cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btt_registrar)))
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTT_cancelar)
+                    .addComponent(btt_registrar))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTT_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTT_cancelarActionPerformed
-        Carrito c = new Carrito ();
+        OpcionesCompra c = new OpcionesCompra ();
         c.setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_BTT_cancelarActionPerformed
 
     private void btt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registrarActionPerformed
-       
-        if(Validar()==true){
-            if ( txt_cedula.getText().length()==10){
-             if(txt_telefono.getText().length()==10 ){
-               if (txt_correo.getText().contains("@")& txt_correo.getText().contains(".")) {
-                 
-                   Factura f=new Factura();
-
-                   Reporte_Clientes rc=new Reporte_Clientes();
-                   rc.recibir(txt_cedula.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_direccion.getText(), txt_telefono.getText(), txt_correo.getText());
-                   f.setVisible(true);
-                    this.setVisible(false);
-                 
-               }else{JOptionPane.showMessageDialog(this, "El correo electrónico no es correcto");} 
-             }else{JOptionPane.showMessageDialog(this, "El número celular no es correcto");}
-            }else{JOptionPane.showMessageDialog(this, "El número de cédula no es correcto");}
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "Debe estar lleno todos los campos");
-        }
-
+        new Factura().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btt_registrarActionPerformed
 
-    private void txt_cedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cedulaKeyReleased
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
 
-    }//GEN-LAST:event_txt_cedulaKeyReleased
+    }//GEN-LAST:event_txtDireccionKeyReleased
 
-    private void txt_cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cedulaKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')|(txt_cedula.getText().length()==10)) {
-            Validar();
-            evt.consume();
-        }else{
-            lb_OBcedula.setText("*Cédula Invalido");
-        }
-    }//GEN-LAST:event_txt_cedulaKeyTyped
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+     
+    }//GEN-LAST:event_txtDireccionKeyTyped
 
-    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
 
-    }//GEN-LAST:event_txt_nombreKeyReleased
+    }//GEN-LAST:event_txtCedulaKeyReleased
 
-    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txt_nombre.getText().length()>=25)) {
-            Validar();
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_nombreKeyTyped
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+       
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void txt_apellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyReleased
+    private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
 
-    }//GEN-LAST:event_txt_apellidoKeyReleased
+    }//GEN-LAST:event_txtCorreoKeyReleased
 
-    private void txt_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txt_apellido.getText().length()>=25)) {
-            Validar();
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_apellidoKeyTyped
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+       
+    }//GEN-LAST:event_txtCorreoKeyTyped
 
-    private void txt_correoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_correoKeyReleased
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
 
-        if (txt_correo.getText().contains("@")& txt_correo.getText().contains(".")) {
-            Validar();
-            evt.consume();
-        }else{
-            lb_OBcorreo.setText("*Correo Invalido");
-        }
+    }//GEN-LAST:event_txtTelefonoKeyReleased
 
-    }//GEN-LAST:event_txt_correoKeyReleased
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
 
-    private void txt_correoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_correoKeyTyped
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    }//GEN-LAST:event_txt_correoKeyTyped
-
-    private void txt_direccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_direccionKeyReleased
-        if (txt_direccion.getText().length() >= 50) {
-            JOptionPane.showMessageDialog(rootPane, "Limite excedido");
-        Validar();
-        evt.consume();
-        }
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
         
-    }//GEN-LAST:event_txt_direccionKeyReleased
+    }//GEN-LAST:event_txtNombreKeyReleased
 
-    private void txt_direccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_direccionKeyTyped
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
 
-    }//GEN-LAST:event_txt_direccionKeyTyped
+    }//GEN-LAST:event_txtNombreKeyTyped
 
-    private void txt_telefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyReleased
+    private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
 
-    }//GEN-LAST:event_txt_telefonoKeyReleased
+    }//GEN-LAST:event_txtApellidoKeyReleased
 
-    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')|(txt_telefono.getText().length()>=10)) {
-            Validar();
-            evt.consume();
-        }else{
-            lb_OBtelefono.setText("*Teléfono Invalido");
-        }
-    }//GEN-LAST:event_txt_telefonoKeyTyped
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+     
+    }//GEN-LAST:event_txtApellidoKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (txtCedula">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -411,32 +347,26 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lb_OBapellido;
-    private javax.swing.JLabel lb_OBcedula;
-    private javax.swing.JLabel lb_OBcorreo;
-    private javax.swing.JLabel lb_OBdireccion;
-    private javax.swing.JLabel lb_OBnombre;
-    private javax.swing.JLabel lb_OBtelefono;
-    private javax.swing.JLabel lbid;
-    private javax.swing.JTextField txt_apellido;
-    private javax.swing.JTextField txt_cedula;
-    private javax.swing.JTextField txt_correo;
-    private javax.swing.JTextField txt_direccion;
-    private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_telefono;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
- public void mostrar(){
+   class FondoPanel extends JPanel {
 
-        String matris[][]=new String[lista.size()][6];
-        for (int i = 0; i < lista.size(); i++) {
-            matris[i][0]=lista.get(i).getCedula();
-            matris[i][1]=lista.get(i).getNombre();
-            matris[i][2]=lista.get(i).getApellido();
-            matris[i][3]=lista.get(i).getDireccion();
-            matris[i][4]=lista.get(i).getTelefono();
-            matris[i][5]=lista.get(i).getCorreo();
+        private Image imagen;
+
+        @Override
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/productos.jpg")).getImage();
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
+            setOpaque(false);
+
+            super.paint(g);
         }
-       
- }
+    }
 }
