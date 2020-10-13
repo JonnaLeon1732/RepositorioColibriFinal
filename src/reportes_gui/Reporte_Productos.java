@@ -25,13 +25,12 @@ public class Reporte_Productos extends javax.swing.JFrame {
     /**
      * Creates new form Reporte_Productos
      */
+    FondoPanel fondo = new FondoPanel();
 
-    
-    FondoPanel fondo=new FondoPanel();
     public Reporte_Productos() {
-        
+
         this.setContentPane(fondo);
-        ConexionProducto conexion=new ConexionProducto();
+        ConexionProducto conexion = new ConexionProducto();
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -39,7 +38,7 @@ public class Reporte_Productos extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
         tablaproducto.setModel(conexion.Productos());
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -205,7 +204,7 @@ public class Reporte_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void btt_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_crearActionPerformed
-        Ingresar_Producto producto=new Ingresar_Producto();
+        Ingresar_Producto producto = new Ingresar_Producto();
         producto.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btt_crearActionPerformed
@@ -215,10 +214,10 @@ public class Reporte_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        ConexionProducto conexion=new ConexionProducto();
-        ObjectContainer basep=conexion.BaseProducto();
-        Producto pro=new Producto();
-        conexion.ConsultarProducto(basep,pro.getCodigo());
+        ConexionProducto conexion = new ConexionProducto();
+        ObjectContainer basep = conexion.BaseProducto();
+        Producto pro = new Producto();
+        conexion.ConsultarProducto(basep, pro.getCodigo());
         conexion.Cerrarbd(basep);
         tablaproducto.setModel(conexion.Productos());
     }//GEN-LAST:event_btt_consultarActionPerformed
@@ -231,8 +230,10 @@ public class Reporte_Productos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
+    public void tabla() {
+        tablaproducto.setModel(new ConexionProducto().Productos());
+    }
 
-    
     /**
      * @param args the command line arguments
      */
@@ -269,7 +270,6 @@ public class Reporte_Productos extends javax.swing.JFrame {
     }
 
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atras;
     private javax.swing.JButton btt_consultar;
@@ -282,17 +282,18 @@ public class Reporte_Productos extends javax.swing.JFrame {
     private javax.swing.JTable tablaproducto;
     private javax.swing.JTextField txt_consul_identificacion;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel{
+class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/fondo4.jpg")).getImage();
-            
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-            
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
             setOpaque(false);
-            
+
             super.paint(g);
         }
     }

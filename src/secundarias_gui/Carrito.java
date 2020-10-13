@@ -26,7 +26,7 @@ public final class Carrito extends javax.swing.JFrame {
      * Creates new form Carrito
      */
     public static ArrayList<Carro> lista = new ArrayList<>();
-    public static String codigo="";
+    public static String codigo = "";
     FondoPanel fondo = new FondoPanel();
 
     public Carrito() {
@@ -39,16 +39,18 @@ public final class Carrito extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         seleccionarPersona();
     }
-        public void seleccionarPersona() {
+
+    public void seleccionarPersona() {
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
                 if (Mouse_evt.getClickCount() == 1) {
-                    codigo=jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                    codigo = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
                 }
             }
         });
     }
+
     public boolean CAR_adicional() {
         return jCheckBox1.isSelected();
     }
@@ -161,9 +163,14 @@ public final class Carrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncomprarActionPerformed
-        OpcionesCompra opc = new OpcionesCompra();
-        opc.setVisible(true);
-        this.setVisible(false);
+        int longitud = lista.size();
+        if (longitud != 0) {
+            OpcionesCompra opc = new OpcionesCompra();
+            opc.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen elementos en el Carrito");
+        }
     }//GEN-LAST:event_btncomprarActionPerformed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
@@ -177,20 +184,20 @@ public final class Carrito extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1KeyTyped
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        CAR_adicional();
+        new Factura().Confirmar(CAR_adicional());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if ("".equals(codigo)) {
-            JOptionPane.showMessageDialog(null,"No se ha seleccionado nada");
-        }else{
-            String valor=codigo;
-            int pos=ObtenerPosicion(valor);
-            if (pos!=-1) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado nada");
+        } else {
+            String valor = codigo;
+            int pos = ObtenerPosicion(valor);
+            if (pos != -1) {
                 lista.remove(pos);
-                JOptionPane.showMessageDialog(null,"Producto Eliminado del Carrito");
+                JOptionPane.showMessageDialog(null, "Producto Eliminado del Carrito");
                 mostrar();
-                codigo="";
+                codigo = "";
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -262,7 +269,7 @@ public final class Carrito extends javax.swing.JFrame {
             carro.setCod_prov(cod_prov);
             carro.setCod_prod(cod_prod);
             carro.setNom_prod(nomb_prod);
-            carro.setTip_prod(cod_prod);
+            carro.setTip_prod(tipo);
             carro.setCant(cantidad);
             carro.setPrecio_Total(cantidad * precio);
             lista.add(carro);
@@ -291,20 +298,24 @@ public final class Carrito extends javax.swing.JFrame {
 
     }
 
+    public ArrayList<Carro> Tabla() {
+        return lista;
+    }
+
     private Boolean Consultar(String codigo) {
         mostrar();
         boolean confirmar = true;
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             if (jTable1.getValueAt(i, 1).equals(codigo)) {
-                jTable1.changeSelection(i, 2, false, false);
                 confirmar = false;
             }
         }
         return confirmar;
     }
-    private int ObtenerPosicion(String valor){
+
+    private int ObtenerPosicion(String valor) {
         for (int i = 0; i < lista.size(); i++) {
-            Carro c=lista.get(i);
+            Carro c = lista.get(i);
             if (valor.equalsIgnoreCase(c.getCod_prod())) {
                 return i;
             }

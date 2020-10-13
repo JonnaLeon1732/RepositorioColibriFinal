@@ -5,40 +5,33 @@
  */
 package secundarias_gui;
 
-
-import clases.Cliente;
+import Base.ConexionCliente;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import principales_gui.Principal;
-import reportes_gui.Reporte_Clientes;
-import static reportes_gui.Reporte_Clientes.lista;
-import java.util.*;
 import javax.swing.JPanel;
-
 
 /**
  *
  * @author Usuario
  */
-public class Ingreso_Clientes extends javax.swing.JFrame {
+public class Ingresar_Cliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ingreso_Clientes
+     * Creates new form Ingresar_Cliente
      */
     FondoPanel fondo = new FondoPanel();
-    public Ingreso_Clientes() {
+
+    public Ingresar_Cliente() {
         this.setContentPane(fondo);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,15 +233,21 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTT_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTT_cancelarActionPerformed
-        OpcionesCompra c = new OpcionesCompra ();
+        OpcionesCompra c = new OpcionesCompra();
         c.setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_BTT_cancelarActionPerformed
 
     private void btt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registrarActionPerformed
-        new Factura().setVisible(true);
+        ConexionCliente conexion = new ConexionCliente();
+        Factura factura=new Factura();
+        ObjectContainer base = conexion.BaseCliente();
+        conexion.CrearCliente(base, txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtDireccion.getText(), txtCorreo.getText());
+        conexion.Cerrarbd(base);
+        factura.Client(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtDireccion.getText(), txtCorreo.getText());
         this.setVisible(false);
+        factura.setVisible(true);
     }//GEN-LAST:event_btt_registrarActionPerformed
 
     private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
@@ -256,7 +255,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionKeyReleased
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-     
+
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
@@ -264,7 +263,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-       
+
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
@@ -272,7 +271,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoKeyReleased
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-       
+
     }//GEN-LAST:event_txtCorreoKeyTyped
 
     private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
@@ -284,7 +283,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        
+
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -296,7 +295,7 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoKeyReleased
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-     
+
     }//GEN-LAST:event_txtApellidoKeyTyped
 
     /**
@@ -316,26 +315,28 @@ public class Ingreso_Clientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ingreso_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ingreso_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ingreso_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ingreso_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ingresar_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ingreso_Clientes().setVisible(true);
+                new Ingresar_Cliente().setVisible(true);
             }
         });
-        
+
     }
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTT_cancelar;

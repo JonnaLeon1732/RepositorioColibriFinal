@@ -39,7 +39,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         tablaproveedor.setModel(conexion.Proveedor());
         for (int i = 0; i < tablaproveedor.getRowCount(); i++) {
             if (tablaproveedor.getValueAt(i, 0).equals(codigo)) {
-                tablaproveedor.changeSelection(i, 2, false, false);
+                tablaproveedor.changeSelection(i, 0, false, false);
             }
         }
         switch (accion) {

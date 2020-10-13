@@ -6,15 +6,13 @@
 package reportes_gui;
 
 
+import Base.ConexionCliente;
 import clases.Cliente;
-import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.table.TableModel;
-import secundarias_gui.Ingreso_Clientes;
 /**
  *
  * @author Grupo 2
@@ -28,12 +26,45 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     FondoPanel fondo=new FondoPanel();
     
     public Reporte_Clientes() {
+        ConexionCliente conexion=new ConexionCliente();
         this.setContentPane(fondo);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("COLIBRÍ");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        tablaClientes.setModel(conexion.Cliente());
+    }
+        public String Cliente(String codigo, String accion) {
+        ConexionCliente conexion = new ConexionCliente();
+        String valor = "";
+        tablaClientes.setModel(conexion.Cliente());
+        for (int i = 0; i < tablaClientes.getRowCount(); i++) {
+            if (tablaClientes.getValueAt(i, 0).equals(codigo)) {
+                tablaClientes.changeSelection(i, 0, false, false);
+            }
+        }
+        switch (accion) {
+            case "cedula":
+                valor = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+                break;
+            case "nombre":
+                valor = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 1).toString();
+                break;
+            case "apellido":
+                valor = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 2).toString();
+                break;
+            case "telefono":
+                valor = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 3).toString();
+                break;
+            case "direccion":
+                valor = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 4).toString();
+                break;
+            case "correo":
+                valor = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 5).toString();
+                break;
+        }
+        return valor;
     }
 
     /**
@@ -51,7 +82,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         btt_consultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablacli = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,7 +110,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("REPORTE DE CLIENTES");
 
-        tablacli.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -105,7 +136,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablacli);
+        jScrollPane1.setViewportView(tablaClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,7 +255,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
             matris[i][4]=lista.get(i).getTelefono();
             matris[i][5]=lista.get(i).getCorreo();
         }
-        tablacli.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             matris,
             new String [] {
                 "Cedula", "Nombre", "Apellido", "Dirección", "Telefono", "Correo"
@@ -238,7 +269,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablacli;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtidentificacion;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel{

@@ -5,7 +5,6 @@
  */
 package Base;
 
-
 import clases.Proveedor;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -21,40 +20,41 @@ public class ConexionProveedor {
 
     public ConexionProveedor() {
     }
-    public ObjectContainer BaseProveedor(){
-        ObjectContainer contenedor=Db4o.openFile("C:\\Users\\PC\\Documents\\NetBeansProjects\\RepositorioColibriFinal\\Base\\BaseProveedor.yap");
+
+    public ObjectContainer BaseProveedor() {
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseProveedor.yap");
         return contenedor;
     }
-    public void CrearProveedor(ObjectContainer basep,String codigo_prov, String ID, String nombre, String apellido, String telefono, String direccion){
-        Proveedor prov=new Proveedor(codigo_prov,ID,nombre,apellido,telefono,direccion);
-        if (ComprobarProveedor(basep,nombre,ID)!=0) {
-            JOptionPane.showMessageDialog(null,"Registro Existente");
-        }else{
+
+    public void CrearProveedor(ObjectContainer basep, String codigo_prov, String ID, String nombre, String apellido, String telefono, String direccion) {
+        Proveedor prov = new Proveedor(codigo_prov, ID, nombre, apellido, telefono, direccion);
+        if (ComprobarProveedor(basep, nombre, ID) != 0) {
+            JOptionPane.showMessageDialog(null, "Registro Existente");
+        } else {
             basep.set(prov);
-            JOptionPane.showMessageDialog(null,"Registro Guardado");
+            JOptionPane.showMessageDialog(null, "Registro Guardado");
         }
     }
-    
-    public static int ComprobarProveedor(ObjectContainer basep,String nombre,String ID){
-        Proveedor prov=new Proveedor(null,ID,null,null,null,null);
-        ObjectSet resultado=basep.get(prov);
+
+    public static int ComprobarProveedor(ObjectContainer basep, String nombre, String ID) {
+        Proveedor prov = new Proveedor(null, ID, null, null, null, null);
+        ObjectSet resultado = basep.get(prov);
         return resultado.size();
     }
-    
-    public void Cerrarbd(ObjectContainer basep){
+
+    public void Cerrarbd(ObjectContainer basep) {
         basep.close();
     }
-    
-    public boolean ConsultarProveedor(ObjectContainer basep,String codigo){
-        Proveedor prov=new Proveedor(codigo,null,null,null,null,null);
-        ObjectSet resultado=basep.get(prov);
+
+    public boolean ConsultarProveedor(ObjectContainer basep, String codigo) {
+        Proveedor prov = new Proveedor(codigo, null, null, null, null, null);
+        ObjectSet resultado = basep.get(prov);
         return !resultado.isEmpty();
     }
-    
-    
+
     public Proveedor[] ConsultarProv(Proveedor objeto) {
         Proveedor[] prov = null;
-        ObjectContainer base=BaseProveedor();
+        ObjectContainer base = BaseProveedor();
         ObjectSet resultados = base.get(objeto);
         int i = 0;
         if (resultados.hasNext()) {
@@ -67,9 +67,9 @@ public class ConexionProveedor {
         Cerrarbd(base);
         return prov;
     }
-    
+
     public void EliminarProveedor(ObjectContainer basep, String ID_proveedor) {
-       Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
+        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
         ObjectSet resultado = basep.get(proveedor);
 
         if (resultado.size() == 0) {
@@ -80,9 +80,9 @@ public class ConexionProveedor {
             JOptionPane.showMessageDialog(null, "El Proveedor fue eliminado");
         }
     }
-    
+
     public DefaultTableModel Proveedor() {
-        String titulos[] = {"Codigo", "Cédula", "Nombre","Apellido","Teléfono","Dirección"};
+        String titulos[] = {"Codigo", "Cédula", "Nombre", "Apellido", "Teléfono", "Dirección"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Proveedor prov = null;
         Proveedor[] p = ConsultarProv(prov);
@@ -100,21 +100,22 @@ public class ConexionProveedor {
         }
         return dtm;
     }
+
     public String Codigo(ObjectContainer basep) {
         int generar;
         boolean confirmar;
         String codigo;
-        generar=(int) Math.floor(Math.random()*90000+10000);
-        codigo=generar+"";
+        generar = (int) Math.floor(Math.random() * 90000 + 10000);
+        codigo = generar + "";
         do {
-            if (ConsultarProveedor(basep,codigo)!=false) {
-        generar=(int) Math.floor(Math.random()*90000+10000);
-                codigo=generar+"";
-                confirmar=false;
-            }else{
-                confirmar=true;
+            if (ConsultarProveedor(basep, codigo) != false) {
+                generar = (int) Math.floor(Math.random() * 90000 + 10000);
+                codigo = generar + "";
+                confirmar = false;
+            } else {
+                confirmar = true;
             }
-        } while (confirmar!=true);
+        } while (confirmar != true);
         return codigo;
     }
 

@@ -143,7 +143,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
 
         lb_OBcedula1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula1.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 131, 20));
+        getContentPane().add(lb_OBcedula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 131, 20));
 
         lb_OBcedula2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula2.setForeground(new java.awt.Color(204, 0, 0));
@@ -151,15 +151,15 @@ public class Ingresar_Producto extends javax.swing.JFrame {
 
         lb_OBcedula3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula3.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 131, 20));
+        getContentPane().add(lb_OBcedula3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 131, 20));
 
         lb_OBcedula5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula5.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 131, 20));
+        getContentPane().add(lb_OBcedula5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 131, 20));
 
         lb_OBcedula4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula4.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 131, 20));
+        getContentPane().add(lb_OBcedula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 131, 20));
 
         cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verduras", "Lacteos", "Frutas", "Granos", "Hierbas", "Otros" }));
         getContentPane().add(cbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
@@ -174,15 +174,16 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        this.setVisible(false);
-        new Reporte_Productos().setVisible(true);
+
         String codigo;
         ConexionProducto conexion=new ConexionProducto();
         ObjectContainer base=conexion.BaseProducto();
         codigo=conexion.Codigo(base);
         conexion.CrearProducto(base,codigo, txtnombreproducto.getText(), (String) cbDescripcion.getSelectedItem(),Integer.parseInt(txtexistencia.getText()),Double.parseDouble(txtprecio.getText()),(String) CB_proveedor.getSelectedItem().toString()); 
         conexion.Cerrarbd(base);
-        
+        this.setVisible(false);
+        new Reporte_Productos().setVisible(true);
+        new Reporte_Productos().tabla();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtnombreproductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreproductoKeyTyped
