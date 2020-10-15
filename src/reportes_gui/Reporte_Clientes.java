@@ -31,9 +31,10 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        setTitle("REPORTE DE CLIENTES");
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablaClientes.setModel(conexion.Cliente());
+        
     }
 
     public String Cliente(String codigo, String accion) {
@@ -85,7 +86,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

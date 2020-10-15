@@ -28,8 +28,8 @@ public class Reportes extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        setTitle("REPORTES");
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
     /**
@@ -51,14 +51,10 @@ public class Reportes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        btnClientes2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        btnrEPARTIDOR = new javax.swing.JButton();
+        btnClientes3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,7 +114,7 @@ public class Reportes extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setForeground(new java.awt.Color(255, 255, 0));
@@ -128,55 +124,48 @@ public class Reportes extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 62, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 62, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("REPORTE DE CLIENTES");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        jLabel7.setText("REPORTE DE REPARTIDORES");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
-        btnClientes2.setBackground(new java.awt.Color(0, 0, 0));
-        btnClientes2.setForeground(new java.awt.Color(255, 255, 0));
-        btnClientes2.setText("Escojer");
-        btnClientes2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("REPORTE DE CLIENTES");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        btnrEPARTIDOR.setBackground(new java.awt.Color(0, 0, 0));
+        btnrEPARTIDOR.setForeground(new java.awt.Color(255, 255, 0));
+        btnrEPARTIDOR.setText("Escojer");
+        btnrEPARTIDOR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientes2ActionPerformed(evt);
+                btnrEPARTIDORActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClientes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 310));
+        getContentPane().add(btnrEPARTIDOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 153, 153));
-
-        jMenu1.setBackground(new java.awt.Color(255, 153, 153));
-        jMenu1.setText("Nuevo");
-
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/buscar.png"))); // NOI18N
-        jMenuItem4.setText("Revisar Datos");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes3.setBackground(new java.awt.Color(0, 0, 0));
+        btnClientes3.setForeground(new java.awt.Color(255, 255, 0));
+        btnClientes3.setText("Escojer");
+        btnClientes3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                btnClientes3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        getContentPane().add(btnClientes3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lapiz.png"))); // NOI18N
-        jMenuItem1.setText("Crear Usuario");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        jLabel6.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://i.pinimg.com/564x/96/fb/55/96fb55fb464b64b7e3b7c355d431e86d.jpg")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
             }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Modificar Usuario");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Eliminar Usuario");
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
+        }.getIcon());
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -130, 440, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,23 +203,15 @@ public class Reportes extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnClientes2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes2ActionPerformed
-       Reporte_Clientes cliente=new Reporte_Clientes();
-       cliente.setVisible(true);
-       
-    }//GEN-LAST:event_btnClientes2ActionPerformed
+    private void btnrEPARTIDORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrEPARTIDORActionPerformed
+       Reporte_Repartidor repartidro=new Reporte_Repartidor();
+       repartidro.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnrEPARTIDORActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Crear_Administrador va=new Crear_Administrador();
-        va.setVisible(true);
-     //   this.setVisible(false);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        Revisar_administrador ra=new Revisar_administrador();
-        ra.setVisible(true);
-        
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void btnClientes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientes3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,10 +249,11 @@ public class Reportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClientes2;
+    private javax.swing.JButton btnClientes3;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton btnrEPARTIDOR;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -280,19 +262,14 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel{
         private Image imagen;
         
         @Override
         public void paint(Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagenes/productos.jpg")).getImage();
+       //     imagen = new ImageIcon(getClass().getResource("/imagenes/rayas_azul.jpg")).getImage();
             
             g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
             

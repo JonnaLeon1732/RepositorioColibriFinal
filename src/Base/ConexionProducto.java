@@ -24,7 +24,7 @@ public class ConexionProducto {
     }
 
     public ObjectContainer BaseProducto() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseProduct.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\RepositorioColibriFinal\\Base\\BaseProduct.yap");
         return contenedor;
     }
 
@@ -80,6 +80,19 @@ public class ConexionProducto {
         }
         Cerrarbd(base);
         return producto;
+    }
+    
+     public void Eliminarproducto(ObjectContainer basep, String codigo) {
+        Producto rep = new Producto(codigo, null, null, 0, 0, null);
+        ObjectSet resultado = basep.get(rep);
+
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El Producto no se encuentra");
+        } else {
+            Producto  eliminar = (Producto) resultado.next();
+            basep.delete(eliminar);
+            JOptionPane.showMessageDialog(null, "El Producto fue eliminado");
+        }
     }
 
     public DefaultTableModel Productos() {

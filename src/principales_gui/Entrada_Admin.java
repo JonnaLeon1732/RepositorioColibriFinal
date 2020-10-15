@@ -5,7 +5,6 @@
  */
 package principales_gui;
 
-import Base.ConexionAdmin;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,10 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import reportes_gui.Reportes;
 
-/**
- *
- * @author Jonnathan Leon
- */
+
 public class Entrada_Admin extends javax.swing.JFrame {
 
     /**
@@ -30,7 +26,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
         dispose();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
+        setTitle("COLIBRÍ: ENTRADA DE ADMINISTRADOR");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
@@ -52,7 +48,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnIngresar.setText("INGRESAR");
         btnIngresar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 0)));
@@ -143,16 +139,15 @@ public class Entrada_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        ConexionAdmin conexion=new ConexionAdmin();
-        ObjectContainer base=conexion.BaseUsuario();
-        boolean valor=conexion.ConsultarUsuario(base,TF_NomUsuario.getText(),String.valueOf(txt_contra.getPassword()));
+        
+        boolean valor = false;
         if ((valor==true)||(("colibri".equals(TF_NomUsuario.getText())) && ("12345".equals(String.valueOf(txt_contra.getPassword()))))) {
             this.setVisible(false);
             new Reportes().setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null,"Usuario o contraseña Incorrectas");
         }
-        conexion.Cerrarbd(base);
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnSalirAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAdActionPerformed
@@ -161,11 +156,7 @@ public class Entrada_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirAdActionPerformed
 
     private void TF_NomUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_NomUsuarioKeyTyped
-//        char caracter=evt.getKeyChar();
-//        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(TF_NomUsuario.getText().length()>=25)) {
-//            evt.consume();
-//
-//        }
+
     }//GEN-LAST:event_TF_NomUsuarioKeyTyped
 
     /**

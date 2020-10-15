@@ -70,7 +70,16 @@
                       <Component id="btt_registrar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lb_OBcedula" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBnombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBapellido" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBdireccion" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBcelular" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBcorreo" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,31 +92,37 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBcedula" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBnombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBapellido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBdireccion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBcelular" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lb_OBcorreo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -249,6 +264,18 @@
         </Property>
         <Property name="text" type="java.lang.String" value="N&#xb0; Celular:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_OBcedula">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_OBnombre">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_OBapellido">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_OBdireccion">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_OBcelular">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_OBcorreo">
     </Component>
   </SubComponents>
 </Form>

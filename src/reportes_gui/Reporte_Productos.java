@@ -32,8 +32,8 @@ public class Reporte_Productos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        setTitle("REPORTE DE PRODUCTOS");
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablaproducto.setModel(conexion.Productos());
     }
         public String Productos(String codigo) {
@@ -68,7 +68,7 @@ public class Reporte_Productos extends javax.swing.JFrame {
         txt_consul_identificacion = new javax.swing.JTextField();
         btt_limpiar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         btt_consultar.setText("CONSULTAR");
         btt_consultar.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +236,12 @@ public class Reporte_Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_modificarActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
-
+        ConexionProducto conex = new ConexionProducto();
+        ObjectContainer base = conex.BaseProducto();
+        Producto prov = new Producto();
+        conex.Eliminarproducto(base, prov.getCodigo());
+        conex.Cerrarbd(base);
+        tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     public void tabla() {

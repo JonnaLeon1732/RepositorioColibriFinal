@@ -10,6 +10,7 @@ import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -31,6 +32,35 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
 
     }
+     public boolean Validar(){
+    if (txtCedula.getText().isEmpty()) {
+             lb_OBcedula.setText("*Campo Obligatorio");
+             
+             if(txtNombre.getText().isEmpty()){
+             lb_OBnombre.setText("*Campo Obligatorio");
+            
+            if(txtApellido.getText().isEmpty()){
+            lb_OBapellido.setText("*Campo Obligatorio");
+            
+            if(txtDireccion.getText().isEmpty()){
+            lb_OBdireccion.setText("*Campo Obligatorio");
+            
+            if(txtTelefono.getText().isEmpty()){
+            lb_OBcelular.setText("*Campo Obligatorio");
+            
+            if(txtCorreo.getText().isEmpty()){
+            lb_OBcorreo.setText("*Campo Obligatorio");
+            
+            return false;
+            }
+         }
+       }     
+      }
+     }
+    }
+    
+    return true;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,6 +81,12 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lb_OBcedula = new javax.swing.JLabel();
+        lb_OBnombre = new javax.swing.JLabel();
+        lb_OBapellido = new javax.swing.JLabel();
+        lb_OBdireccion = new javax.swing.JLabel();
+        lb_OBcelular = new javax.swing.JLabel();
+        lb_OBcorreo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -191,7 +227,15 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
                         .addComponent(BTT_cancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btt_registrar)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_OBcedula)
+                    .addComponent(lb_OBnombre)
+                    .addComponent(lb_OBapellido)
+                    .addComponent(lb_OBdireccion)
+                    .addComponent(lb_OBcelular)
+                    .addComponent(lb_OBcorreo))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,27 +245,33 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_OBcedula))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_OBnombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_OBapellido))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_OBdireccion))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_OBcelular))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_OBcorreo))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTT_cancelar)
@@ -240,6 +290,12 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BTT_cancelarActionPerformed
 
     private void btt_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_registrarActionPerformed
+     
+         if(Validar()==true){
+            if ( txtCedula.getText().length()==10){
+             if(txtTelefono.getText().length()==10 ){
+               if (txtCorreo.getText().contains("@")& txtCorreo.getText().contains(".")) {
+                 
         ConexionCliente conexion = new ConexionCliente();
         Ingresar_Factura factura=new Ingresar_Factura();
         ObjectContainer base = conexion.BaseCliente();
@@ -248,6 +304,14 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
         factura.Client(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtDireccion.getText(), txtCorreo.getText());
         this.setVisible(false);
         factura.setVisible(true);
+        
+        }else{JOptionPane.showMessageDialog(this, "El correo electrónico no es correcto");} 
+             }else{JOptionPane.showMessageDialog(this, "El número celular no es correcto");}
+            }else{JOptionPane.showMessageDialog(this, "El número de cédula no es correcto");}
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe estar lleno todos los campos");
+        }  
     }//GEN-LAST:event_btt_registrarActionPerformed
 
     private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
@@ -255,7 +319,11 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionKeyReleased
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-
+        if (txtDireccion.getText().length() >= 50) {
+            JOptionPane.showMessageDialog(rootPane, "Limite excedido");
+        Validar();
+        evt.consume();
+        }
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
@@ -263,7 +331,11 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-
+        char caracter=evt.getKeyChar();
+        if ((caracter<'0'| caracter>'9')|(txtCedula.getText().length()==10)) {
+            Validar();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
@@ -271,7 +343,10 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoKeyReleased
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-
+        if (txtCorreo.getText().contains("@")& txtCorreo.getText().contains(".")) {
+            Validar();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCorreoKeyTyped
 
     private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
@@ -279,7 +354,11 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyReleased
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-
+        char caracter=evt.getKeyChar();
+        if ((caracter<'0'| caracter>'9')|(txtTelefono.getText().length()>=10)) {
+            Validar();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
@@ -287,7 +366,11 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-
+        char caracter=evt.getKeyChar();
+        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtNombre.getText().length()>=25)) {
+            Validar();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
@@ -295,7 +378,11 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoKeyReleased
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-
+        char caracter=evt.getKeyChar();
+        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtApellido.getText().length()>=25)) {
+            Validar();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtApellidoKeyTyped
 
     /**
@@ -348,6 +435,12 @@ public class Ingresar_Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lb_OBapellido;
+    private javax.swing.JLabel lb_OBcedula;
+    private javax.swing.JLabel lb_OBcelular;
+    private javax.swing.JLabel lb_OBcorreo;
+    private javax.swing.JLabel lb_OBdireccion;
+    private javax.swing.JLabel lb_OBnombre;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;

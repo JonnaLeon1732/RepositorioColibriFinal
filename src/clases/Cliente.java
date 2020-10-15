@@ -19,6 +19,11 @@ public class Cliente extends Persona{
         this.correo = correo;
     }
 
+    public Cliente( String direccion) {
+        
+    }
+    
+
     public Cliente() {
     }
    

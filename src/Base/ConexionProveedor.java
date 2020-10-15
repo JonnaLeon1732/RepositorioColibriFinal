@@ -22,7 +22,7 @@ public class ConexionProveedor {
     }
 
     public ObjectContainer BaseProveedor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseProveedor.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\RepositorioColibriFinal\\Base\\BaseProveedor.yap");
         return contenedor;
     }
 

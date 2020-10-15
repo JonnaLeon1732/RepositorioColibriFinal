@@ -35,13 +35,14 @@ public final class Carrito extends javax.swing.JFrame {
         mostrar();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
+        setTitle("CARRITO");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         seleccionarPersona();
     }
     public void reinicio(){
         lista.clear();
     }
+    
     public void seleccionarPersona() {
         jTable1.addMouseListener(new MouseAdapter() {
             @Override
@@ -187,6 +188,7 @@ public final class Carrito extends javax.swing.JFrame {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         new Ingresar_Factura().Confirmar(CAR_adicional());
+        new Envios().setVisible(true);
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

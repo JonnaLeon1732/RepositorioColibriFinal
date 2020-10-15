@@ -22,7 +22,7 @@ public class ConexionCliente {
     }
 
     public ObjectContainer BaseCliente() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseCliente.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\RepositorioColibriFinal\\Base\\BaseCliente.yap");
         return contenedor;
     }
 
@@ -87,4 +87,6 @@ public class ConexionCliente {
         }
         return dtm;
     }
+    
+   
 }

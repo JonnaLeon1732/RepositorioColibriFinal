@@ -8,6 +8,7 @@ package secundarias_gui;
 import Base.ConexionProducto;
 import com.db4o.ObjectContainer;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import reportes_gui.Reporte_Productos;
 
 /**
@@ -28,30 +29,33 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         CB_proveedor.setModel(new ConexionProducto().Proveedor());
     }
 
-//    public boolean Validar(){
-//    
-//        if (  txtnombreproducto.getText().isEmpty()) {
-//            txtnombreproducto.setText("*Campo Obligatorio");
-//            return false;
-//        } else {
-//            txtnombreproducto.setText("");
-//            
-////        }if(txtdescripcion.getText().isEmpty()){
-////            txtdescripcion.setText("*Campo Obligatorio");
-////             return false;
-//        }else{
-////            txtdescripcion.setText("");
-//            
-//        } if(txtexistencia.getText().isEmpty()){
-//            txtexistencia.setText("*Campo Obligatorio");
-//             return false;
-//        }else {
-//        txtexistencia.setText("");
-//        
-//        }
-//        return true;
-//    }
-    //validar bien 
+public boolean Validar(){
+    if (txtnombreproducto.getText().isEmpty()) {
+             lb_OBnombre.setText("*Campo Obligatorio");
+             
+             if(txtexistencia.getText().isEmpty()){
+            lb_OBexistencias.setText("*Campo Obligatorio");
+            
+            if(txtprecio.getText().isEmpty()){
+            lb_OBprecio.setText("*Campo Obligatorio");
+            
+            if(CB_proveedor.getSelectedIndex()==0){
+            lb_OBproveedor.setText("*Campo Obligatorio");
+            
+            if(cbDescripcion.getSelectedIndex()==0){
+            lb_OBdescripcion.setText("*Campo Obligatorio");
+            
+            
+            return false;
+            
+         }
+       }     
+      }
+     }
+    }
+    
+    return true;
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -71,12 +75,13 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         CB_proveedor = new javax.swing.JComboBox<>();
         txtprecio = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        lb_OBcedula1 = new javax.swing.JLabel();
-        lb_OBcedula2 = new javax.swing.JLabel();
-        lb_OBcedula3 = new javax.swing.JLabel();
-        lb_OBcedula5 = new javax.swing.JLabel();
-        lb_OBcedula4 = new javax.swing.JLabel();
+        lb_OBnombre = new javax.swing.JLabel();
+        lb_OBdescripcion = new javax.swing.JLabel();
+        lb_OBexistencias = new javax.swing.JLabel();
+        lb_OBproveedor = new javax.swing.JLabel();
+        lb_OBprecio = new javax.swing.JLabel();
         cbDescripcion = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         lb_OBcedula.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lb_OBcedula.setForeground(new java.awt.Color(204, 0, 0));
@@ -84,20 +89,25 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("REGISTRAR PRODUCTOS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 11, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 96, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Descripcion:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 142, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Existencia:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("ID_Proveedor");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +115,7 @@ public class Ingresar_Producto extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 339, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,56 +123,72 @@ public class Ingresar_Producto extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 339, -1, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
 
         txtnombreproducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtnombreproductoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtnombreproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 93, 204, -1));
+        getContentPane().add(txtnombreproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 204, -1));
 
         txtexistencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtexistenciaKeyTyped(evt);
             }
         });
-        getContentPane().add(txtexistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 204, -1));
+        getContentPane().add(txtexistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 204, -1));
 
-        getContentPane().add(CB_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 200, -1));
+        CB_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<<Seleccione>>" }));
+        getContentPane().add(CB_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 200, -1));
 
         txtprecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtprecioKeyTyped(evt);
             }
         });
-        getContentPane().add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 200, -1));
+        getContentPane().add(txtprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 200, -1));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Precio");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        lb_OBcedula1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcedula1.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 131, 20));
+        lb_OBnombre.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lb_OBnombre.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lb_OBnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 131, 20));
 
-        lb_OBcedula2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcedula2.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 131, 20));
+        lb_OBdescripcion.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lb_OBdescripcion.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lb_OBdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 131, 20));
 
-        lb_OBcedula3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcedula3.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 131, 20));
+        lb_OBexistencias.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lb_OBexistencias.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lb_OBexistencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 131, 20));
 
-        lb_OBcedula5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcedula5.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 131, 20));
+        lb_OBproveedor.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lb_OBproveedor.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lb_OBproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 131, 20));
 
-        lb_OBcedula4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lb_OBcedula4.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lb_OBcedula4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 131, 20));
+        lb_OBprecio.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lb_OBprecio.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lb_OBprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 131, 20));
 
-        cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verduras", "Lacteos", "Frutas", "Granos", "Hierbas", "Otros" }));
-        getContentPane().add(cbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
+        cbDescripcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<<Seleccione>>", "Verduras", "Lacteos", "Frutas", "Granos", "Hierbas", "Otros" }));
+        getContentPane().add(cbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, -1));
+
+        jLabel5.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://i.pinimg.com/564x/0e/50/e7/0e50e7fae4fce585f56ec48aaa488b99.jpg")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
+        jLabel5.setText("  ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,7 +200,8 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+if (Validar()==true) {
+    
         String codigo;
         ConexionProducto conexion=new ConexionProducto();
         ObjectContainer base=conexion.BaseProducto();
@@ -184,12 +211,15 @@ public class Ingresar_Producto extends javax.swing.JFrame {
         this.setVisible(false);
         new Reporte_Productos().setVisible(true);
         new Reporte_Productos().tabla();
+        
+      }else{JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");}  
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtnombreproductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreproductoKeyTyped
         char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtnombreproducto.getText().length()>=25)) {
-//            Validar();
+        if ((caracter<'a'| caracter>'z')&(caracter!=32)|(txtnombreproducto.getText().length()>=25)) {
+            Validar();
             evt.consume();
         }
     }//GEN-LAST:event_txtnombreproductoKeyTyped
@@ -197,17 +227,17 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private void txtexistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtexistenciaKeyTyped
        char caracter=evt.getKeyChar();
         if ((caracter<'0'| caracter>'9')) {
-//            Validar();
+            Validar();
             evt.consume();
         }
     }//GEN-LAST:event_txtexistenciaKeyTyped
     
     private void txtprecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprecioKeyTyped
-//        char caracter=evt.getKeyChar();
-//        if ((caracter<'0'| caracter>'9')) {
-//            Validar();
-//            evt.consume();
-//        }
+        char caracter=evt.getKeyChar();
+        if ((caracter<'0'| caracter>'9')& txtprecio.getText().contains(".")) {
+            Validar();
+            evt.consume();
+       }
     }//GEN-LAST:event_txtprecioKeyTyped
 
     /**
@@ -254,14 +284,15 @@ public class Ingresar_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lb_OBcedula;
-    private javax.swing.JLabel lb_OBcedula1;
-    private javax.swing.JLabel lb_OBcedula2;
-    private javax.swing.JLabel lb_OBcedula3;
-    private javax.swing.JLabel lb_OBcedula4;
-    private javax.swing.JLabel lb_OBcedula5;
+    private javax.swing.JLabel lb_OBdescripcion;
+    private javax.swing.JLabel lb_OBexistencias;
+    private javax.swing.JLabel lb_OBnombre;
+    private javax.swing.JLabel lb_OBprecio;
+    private javax.swing.JLabel lb_OBproveedor;
     private javax.swing.JTextField txtexistencia;
     private javax.swing.JTextField txtnombreproducto;
     private javax.swing.JTextField txtprecio;

@@ -27,8 +27,8 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri_logo.png")).getImage());
+        setTitle("REPORTE DE VENTAS");
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tbl_mostrar_venta.setModel(conexion.Factura());
     }
 
@@ -49,7 +49,7 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_mostrar_venta = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         ATRAS.setText("ATRAS");
         ATRAS.addActionListener(new java.awt.event.ActionListener() {

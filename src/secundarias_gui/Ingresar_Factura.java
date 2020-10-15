@@ -2,6 +2,7 @@ package secundarias_gui;
 
 import Base.ConexionFactura;
 import Base.ConexionProducto;
+import clases.Envio;
 import com.db4o.ObjectContainer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import principales_gui.Principal;
 import reportes_gui.Reporte_Productos;
+import reportes_gui.Reporte_Repartidor;
+import secundarias_gui.Envios;
 
 public final class Ingresar_Factura extends javax.swing.JFrame {
 
@@ -18,10 +21,11 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
     public Ingresar_Factura() {
         initComponents();
         setResizable(false);
-        setTitle("COLIBRÍ");
+        setTitle("FACTURA");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         txt_cargoAdicional.setText(precio + "");
         lb_fecha.setText(Fecha());
+        bttEnvio.setEnabled(false);
         sumaTotal();
         mostrar();
     }
@@ -29,40 +33,19 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
     public static String Fecha() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
-        return formatofecha.format(fecha);
+        return formatofecha.format(fecha);  
     }
-//    private String Cliente(String codigo, String accion) {
-//        String valor = "";
-//        for (int i = 0; i < TablaFactura.getRowCount(); i++) {
-//            if (TablaFactura.getValueAt(i, 0).equals(codigo)) {
-//                TablaFactura.changeSelection(i, 0, false, false);
-//            }
-//        }
-//        switch (accion) {
-//            case "Producto":
-//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow, 0).toString();
-//                break;
-//            case "nombre":
-//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 1).toString();
-//                break;
-//            case "tipo":
-//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 2).toString();
-//                break;
-//            case "cantidad":
-//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 3).toString();
-//                break;
-//            case "precio":
-//                valor = TablaFactura.getValueAt(TablaFactura.getSelectedRow(), 4).toString();
-//                break;
-//        }
-//        return valor;
-//    }
 
     public void Confirmar(boolean dato) {
+       
         if (dato == true) {
             precio = 1;
+            bttEnvio.setEnabled(true);
+            
         } else {
             precio = 0;
+            bttEnvio.setEnabled(false);
+            
         }
     }
 
@@ -96,7 +79,7 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         lb_fecha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        bttEnvio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -106,6 +89,8 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         jLabel8.setText("Total a pagar:");
 
         jLabel5.setText("Dirección:");
+
+        txtTotal.setEditable(false);
 
         jLabel6.setText("Apellido:");
 
@@ -193,6 +178,7 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
 
         jLabel10.setText("Cargo adicional:");
 
+        txt_cargoAdicional.setEditable(false);
         txt_cargoAdicional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_cargoAdicionalActionPerformed(evt);
@@ -227,9 +213,10 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jLabel2KeyReleased(evt);
+        bttEnvio.setText("REPARTIDOR");
+        bttEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEnvioActionPerformed(evt);
             }
         });
 
@@ -296,13 +283,11 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
+                        .addGap(65, 65, 65)
                         .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(213, 213, 213)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel10)
@@ -312,7 +297,13 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
                                         .addComponent(jLabel8)
                                         .addGap(28, 28, 28)
                                         .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jButton1))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jButton1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bttEnvio)
+                                .addGap(111, 111, 111)))))
                 .addGap(0, 17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -367,8 +358,7 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txt_cargoAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_cargoAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,7 +366,8 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cancelar)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(bttEnvio))
                 .addContainerGap())
         );
 
@@ -472,6 +463,8 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
             ObjectContainer base2 = conex.BaseProducto();
             conex.ModificarProducto(base2, TablaFactura.getValueAt(i, 0).toString(),Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()));
             conex.Cerrarbd(base2);
+            
+            
         }
         precio = 0;
         new Carrito().reinicio();
@@ -479,11 +472,6 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         new Principal().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jLabel2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel2KeyReleased
-
-
-    }//GEN-LAST:event_jLabel2KeyReleased
 
     private void txt_cargoAdicionalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cargoAdicionalKeyTyped
 
@@ -493,6 +481,11 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
     private void txt_cargoAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cargoAdicionalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_cargoAdicionalActionPerformed
+
+    private void bttEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnvioActionPerformed
+        Envios e=new Envios();
+        e.setVisible(true);
+    }//GEN-LAST:event_bttEnvioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,13 +526,13 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JTable TablaFactura;
+    private javax.swing.JButton bttEnvio;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -605,4 +598,5 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         txtTotal.setText(precio + "");
 
     }
+     
 }

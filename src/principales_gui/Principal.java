@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import secundarias_gui.Ayuda;
 import secundarias_gui.Carrito;
-import secundarias_gui.Crear_Administrador;
 
 /**
  *
@@ -32,7 +31,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        setTitle("COLIBRÍ");
+        setTitle("COLIBRÍ: PÁGINA PRINCIPAL");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         btnFrutas.setIcon(setIcono("/iconos/frutas_1.png",btnFrutas));
         btnFrutas.setPressedIcon(setIconoPresionado("/iconos/frutas_1.png",btnFrutas,20,20));
@@ -93,7 +92,6 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -229,14 +227,6 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setText("Pagina Principal");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Administrador");
@@ -365,11 +355,6 @@ public class Principal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Ayuda ayuda = new Ayuda ();
-        ayuda.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
        Entrada_Admin admin = new Entrada_Admin();
            admin.setVisible(true);
@@ -380,10 +365,6 @@ public class Principal extends javax.swing.JFrame {
             inicio.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-    
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         Carrito car = new Carrito();
@@ -431,6 +412,11 @@ public class Principal extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 //        Cerrar();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Ayuda ayuda = new Ayuda ();
+        ayuda.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -488,7 +474,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
     public Icon setIcono(String url,JButton boton){
         ImageIcon icon=new ImageIcon(getClass().getResource(url));
