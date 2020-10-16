@@ -187,7 +187,7 @@ public final class Carrito extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1KeyTyped
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        new Ingresar_Factura().Confirmar(CAR_adicional());
+        new Ingresar_Factura().valor(CAR_adicional());
         new Envios().setVisible(true);
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 

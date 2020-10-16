@@ -16,16 +16,17 @@ import secundarias_gui.Envios;
 public final class Ingresar_Factura extends javax.swing.JFrame {
 
     public static int numFactura = 0;
-    public static double precio = 0;
-
+    public static double valortotal = 0;
+    public static double cargo =0;
+    public static boolean dato=false;
     public Ingresar_Factura() {
         initComponents();
         setResizable(false);
         setTitle("FACTURA");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        txt_cargoAdicional.setText(precio + "");
+        txt_cargoAdicional.setText(cargo + "");
         lb_fecha.setText(Fecha());
-        bttEnvio.setEnabled(false);
+        Confirmar(dato);
         sumaTotal();
         mostrar();
     }
@@ -36,17 +37,21 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         return formatofecha.format(fecha);  
     }
 
-    public void Confirmar(boolean dato) {
+    private void Confirmar(boolean dato) {
        
         if (dato == true) {
-            precio = 1;
+            cargo = 1;
             bttEnvio.setEnabled(true);
             
         } else {
-            precio = 0;
+            cargo = 0;
             bttEnvio.setEnabled(false);
             
         }
+    }
+    
+    public void valor(boolean boton){
+        dato=boton;
     }
 
     @SuppressWarnings("unchecked")
@@ -394,7 +399,8 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         Principal p = new Principal();
         p.setVisible(true);
         this.setVisible(false);
-        precio = 0;
+        valortotal = 0;
+        cargo=0;
         numFactura = 0;
 
     }//GEN-LAST:event_CancelarActionPerformed
@@ -466,7 +472,9 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
             
             
         }
-        precio = 0;
+        valortotal = 0;
+        cargo=0;
+        dato=false;
         new Carrito().reinicio();
         JOptionPane.showMessageDialog(null, "Compra Exitosa");
         new Principal().setVisible(true);
@@ -593,9 +601,10 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         String matris[][] = new String[carrito.Tabla().size()][1];
         for (int i = 0; i < carrito.Tabla().size(); i++) {
             matris[i][0] = carrito.Tabla().get(i).getPrecio_Total() + "";
-            precio = precio + Double.parseDouble(matris[i][0]);
+            valortotal = valortotal + Double.parseDouble(matris[i][0]);
         }
-        txtTotal.setText(precio + "");
+        txtTotal.setText(valortotal + "");
+        System.out.println(valortotal);
 
     }
      
