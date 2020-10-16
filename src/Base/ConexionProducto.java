@@ -24,7 +24,7 @@ public class ConexionProducto {
     }
 
     public ObjectContainer BaseProducto() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\RepositorioColibriFinal\\Base\\BaseProduct.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseProduct.yap");
         return contenedor;
     }
 

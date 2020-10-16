@@ -2,7 +2,7 @@ package secundarias_gui;
 
 import Base.ConexionFactura;
 import Base.ConexionProducto;
-import clases.Envio;
+import Base.ConexionRepartidor;
 import com.db4o.ObjectContainer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 import principales_gui.Principal;
 import reportes_gui.Reporte_Productos;
 import reportes_gui.Reporte_Repartidor;
-import secundarias_gui.Envios;
 
 public final class Ingresar_Factura extends javax.swing.JFrame {
 
     public static int numFactura = 0;
     public static double valortotal = 0;
-    public static double cargo =0;
-    public static boolean dato=false;
+    public static double cargo = 0;
+    public static boolean dato = false;
+
     public Ingresar_Factura() {
         initComponents();
         setResizable(false);
@@ -27,31 +27,31 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         txt_cargoAdicional.setText(cargo + "");
         lb_fecha.setText(Fecha());
         Confirmar(dato);
-        sumaTotal();
+        txtTotal.setText((valortotal + cargo) + "");
         mostrar();
     }
 
     public static String Fecha() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
-        return formatofecha.format(fecha);  
+        return formatofecha.format(fecha);
     }
 
     private void Confirmar(boolean dato) {
-       
+
         if (dato == true) {
             cargo = 1;
             bttEnvio.setEnabled(true);
-            
+
         } else {
             cargo = 0;
             bttEnvio.setEnabled(false);
-            
+
         }
     }
-    
-    public void valor(boolean boton){
-        dato=boton;
+
+    public void valor(boolean boton) {
+        dato = boton;
     }
 
     @SuppressWarnings("unchecked")
@@ -400,9 +400,9 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
         p.setVisible(true);
         this.setVisible(false);
         valortotal = 0;
-        cargo=0;
+        cargo = 0;
         numFactura = 0;
-
+        dato = false;
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
@@ -465,16 +465,15 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
                     Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()),
                     Double.parseDouble(TablaFactura.getValueAt(i, 4).toString()));
             conexion.Cerrarbd(base);
-            ConexionProducto conex=new ConexionProducto();
+            ConexionProducto conex = new ConexionProducto();
             ObjectContainer base2 = conex.BaseProducto();
-            conex.ModificarProducto(base2, TablaFactura.getValueAt(i, 0).toString(),Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()));
+            conex.ModificarProducto(base2, TablaFactura.getValueAt(i, 0).toString(), Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()));
             conex.Cerrarbd(base2);
-            
-            
+
         }
         valortotal = 0;
-        cargo=0;
-        dato=false;
+        cargo = 0;
+        dato = false;
         new Carrito().reinicio();
         JOptionPane.showMessageDialog(null, "Compra Exitosa");
         new Principal().setVisible(true);
@@ -491,8 +490,12 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_cargoAdicionalActionPerformed
 
     private void bttEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnvioActionPerformed
-        Envios e=new Envios();
-        e.setVisible(true);
+        Reporte_Repartidor repartidor = new Reporte_Repartidor();
+        ConexionRepartidor conex = new ConexionRepartidor();
+        ObjectContainer base2 = conex.BaseRepartidor();
+        int p = conex.Aleatorio(base2);
+        conex.Cerrarbd(base2);
+        repartidor.ReporteAleatorio(p);
     }//GEN-LAST:event_bttEnvioActionPerformed
 
     /**
@@ -596,16 +599,15 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
 
     }
 
-    private void sumaTotal() {
+    public void sumaTotal() {
         Carrito carrito = new Carrito();
         String matris[][] = new String[carrito.Tabla().size()][1];
         for (int i = 0; i < carrito.Tabla().size(); i++) {
             matris[i][0] = carrito.Tabla().get(i).getPrecio_Total() + "";
             valortotal = valortotal + Double.parseDouble(matris[i][0]);
         }
-        txtTotal.setText(valortotal + "");
         System.out.println(valortotal);
 
     }
-     
+
 }

@@ -3,21 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package reportes_gui;
 
 import Base.ConexionRepartidor;
-import clases.Envio;
 import secundarias_gui.Ingresar_Repartidor;
 import clases.Repartidor;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import secundarias_gui.Envios;
@@ -29,6 +22,7 @@ import secundarias_gui.Envios;
 public class Reporte_Repartidor extends javax.swing.JFrame {
 
     FondoPanel fondo = new FondoPanel();
+
     public Reporte_Repartidor() {
         this.setContentPane(fondo);
         initComponents();
@@ -38,12 +32,15 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         setTitle("REPORTE REPARTIDOR");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablarepartidor.setModel(conexion.Repartidor());
-       
+
     }
-    
-    
-   
-    
+
+    public void ReporteAleatorio(int posicion) {
+        Envios enviar=new Envios();
+        enviar.setVisible(true);
+        enviar.Recibir(tablarepartidor.getValueAt(posicion, 1).toString(), tablarepartidor.getValueAt(posicion, 5).toString());
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -276,7 +273,6 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
 public void tabla() {
         tablarepartidor.setModel(new ConexionRepartidor().Repartidor());
     }
-
 
     class FondoPanel extends JPanel {
 

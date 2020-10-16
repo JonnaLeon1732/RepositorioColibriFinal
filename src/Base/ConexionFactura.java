@@ -22,7 +22,7 @@ public class ConexionFactura {
     }
 
     public ObjectContainer BaseFactura() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\RepositorioColibriFinal\\Base\\BaseFactura.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseFactura.yap");
         return contenedor;
     }
 

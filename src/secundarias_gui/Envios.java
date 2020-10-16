@@ -5,17 +5,7 @@
  */
 package secundarias_gui;
 
-import Base.ConexionCliente;
-import Base.ConexionRepartidor;
-import clases.Carro;
-import clases.Envio;
-import clases.Repartidor;
-import com.db4o.ObjectContainer;
-import java.util.ArrayList;
-import java.util.Random;
 import javax.swing.ImageIcon;
-import reportes_gui.Reporte_Repartidor;
-
 
 /**
  *
@@ -31,48 +21,21 @@ public class Envios extends javax.swing.JFrame {
         setResizable(false);
         setTitle("REPARTIDOR ASIGNADO");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
-        
-    }
-    
-    public static ArrayList<Envio> lista = new ArrayList<>();
-    
-    public void recibe(String cedula, String direccion, String nombre, String placa){
-    
-        Envio en=new Envio();
-        en.setDireccion_cli(direccion);
-        en.setCedula_repartidor(cedula);
-        en.setNombre_rep(nombre);
-        en.setNum_placa_moto(placa);
-        lista.add(en);
-        mostrar();
-    }
-      public void mostrar() {
-        String matris[][] = new String[lista.size()][4];
-        for (int i = 0; i < lista.size(); i++) {
-            matris[i][0] = lista.get(i).getCedula_repartidor();
-            matris[i][1] = lista.get(i).getDireccion_cli();
-            matris[i][2] = lista.get(i).getNombre_rep();
-            matris[i][3] = lista.get(i).getNum_placa_moto();
-           
-            direccion_cli.setText(matris[i][1]);
-            nom_repartidor.setText(matris[i][2]);
-            num_placa.setText(matris[i][3]);
-        }
-        
 
     }
 
-    
-    
+    public void Recibir(String nombre, String placa) {
+        nom_repartidor.setText(nombre);
+        num_placa.setText(placa);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        direccion_cli = new javax.swing.JTextField();
         num_placa = new javax.swing.JTextField();
         nom_repartidor = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -89,14 +52,8 @@ public class Envios extends javax.swing.JFrame {
         jLabel1.setText("Nombre del repartidor:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jLabel3.setText("Direccion Cliente:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
-
         jLabel4.setText("N° Placa:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
-
-        direccion_cli.setEditable(false);
-        getContentPane().add(direccion_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 113, -1));
 
         num_placa.setEditable(false);
         getContentPane().add(num_placa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 113, -1));
@@ -129,7 +86,7 @@ public class Envios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -172,11 +129,9 @@ public class Envios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField direccion_cli;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField nom_repartidor;

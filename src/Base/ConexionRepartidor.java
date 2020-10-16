@@ -13,21 +13,18 @@ import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-
 public class ConexionRepartidor {
-    
-    
+
     public ConexionRepartidor() {
     }
 
     public ObjectContainer BaseRepartidor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\RepositorioColibriFinal\\Base\\BaseRepartidor.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseRepartidor.yap");
         return contenedor;
     }
 
     public void CrearRepartidor(ObjectContainer basep, String ID, String nombre, String apellido, String telefono, String direccion, String num_placa) {
-        Repartidor rep = new Repartidor(ID, nombre, apellido, telefono, direccion,num_placa);
+        Repartidor rep = new Repartidor(ID, nombre, apellido, telefono, direccion, num_placa);
         if (ComprobarRepartidor(basep, nombre, ID) != 0) {
             JOptionPane.showMessageDialog(null, "Registro Existente");
         } else {
@@ -37,7 +34,13 @@ public class ConexionRepartidor {
     }
 
     public static int ComprobarRepartidor(ObjectContainer basep, String nombre, String ID) {
-        Repartidor rep = new Repartidor( ID, null, null, null, null, null);
+        Repartidor rep = new Repartidor(ID, null, null, null, null, null);
+        ObjectSet resultado = basep.get(rep);
+        return resultado.size();
+    }
+
+    public static int CompRepartAleat(ObjectContainer basep) {
+        Repartidor rep = new Repartidor(null, null, null, null, null, null);
         ObjectSet resultado = basep.get(rep);
         return resultado.size();
     }
@@ -47,13 +50,13 @@ public class ConexionRepartidor {
     }
 
     public boolean ConsultarRepartidor(ObjectContainer basep, String cedula) {
-        Repartidor rep = new Repartidor(cedula, null, null, null, null,null);
+        Repartidor rep = new Repartidor(cedula, null, null, null, null, null);
         ObjectSet resultado = basep.get(rep);
         return !resultado.isEmpty();
     }
 
     public Repartidor[] ConsultarRep(Repartidor objeto) {
-        Repartidor [] repa = null;
+        Repartidor[] repa = null;
         ObjectContainer base = BaseRepartidor();
         ObjectSet resultados = base.get(objeto);
         int i = 0;
@@ -67,12 +70,12 @@ public class ConexionRepartidor {
         Cerrarbd(base);
         return repa;
     }
-    
+
     public void EliminarRepartidor(ObjectContainer basep, String ID_repartidor) {
         Repartidor rep = new Repartidor(ID_repartidor, null, null, null, null, null);
         ObjectSet resultado = basep.get(rep);
 
-        if (resultado.size() == 0) {
+        if (resultado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El Repartidor no se encuentra");
         } else {
             Repartidor eliminar = (Repartidor) resultado.next();
@@ -82,7 +85,7 @@ public class ConexionRepartidor {
     }
 
     public DefaultTableModel Repartidor() {
-        String titulos[] = { "Cédula", "Nombre", "Apellido", "Teléfono", "Dirección","N° Placa"};
+        String titulos[] = {"Cédula", "Nombre", "Apellido", "Teléfono", "Dirección", "N° Placa"};
         DefaultTableModel dtm = new DefaultTableModel(null, titulos);
         Repartidor repartidor = null;
         Repartidor[] p = ConsultarRep(repartidor);
@@ -101,6 +104,17 @@ public class ConexionRepartidor {
         return dtm;
     }
 
-  
+    public int Aleatorio(ObjectContainer base) {
+        int max;
+        int aleat=0;
+        if (CompRepartAleat(base)==0) {
+            JOptionPane.showMessageDialog(null, "no existe repartidores");
+        }else{
+            max=CompRepartAleat(base)-1;
+            aleat=(int) Math.floor(Math.random() * max + 0);
+        }
+        System.out.println(aleat);
+        return aleat;
+    }
 
 }

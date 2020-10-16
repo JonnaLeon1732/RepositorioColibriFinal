@@ -169,6 +169,7 @@ public final class Carrito extends javax.swing.JFrame {
         int longitud = lista.size();
         if (longitud != 0) {
             OpcionesCompra opc = new OpcionesCompra();
+            new Ingresar_Factura().sumaTotal();
             opc.setVisible(true);
             this.setVisible(false);
         } else {
@@ -187,8 +188,8 @@ public final class Carrito extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1KeyTyped
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        
         new Ingresar_Factura().valor(CAR_adicional());
-        new Envios().setVisible(true);
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
