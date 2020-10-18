@@ -22,7 +22,7 @@ public class ConexionCliente {
     }
 
     public ObjectContainer BaseCliente() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseCliente.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\Base\\BaseCliente.yap");
         return contenedor;
     }
 
@@ -52,12 +52,12 @@ public class ConexionCliente {
         return !resultado.isEmpty();
     }
 
-    public void EliminarCliente(ObjectContainer basep, String ID) {
-        Cliente cli = new Cliente(ID, null, null, null, null, null);
-        ObjectSet resultado = basep.get(cli);
+   public void Eliminarcliente(ObjectContainer basep, String ID) {
+        Cliente rep = new Cliente(ID, null, null, null, null, null);
+        ObjectSet resultado = basep.get(rep);
 
-        if (resultado.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El Cliente no se encuentra");
+        if (resultado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El CLiente no se encuentra");
         } else {
             Cliente eliminar = (Cliente) resultado.next();
             basep.delete(eliminar);

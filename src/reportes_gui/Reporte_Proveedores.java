@@ -59,6 +59,22 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         return valor;
     }
 
+    private void enviar(String codigo) {
+        ConexionProveedor conexion = new ConexionProveedor();
+        tablaproveedor.setModel(conexion.Proveedor());
+        for (int i = 0; i < tablaproveedor.getRowCount(); i++) {
+            if (tablaproveedor.getValueAt(i, 0).equals(codigo)) {
+                tablaproveedor.changeSelection(i, 0, false, false);
+                DatosProveedor datos = new DatosProveedor();
+                datos.Recibir(tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 1).toString(),
+                        tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 2).toString(),
+                        tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 3).toString(),
+                        tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 4).toString(),
+                        tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 5).toString());
+                datos.setVisible(true);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +84,6 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ingresar_Proveedor1 = new secundarias_gui.Ingresar_Proveedor();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaproveedor = new javax.swing.JTable();
@@ -216,32 +231,29 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
         ConexionProveedor conex = new ConexionProveedor();
-        ObjectContainer base = conex.BaseProveedor();
-        conex.EliminarProveedor(base, txt_consul_identificacion.getText());
-        conex.Cerrarbd(base);
+        Proveedor prod = new Proveedor();
+        ObjectContainer basep = conex.BaseProveedor();
+        String codigo=tablaproveedor.getValueAt(tablaproveedor.getSelectedRow(), 0).toString();
+        conex.Eliminarproveedor(basep,codigo);
+        conex.Cerrarbd(basep);
+        tabla();
         ConexionProducto conexi = new ConexionProducto();
         ObjectContainer baseP = conexi.BaseProducto();
-        conexi.ElimProdCompras(baseP,txt_consul_identificacion.getText());
+        conexi.ElimProdCompras(baseP,codigo);
         conexi.Cerrarbd(baseP);
         tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        // TODO add your handling code here:
-        ConexionProveedor conexion = new ConexionProveedor();
-        Reporte_Proveedores provee = new Reporte_Proveedores();
+     ConexionProveedor conexion = new ConexionProveedor();
+        Reporte_Proveedores cliente = new Reporte_Proveedores();
         ObjectContainer base = conexion.BaseProveedor();
         boolean confirmar = conexion.ConsultarProveedor(base, txt_consul_identificacion.getText());
         conexion.Cerrarbd(base);
         if (confirmar == true) {
-            DatosProveedor datos = new DatosProveedor();
-            datos.Prove(provee.Proveedores(txt_consul_identificacion.getText(), "codigo"), provee.Proveedores(txt_consul_identificacion.getText(), "cedula"),
-                    provee.Proveedores(txt_consul_identificacion.getText(), "nombre"), provee.Proveedores(txt_consul_identificacion.getText(), "apellido"),
-                    provee.Proveedores(txt_consul_identificacion.getText(), "telefono"), provee.Proveedores(txt_consul_identificacion.getText(), "direccion"));
-            datos.setVisible(true);
-            this.setVisible(false);
+            enviar(txt_consul_identificacion.getText());
         } else {
-            JOptionPane.showMessageDialog(null, "Proveedor no se encuentra registrado");
+            JOptionPane.showMessageDialog(null, "El proveedor no se encuentra registrado");
         }
     }//GEN-LAST:event_btt_consultarActionPerformed
 
@@ -287,7 +299,6 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private javax.swing.JButton btt_crear;
     private javax.swing.JButton btt_eliminar;
     private javax.swing.JButton btt_limpiar;
-    private secundarias_gui.Ingresar_Proveedor ingresar_Proveedor1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaproveedor;

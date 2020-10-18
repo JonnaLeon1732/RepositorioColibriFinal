@@ -19,7 +19,7 @@ public class ConexionRepartidor {
     }
 
     public ObjectContainer BaseRepartidor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseRepartidor.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\Base\\BaseRepartidor.yap");
         return contenedor;
     }
 
@@ -71,16 +71,16 @@ public class ConexionRepartidor {
         return repa;
     }
 
-    public void EliminarRepartidor(ObjectContainer basep, String ID_repartidor) {
-        Repartidor rep = new Repartidor(ID_repartidor, null, null, null, null, null);
+    public void Eliminarrepartidor(ObjectContainer basep, String ID) {
+        Repartidor rep = new Repartidor(ID, null, null, null, null, null);
         ObjectSet resultado = basep.get(rep);
 
         if (resultado.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El Repartidor no se encuentra");
+            JOptionPane.showMessageDialog(null, "El CLiente no se encuentra");
         } else {
             Repartidor eliminar = (Repartidor) resultado.next();
             basep.delete(eliminar);
-            JOptionPane.showMessageDialog(null, "El Repartidor fue eliminado");
+            JOptionPane.showMessageDialog(null, "El Cliente fue eliminado");
         }
     }
     

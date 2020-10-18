@@ -28,30 +28,7 @@ public class DatosProducto extends javax.swing.JFrame {
         
     }
 
-//    public boolean Validar(){
-//    
-//        if (  txtnombreproducto.getText().isEmpty()) {
-//            txtnombreproducto.setText("*Campo Obligatorio");
-//            return false;
-//        } else {
-//            txtnombreproducto.setText("");
-//            
-////        }if(txtdescripcion.getText().isEmpty()){
-////            txtdescripcion.setText("*Campo Obligatorio");
-////             return false;
-//        }else{
-////            txtdescripcion.setText("");
-//            
-//        } if(txtexistencia.getText().isEmpty()){
-//            txtexistencia.setText("*Campo Obligatorio");
-//             return false;
-//        }else {
-//        txtexistencia.setText("");
-//        
-//        }
-//        return true;
-//    }
-    //validar bien 
+
     
     
     @SuppressWarnings("unchecked")

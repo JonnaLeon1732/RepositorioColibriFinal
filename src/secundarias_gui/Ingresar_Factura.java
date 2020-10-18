@@ -449,7 +449,7 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_numeroFACMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String codigo;
+           String codigo;
         for (int i = 0; i < TablaFactura.getRowCount(); i++) {
             ConexionFactura conexion = new ConexionFactura();
             ObjectContainer base = conexion.BaseFactura();

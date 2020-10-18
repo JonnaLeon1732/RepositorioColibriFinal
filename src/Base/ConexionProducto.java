@@ -24,7 +24,7 @@ public class ConexionProducto {
     }
 
     public ObjectContainer BaseProducto() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseProduct.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\Base\\BaseProduct.yap");
         return contenedor;
     }
 
@@ -45,8 +45,8 @@ public class ConexionProducto {
     }
 
     public void ModificProdComp(ObjectContainer basep, String codigo, int exitencias) {
-        Producto producto = new Producto(codigo, 0);
-        ObjectSet resultado = basep.get(producto);
+        Producto rep = new Producto(codigo, null, null, exitencias, 0, null);
+        ObjectSet resultado = basep.get(rep);
         if (resultado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El producto no se encuentra");
         } else {

@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package secundarias_gui;
-
 
 import Base.ConexionProveedor;
 import com.db4o.ObjectContainer;
@@ -19,9 +17,9 @@ import reportes_gui.Reporte_Proveedores;
  */
 public class DatosProveedor extends javax.swing.JFrame {
 
-    /** Creates new form Ingresar_Proveedor */
-    
-
+    /**
+     * Creates new form Ingresar_Proveedor
+     */
     public DatosProveedor() {
         initComponents();
         setResizable(false);
@@ -29,43 +27,6 @@ public class DatosProveedor extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
-
-//     public boolean Validar(){
-//    
-//        if (  txtcedula.getText().isEmpty()) {
-//            lb_OBcedula.setText("*Campo Obligatorio");
-//            return false;
-//        } else {
-//            lb_OBcedula.setText("");
-//            
-//        }if(txtnombre.getText().isEmpty()){
-//            lb_OBnombre.setText("*Campo Obligatorio");
-//             return false;
-//        }else{
-//            lb_OBnombre.setText("");
-//            
-//        } if(txtapellido.getText().isEmpty()){
-//            lb_OBapellido.setText("*Campo Obligatorio");
-//             return false;
-//        }else {
-//        lb_OBapellido.setText("");
-//        
-//        }if(txtdireccion.getText().isEmpty()){
-//            lb_OBdireccion.setText("*Campo Obligatorio");
-//            return false; 
-//        }else {
-//        lb_OBdireccion.setText("");
-//        
-//        }if(txttelefono.getText().isEmpty()){
-//            lb_OBtelefono.setText("*Campo Obligatorio");
-//           return false;  
-//        }else {
-//         lb_OBtelefono.setText("");
-//        }
-//        return true;
-//    }
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,7 +38,6 @@ public class DatosProveedor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        butactualizar = new javax.swing.JButton();
         txtcedula = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
@@ -128,21 +88,13 @@ public class DatosProveedor extends javax.swing.JFrame {
         jLabel6.setText("Teléfono:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jButton1.setText("CANCELAR");
+        jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
-
-        butactualizar.setText("ACTUALIZAR");
-        butactualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butactualizarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(butactualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
 
         txtcedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,16 +248,6 @@ public class DatosProveedor extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_txttelefonoKeyTyped
 
-    private void butactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butactualizarActionPerformed
-        ConexionProveedor conexion=new ConexionProveedor();
-        ObjectContainer base=conexion.BaseProveedor();
-        conexion.ModificarProveedor(base, txtid.getText(),txtcedula.getText(), txtnombre.getText(),txtapellido.getText(),txttelefono.getText(),txtdireccion.getText());
-        conexion.Cerrarbd(base);
-        this.setVisible(false);
-        new Reporte_Proveedores().setVisible(true);
-        new Reporte_Proveedores().tabla();
-    }//GEN-LAST:event_butactualizarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Reporte_Proveedores reporte = new Reporte_Proveedores();
         reporte.setVisible(true);
@@ -351,7 +293,6 @@ public class DatosProveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butactualizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -374,14 +315,13 @@ public class DatosProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 
-    
+    public void Recibir(String cedula, String nombre, String apellido, String telefono, String direccion) {
 
-    public void Prove(String Proveedores, String Proveedores0, String Proveedores1, String Proveedores2, String Proveedores3, String Proveedores4) {
-        txtid.setText(Proveedores);
-        txtcedula.setText(Proveedores0);
-        txtnombre.setText(Proveedores1);
-        txtapellido.setText(Proveedores2);
-        txttelefono.setText(Proveedores3);
-        txtdireccion.setText(Proveedores4);
+        txtcedula.setText(cedula);
+        txtnombre.setText(nombre);
+        txtapellido.setText(apellido);
+        txttelefono.setText(telefono);
+        txtdireccion.setText(direccion);
+
     }
 }

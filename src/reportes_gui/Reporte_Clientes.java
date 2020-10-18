@@ -37,7 +37,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         setTitle("REPORTE DE CLIENTES");
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablaClientes.setModel(conexion.Cliente());
-        
+
     }
 
     public String Cliente(String codigo, String accion) {
@@ -70,6 +70,24 @@ public class Reporte_Clientes extends javax.swing.JFrame {
                 break;
         }
         return valor;
+    }
+
+    private void enviar(String codigo) {
+        ConexionCliente conexion = new ConexionCliente();
+        tablaClientes.setModel(conexion.Cliente());
+        for (int i = 0; i < tablaClientes.getRowCount(); i++) {
+            if (tablaClientes.getValueAt(i, 0).equals(codigo)) {
+                tablaClientes.changeSelection(i, 0, false, false);
+                DatosCliente datos = new DatosCliente();
+                datos.Recibir(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0).toString(),
+                        tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 2).toString(),
+                        tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 2).toString(),
+                        tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 3).toString(),
+                        tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 4).toString(),
+                        tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 5).toString());
+                datos.setVisible(true);
+            }
+        }
     }
 
     /**
@@ -209,30 +227,24 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        ConexionCliente conexion = new ConexionCliente();
-        Reporte_Clientes cliente=new Reporte_Clientes();
+       ConexionCliente conexion = new ConexionCliente();
+        Reporte_Clientes cliente = new Reporte_Clientes();
         ObjectContainer base = conexion.BaseCliente();
-        boolean confirmar =conexion.ConsultarCliente(base, txtidentificacion.getText());
+        boolean confirmar = conexion.ConsultarCliente(base, txtidentificacion.getText());
         conexion.Cerrarbd(base);
         if (confirmar == true) {
-            DatosCliente factura = new DatosCliente();
-            factura.Client(cliente.Cliente(txtidentificacion.getText(), "cedula"),cliente.Cliente(txtidentificacion.getText(), "nombre"),
-                    cliente.Cliente(txtidentificacion.getText(), "apellido"),cliente.Cliente(txtidentificacion.getText(), "telefono"),
-                    cliente.Cliente(txtidentificacion.getText(), "direccion"),cliente.Cliente(txtidentificacion.getText(), "correo"));
-            factura.setVisible(true);
-            this.setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "Cliente no se encuentra registrado");
+            enviar(txtidentificacion.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "El producto no se encuentra registrado");
         }
-
     }//GEN-LAST:event_btt_consultarActionPerformed
 
     private void buteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buteliminarActionPerformed
-        // TODO add your handling code here:
         ConexionCliente conex = new ConexionCliente();
+        Cliente prod = new Cliente();
         ObjectContainer base = conex.BaseCliente();
-        
-        conex.EliminarCliente(base, txtidentificacion.getText());
+        String codigo = tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0).toString();
+        conex.Eliminarcliente(base, codigo);
         conex.Cerrarbd(base);
         tabla();
     }//GEN-LAST:event_buteliminarActionPerformed
@@ -317,8 +329,8 @@ public class Reporte_Clientes extends javax.swing.JFrame {
 
     public void tabla() {
         tablaClientes.setModel(new ConexionCliente().Cliente());
-    }    
-    
+    }
+
     class FondoPanel extends JPanel {
 
         private Image imagen;

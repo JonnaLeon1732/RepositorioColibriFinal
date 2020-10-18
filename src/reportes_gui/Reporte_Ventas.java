@@ -6,11 +6,14 @@
 package reportes_gui;
 
 import Base.ConexionFactura;
+import clases.Factura;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import secundarias_gui.DatosFactura;
 
 /**
  *
@@ -62,6 +65,24 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         }
         return valor;
     }
+    
+    private void enviar(String codigo) {
+        ConexionFactura conexion = new ConexionFactura();
+        tbl_mostrar_venta.setModel(conexion.Factura());
+        for (int i = 0; i < tbl_mostrar_venta.getRowCount(); i++) {
+            if (tbl_mostrar_venta.getValueAt(i, 0).equals(codigo)) {
+                tbl_mostrar_venta.changeSelection(i, 0, false, false);
+                DatosFactura datos = new DatosFactura();
+                datos.Recibir(tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 0).toString(),
+                        tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 1).toString(),
+                        tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 2).toString(),
+                        tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 3).toString(),
+                        tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 4).toString(),
+                        tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 5).toString());
+                datos.setVisible(true);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,6 +119,11 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         });
 
         btt_consultar.setText("CONSULTAR");
+        btt_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_consultarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("REPORTE DE VENTAS");
 
@@ -196,13 +222,27 @@ public class Reporte_Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void buteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buteliminarActionPerformed
-        // TODO add your handling code here:
-        ConexionFactura conex = new ConexionFactura();
-        ObjectContainer base = conex.BaseFactura();        
-        conex.EliminarFactura(base, txt_consul_identificacion.getText());
+       ConexionFactura conex = new ConexionFactura();
+        Factura prod = new Factura();
+        ObjectContainer base = conex.BaseFactura();
+        String codigo=tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 0).toString();
+        conex.Eliminarfactura(base,codigo);
         conex.Cerrarbd(base);
         tabla();
     }//GEN-LAST:event_buteliminarActionPerformed
+
+    private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
+        ConexionFactura conexion = new ConexionFactura();
+        Reporte_Ventas cliente = new Reporte_Ventas();
+        ObjectContainer base = conexion.BaseFactura();
+        boolean confirmar = conexion.ConsultarFactura(base, txt_consul_identificacion.getText());
+        conexion.Cerrarbd(base);
+        if (confirmar == true) {
+            enviar(txt_consul_identificacion.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "La factura no se encuentra registrado");
+        }
+    }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**
      * @param args the command line arguments

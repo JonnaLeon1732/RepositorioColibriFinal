@@ -22,7 +22,7 @@ public class ConexionFactura {
     }
 
     public ObjectContainer BaseFactura() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseFactura.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\Base\\BaseFactura.yap");
         return contenedor;
     }
 
@@ -53,16 +53,16 @@ public class ConexionFactura {
         return !resultado.isEmpty();
     }
     
-    public void EliminarFactura(ObjectContainer basep, String cod_factura) {
-        Factura fac = new Factura(cod_factura, null, null, null, null, null, null, 0, 0);
-        ObjectSet resultado = basep.get(fac);
+   public void Eliminarfactura(ObjectContainer basep, String cod_factura) {
+        Factura rep = new Factura(cod_factura, null, null, null, null, null,null,0,0);
+        ObjectSet resultado = basep.get(rep);
 
-        if (resultado.size() == 0) {
-            JOptionPane.showMessageDialog(null, "La factura no se encuentra");
+        if (resultado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El Reporte de venta no se encuentra");
         } else {
             Factura eliminar = (Factura) resultado.next();
             basep.delete(eliminar);
-            JOptionPane.showMessageDialog(null, "La factura fue eliminada");
+            JOptionPane.showMessageDialog(null, "El Reporte de la venta fue eliminado");
         }
     }
     

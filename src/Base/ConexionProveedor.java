@@ -22,7 +22,7 @@ public class ConexionProveedor {
     }
 
     public ObjectContainer BaseProveedor() {
-        ObjectContainer contenedor = Db4o.openFile("C:\\Program Files\\Colibri\\BaseProveedor.yap");
+        ObjectContainer contenedor = Db4o.openFile("C:\\Users\\PC\\Desktop\\Base\\BaseProveedor.yap");
         return contenedor;
     }
 
@@ -68,9 +68,9 @@ public class ConexionProveedor {
         return prov;
     }
     
-    public void EliminarProveedor(ObjectContainer basep, String ID_proveedor) {
-        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
-        ObjectSet resultado = basep.get(proveedor);
+    public void Eliminarproveedor(ObjectContainer basep, String codigo) {
+        Proveedor rep = new Proveedor(codigo, null, null, null, null, null);
+        ObjectSet resultado = basep.get(rep);
 
         if (resultado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El Proveedor no se encuentra");

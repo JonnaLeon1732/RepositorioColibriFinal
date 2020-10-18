@@ -29,38 +29,6 @@ public class DatosRepartidor extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
     }
 
-   public boolean Validar(){
-    if (txtcedula.getText().isEmpty()) {
-             lb_OBcedula.setText("*Campo Obligatorio");
-             
-             if(txtnombre.getText().isEmpty()){
-             lb_OBnombre.setText("*Campo Obligatorio");
-            
-            if(txtapellido.getText().isEmpty()){
-            lb_OBapellido.setText("*Campo Obligatorio");
-            
-            if(txtdireccion.getText().isEmpty()){
-            lb_OBdireccion.setText("*Campo Obligatorio");
-            
-            if(txttelefono.getText().isEmpty()){
-            lb_OBtelefono.setText("*Campo Obligatorio");
-            
-            if(txtplaca.getText().isEmpty()){
-            lb_OBplaca.setText("*Campo Obligatorio");
-            
-            return false;
-            }  
-         }
-       }     
-      }
-     }
-    }
-    
-    return true;
-    }
-   
-   
-  
 
    
     @SuppressWarnings("unchecked")
@@ -73,7 +41,6 @@ public class DatosRepartidor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        butactualizar = new javax.swing.JButton();
         txtcedula = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
@@ -113,21 +80,13 @@ public class DatosRepartidor extends javax.swing.JFrame {
         jLabel6.setText("Celular:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jButton1.setText("CANCELAR");
+        jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
-
-        butactualizar.setText("ACTUALIZAR");
-        butactualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butactualizarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(butactualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
 
         txtcedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,26 +200,12 @@ public class DatosRepartidor extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void butactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butactualizarActionPerformed
-        ConexionRepartidor conexion=new ConexionRepartidor();
-        ObjectContainer base=conexion.BaseRepartidor();
-        conexion.ModificarRepartidor(base, txtcedula.getText(), txtnombre.getText(),txtapellido.getText(),txtdireccion.getText(),txttelefono.getText(),txtplaca.getText());
-        conexion.Cerrarbd(base);
-        this.setVisible(false);
-        new Reporte_Repartidor().setVisible(true);
-        new Reporte_Repartidor().tabla();
-    }//GEN-LAST:event_butactualizarActionPerformed
-
     private void txtcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcedulaActionPerformed
 
     private void txtcedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')|(txtcedula.getText().length()==10)) {
-            Validar();
-            evt.consume();
-        }
+    
     }//GEN-LAST:event_txtcedulaKeyTyped
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -268,11 +213,7 @@ public class DatosRepartidor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtnombre.getText().length()>=25)) {
-            Validar();
-            evt.consume();
-        }
+     
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
@@ -280,26 +221,15 @@ public class DatosRepartidor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtapellidoActionPerformed
 
     private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'a'| caracter>'z')&(caracter<'A'| caracter>'Z')&(caracter!=32)|(txtapellido.getText().length()>=25)) {
-            Validar();
-            evt.consume();        }
+       
     }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void txtplacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtplacaKeyTyped
-         char caracter=evt.getKeyChar();
-        if ((caracter<'A'| caracter>'Z')&(caracter<'0'| caracter>'9')&(caracter!=32)| (txtplaca.getText().length()>=7)) {
-            Validar();
-            evt.consume();
-        }
+      
     }//GEN-LAST:event_txtplacaKeyTyped
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
-        char caracter=evt.getKeyChar();
-        if ((caracter<'0'| caracter>'9')|(txttelefono.getText().length()>=10)) {
-            Validar();
-            evt.consume();
-        }
+   
     }//GEN-LAST:event_txttelefonoKeyTyped
 
     private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
@@ -343,7 +273,6 @@ public class DatosRepartidor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butactualizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -367,13 +296,22 @@ public class DatosRepartidor extends javax.swing.JFrame {
     private javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 
-
-    public void Reparti(String Repartidor, String Repartidor0, String Repartidor1, String Repartidor2, String Repartidor3, String Repartidor4) {
-        txtcedula.setText(Repartidor);
-        txtnombre.setText(Repartidor0);
-        txtapellido.setText(Repartidor1);
-        txttelefono.setText(Repartidor2);
-        txtdireccion.setText(Repartidor3);
-        txtplaca.setText(Repartidor4);
+    public void Recibir(String cedula, String nombre, String apellido, String telefono, String direcc, String placa) {
+        
+        txtcedula.setText(cedula);
+        txtnombre.setText(nombre);
+        txtapellido.setText(apellido);
+        txttelefono.setText(telefono);
+        txtdireccion.setText(direcc);
+        txtplaca.setText(placa);
+        
     }
+//    public void Reparti(String Repartidor, String Repartidor0, String Repartidor1, String Repartidor2, String Repartidor3, String Repartidor4) {
+//        txtcedula.setText(Repartidor);
+//        txtnombre.setText(Repartidor0);
+//        txtapellido.setText(Repartidor1);
+//        txttelefono.setText(Repartidor2);
+//        txtdireccion.setText(Repartidor3);
+//        txtplaca.setText(Repartidor4);
+//    }
 }

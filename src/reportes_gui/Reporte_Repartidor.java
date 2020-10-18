@@ -74,13 +74,30 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         enviar.setVisible(true);
         enviar.Recibir(tablarepartidor.getValueAt(posicion, 1).toString(), tablarepartidor.getValueAt(posicion, 5).toString());
     }
+    
+    private void enviar(String codigo) {
+        ConexionRepartidor conexion = new ConexionRepartidor();
+        tablarepartidor.setModel(conexion.Repartidor());
+        for (int i = 0; i < tablarepartidor.getRowCount(); i++) {
+            if (tablarepartidor.getValueAt(i, 0).equals(codigo)) {
+                tablarepartidor.changeSelection(i, 0, false, false);
+                DatosRepartidor datos = new DatosRepartidor();
+                datos.Recibir(tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 0).toString(),
+                        tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 1).toString(),
+                        tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 2).toString(),
+                        tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 3).toString(),
+                        tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 4).toString(),
+                        tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 5).toString());
+                datos.setVisible(true);
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btt_crear = new javax.swing.JButton();
-        btt_modificar = new javax.swing.JButton();
         btt_eliminar = new javax.swing.JButton();
         txt_consul_identificacion = new javax.swing.JTextField();
         btt_limpiar = new javax.swing.JButton();
@@ -96,13 +113,6 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         btt_crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btt_crearActionPerformed(evt);
-            }
-        });
-
-        btt_modificar.setText("MODIFICAR");
-        btt_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btt_modificarActionPerformed(evt);
             }
         });
 
@@ -161,31 +171,30 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(265, 265, 265)
+                                .addGap(286, 286, 286)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
+                                .addGap(191, 191, 191)
+                                .addComponent(btt_limpiar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(329, 329, 329)
+                                .addComponent(atras))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
                                 .addComponent(btt_consultar)
                                 .addGap(29, 29, 29)
                                 .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(btt_crear)
-                                .addGap(18, 18, 18)
-                                .addComponent(btt_modificar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btt_eliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
-                                .addComponent(btt_limpiar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(308, 308, 308)
-                                .addComponent(atras)))
+                                .addGap(84, 84, 84)
+                                .addComponent(btt_eliminar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );
@@ -204,7 +213,6 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
                             .addComponent(txt_consul_identificacion)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btt_crear)
-                                .addComponent(btt_modificar)
                                 .addComponent(btt_eliminar)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btt_limpiar)
@@ -224,14 +232,12 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btt_crearActionPerformed
 
-    private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
-
-    }//GEN-LAST:event_btt_modificarActionPerformed
-
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
         ConexionRepartidor conex = new ConexionRepartidor();
+        Repartidor prod = new Repartidor();
         ObjectContainer base = conex.BaseRepartidor();
-        conex.EliminarRepartidor(base, txt_consul_identificacion.getText());
+        String codigo=tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 0).toString();
+        conex.Eliminarrepartidor(base,codigo);
         conex.Cerrarbd(base);
         tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
@@ -247,21 +253,15 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-        // TODO add your handling code here:
         ConexionRepartidor conexion = new ConexionRepartidor();
-        Reporte_Repartidor repa=new Reporte_Repartidor();
+        Reporte_Repartidor cliente = new Reporte_Repartidor();
         ObjectContainer base = conexion.BaseRepartidor();
-        boolean confirmar =conexion.ConsultarRepartidor(base, txt_consul_identificacion.getText());
+        boolean confirmar = conexion.ConsultarRepartidor(base, txt_consul_identificacion.getText());
         conexion.Cerrarbd(base);
         if (confirmar == true) {
-            DatosRepartidor datos = new DatosRepartidor();
-            datos.Reparti(repa.Repartidor(txt_consul_identificacion.getText(), "cedula"),repa.Repartidor(txt_consul_identificacion.getText(), "nombre"),
-                    repa.Repartidor(txt_consul_identificacion.getText(), "apellido"),repa.Repartidor(txt_consul_identificacion.getText(), "telefono"),
-                    repa.Repartidor(txt_consul_identificacion.getText(), "direccion"),repa.Repartidor(txt_consul_identificacion.getText(), "placa"));
-            datos.setVisible(true);
-            this.setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "Repartidor no se encuentra registrado");
+            enviar(txt_consul_identificacion.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "El producto no se encuentra registrado");
         }
     }//GEN-LAST:event_btt_consultarActionPerformed
 
@@ -306,7 +306,6 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     private javax.swing.JButton btt_crear;
     private javax.swing.JButton btt_eliminar;
     private javax.swing.JButton btt_limpiar;
-    private javax.swing.JButton btt_modificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablarepartidor;
