@@ -26,9 +26,9 @@ public class ConexionCliente {
         return contenedor;
     }
 
-    public void CrearCliente(ObjectContainer basep,String ID, String nombre, String apellido, String telefono, String direccion,String correo) {
-        Cliente cliente = new Cliente(ID,nombre,apellido,telefono,direccion,correo);
-        if (ComprobarCliente(basep,ID) != 0) {
+    public void CrearCliente(ObjectContainer basep, String ID, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Cliente cliente = new Cliente(ID, nombre, apellido, telefono, direccion, correo);
+        if (ComprobarCliente(basep, ID) != 0) {
             JOptionPane.showMessageDialog(null, "Registro Existente");
         } else {
             basep.set(cliente);
@@ -50,6 +50,36 @@ public class ConexionCliente {
         Cliente cliente = new Cliente(ID, null, null, null, null, null);
         ObjectSet resultado = basep.get(cliente);
         return !resultado.isEmpty();
+    }
+
+    public void EliminarCliente(ObjectContainer basep, String ID) {
+        Cliente cli = new Cliente(ID, null, null, null, null, null);
+        ObjectSet resultado = basep.get(cli);
+
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El Cliente no se encuentra");
+        } else {
+            Cliente eliminar = (Cliente) resultado.next();
+            basep.delete(eliminar);
+            JOptionPane.showMessageDialog(null, "El Cliente fue eliminado");
+        }
+    }
+
+    public void ModificarCliente(ObjectContainer basep, String ID_proveedor, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Cliente proveedor = new Cliente(ID_proveedor, null, null, null, null, null);
+        ObjectSet resultado = basep.get(proveedor);
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El Cliente no se encuentra");
+        } else {
+            Cliente modificar = (Cliente) resultado.next();
+            modificar.setNombre(nombre);
+            modificar.setApellido(apellido);
+            modificar.setTelefono(telefono);
+            modificar.setDireccion(direccion);
+            modificar.setCorreo(correo);
+            JOptionPane.showMessageDialog(null, "El cliente fue modificado");
+            basep.set(modificar);
+        }
     }
 
     public Cliente[] ConsultarClien(Cliente objeto) {
@@ -87,6 +117,5 @@ public class ConexionCliente {
         }
         return dtm;
     }
-    
-   
+
 }

@@ -52,6 +52,36 @@ public class ConexionFactura {
         ObjectSet resultado = basep.get(factura);
         return !resultado.isEmpty();
     }
+    
+    public void EliminarFactura(ObjectContainer basep, String cod_factura) {
+        Factura fac = new Factura(cod_factura, null, null, null, null, null, null, 0, 0);
+        ObjectSet resultado = basep.get(fac);
+
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La factura no se encuentra");
+        } else {
+            Factura eliminar = (Factura) resultado.next();
+            basep.delete(eliminar);
+            JOptionPane.showMessageDialog(null, "La factura fue eliminada");
+        }
+    }
+    
+    /*public void ModificarFactura(ObjectContainer basep, String cod_factura, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Factura proveedor = new Factura(cod_factura, null, null, null, null, null, null, 0, 0);
+        ObjectSet resultado = basep.get(proveedor);
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La factura no se encuentra");
+        } else {
+            Factura modificar = (Factura) resultado.next();
+            modificar.setNombre(nombre);
+            modificar.setApellido(apellido);
+            modificar.setTelefono(telefono);
+            modificar.setDireccion(direccion);
+            modificar.setCorreo(correo);
+            JOptionPane.showMessageDialog(null, "La factura fue modificada");
+            basep.set(modificar);
+        }
+    }*/
 
     public Factura[] ConsultarFact(Factura objeto) {
         Factura[] prov = null;

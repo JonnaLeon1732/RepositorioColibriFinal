@@ -6,6 +6,7 @@
 package reportes_gui;
 
 import Base.ConexionFactura;
+import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -31,6 +32,36 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tbl_mostrar_venta.setModel(conexion.Factura());
     }
+    
+    public String Ventas(String codigo, String accion) {
+        ConexionFactura conexion = new ConexionFactura();
+        String valor = "";
+        tbl_mostrar_venta.setModel(conexion.Factura());
+        for (int i = 0; i < tbl_mostrar_venta.getRowCount(); i++) {
+            if (tbl_mostrar_venta.getValueAt(i, 0).equals(codigo)) {
+                tbl_mostrar_venta.changeSelection(i, 0, false, false);
+            }
+        }
+        switch (accion) {
+            case "Id proveedor":
+                valor = tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 0).toString();
+                break;
+            case "nombre":
+                valor = tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 5).toString();
+                break;
+            
+            case "Codigo Pro":
+                valor = tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 3).toString();
+                break;
+            case "cantidad":
+                valor = tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 7).toString();
+                break;
+            case "total":
+                valor = tbl_mostrar_venta.getValueAt(tbl_mostrar_venta.getSelectedRow(), 8).toString();
+                break;
+        }
+        return valor;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +79,7 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_mostrar_venta = new javax.swing.JTable();
+        buteliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -98,6 +130,13 @@ public class Reporte_Ventas extends javax.swing.JFrame {
         tbl_mostrar_venta.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tbl_mostrar_venta);
 
+        buteliminar.setText("ELIMINAR");
+        buteliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buteliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,6 +155,8 @@ public class Reporte_Ventas extends javax.swing.JFrame {
                         .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(btt_limpiar)
+                        .addGap(80, 80, 80)
+                        .addComponent(buteliminar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -132,7 +173,8 @@ public class Reporte_Ventas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btt_consultar)
-                    .addComponent(btt_limpiar))
+                    .addComponent(btt_limpiar)
+                    .addComponent(buteliminar))
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -152,6 +194,15 @@ public class Reporte_Ventas extends javax.swing.JFrame {
     private void btt_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_limpiarActionPerformed
         txt_consul_identificacion.setText("");
     }//GEN-LAST:event_btt_limpiarActionPerformed
+
+    private void buteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buteliminarActionPerformed
+        // TODO add your handling code here:
+        ConexionFactura conex = new ConexionFactura();
+        ObjectContainer base = conex.BaseFactura();        
+        conex.EliminarFactura(base, txt_consul_identificacion.getText());
+        conex.Cerrarbd(base);
+        tabla();
+    }//GEN-LAST:event_buteliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,12 +243,18 @@ public class Reporte_Ventas extends javax.swing.JFrame {
     private javax.swing.JButton ATRAS;
     private javax.swing.JButton btt_consultar;
     private javax.swing.JButton btt_limpiar;
+    private javax.swing.JButton buteliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_mostrar_venta;
     private javax.swing.JTextField txt_consul_identificacion;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel{
+
+        public void tabla() {
+        tbl_mostrar_venta.setModel(new ConexionFactura().Factura());
+    }
+        
+    class FondoPanel extends JPanel{
         private Image imagen;
         
         @Override

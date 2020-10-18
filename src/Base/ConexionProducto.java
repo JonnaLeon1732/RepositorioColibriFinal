@@ -44,15 +44,18 @@ public class ConexionProducto {
         return resultado.size();
     }
 
-    public void ModificarProducto(ObjectContainer basep, String codigo,int exitencias) {
-        Producto producto = new Producto(codigo,0);
+    public void ModificProdComp(ObjectContainer basep, String codigo, int exitencias) {
+        Producto producto = new Producto(codigo, 0);
         ObjectSet resultado = basep.get(producto);
         if (resultado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El producto no se encuentra");
         } else {
             Producto modificar = (Producto) resultado.next();
-            modificar.setExistencias(modificar.getExistencias()-exitencias);
+            modificar.setExistencias(modificar.getExistencias() - exitencias);
             basep.set(modificar);
+            if (modificar.getExistencias() == 0) {
+                ElimProdCompras(basep, codigo);
+            }
         }
     }
 
@@ -81,15 +84,38 @@ public class ConexionProducto {
         Cerrarbd(base);
         return producto;
     }
-    
-     public void Eliminarproducto(ObjectContainer basep, String codigo) {
+
+    public void ElimProdCompras(ObjectContainer basep, String codigo) {
+        Producto rep = new Producto(null, null, null, 0, 0, codigo);
+        ObjectSet resultado = basep.get(rep);
+        for (Object resultado1 : resultado) {
+            Producto eliminar = (Producto) resultado.next();
+            basep.delete(eliminar);
+        }
+
+    }
+
+    public void Eliminarproducto(ObjectContainer basep, String codigo) {
         Producto rep = new Producto(codigo, null, null, 0, 0, null);
         ObjectSet resultado = basep.get(rep);
 
-        if (resultado.size() == 0) {
+        if (resultado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El Producto no se encuentra");
         } else {
-            Producto  eliminar = (Producto) resultado.next();
+            Producto eliminar = (Producto) resultado.next();
+            basep.delete(eliminar);
+            JOptionPane.showMessageDialog(null, "El Producto fue eliminado");
+        }
+    }
+
+    public void ElimiProdProv(ObjectContainer basep, String codigo) {
+        Producto rep = new Producto(null, null, null, 0, 0, codigo);
+        ObjectSet resultado = basep.get(rep);
+
+        if (resultado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El Producto no se encuentra");
+        } else {
+            Producto eliminar = (Producto) resultado.next();
             basep.delete(eliminar);
             JOptionPane.showMessageDialog(null, "El Producto fue eliminado");
         }

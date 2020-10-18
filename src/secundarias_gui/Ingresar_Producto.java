@@ -7,6 +7,7 @@ package secundarias_gui;
 
 import Base.ConexionProducto;
 import com.db4o.ObjectContainer;
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import reportes_gui.Reporte_Productos;

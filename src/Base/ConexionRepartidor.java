@@ -5,7 +5,7 @@
  */
 package Base;
 
-import clases.Proveedor;
+
 import clases.Repartidor;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -81,6 +81,23 @@ public class ConexionRepartidor {
             Repartidor eliminar = (Repartidor) resultado.next();
             basep.delete(eliminar);
             JOptionPane.showMessageDialog(null, "El Repartidor fue eliminado");
+        }
+    }
+    
+    public void ModificarRepartidor(ObjectContainer basep, String id, String nombre, String apellido, String telefono, String direccion, String num_placa) {
+        Repartidor proveedor = new Repartidor(id, null, null, null, null, null);
+        ObjectSet resultado = basep.get(proveedor);
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El Cliente no se encuentra");
+        } else {
+            Repartidor modificar = (Repartidor) resultado.next();
+            modificar.setNombre(nombre);
+            modificar.setApellido(apellido);
+            modificar.setTelefono(telefono);
+            modificar.setDireccion(direccion);
+            modificar.setNum_placa_moto(num_placa);
+            JOptionPane.showMessageDialog(null, "El repartidor fue modificado");
+            basep.set(modificar);
         }
     }
 

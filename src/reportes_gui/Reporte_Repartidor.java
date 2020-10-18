@@ -12,7 +12,9 @@ import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import secundarias_gui.DatosRepartidor;
 import secundarias_gui.Envios;
 
 /**
@@ -33,6 +35,38 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablarepartidor.setModel(conexion.Repartidor());
 
+    }
+    
+    public String Repartidor(String codigo, String accion) {
+        ConexionRepartidor conexion = new ConexionRepartidor();
+        String valor = "";
+        tablarepartidor.setModel(conexion.Repartidor());
+        for (int i = 0; i < tablarepartidor.getRowCount(); i++) {
+            if (tablarepartidor.getValueAt(i, 0).equals(codigo)) {
+                tablarepartidor.changeSelection(i, 0, false, false);
+            }
+        }
+        switch (accion) {
+            case "cedula":
+                valor = tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 0).toString();
+                break;
+            case "nombre":
+                valor = tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 1).toString();
+                break;
+            case "apellido":
+                valor = tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 2).toString();
+                break;
+            case "telefono":
+                valor = tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 3).toString();
+                break;
+            case "direccion":
+                valor = tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 4).toString();
+                break;
+            case "placa":
+                valor = tablarepartidor.getValueAt(tablarepartidor.getSelectedRow(), 5).toString();
+                break;
+        }
+        return valor;
     }
 
     public void ReporteAleatorio(int posicion) {
@@ -197,8 +231,7 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
         ConexionRepartidor conex = new ConexionRepartidor();
         ObjectContainer base = conex.BaseRepartidor();
-        Repartidor prov = new Repartidor();
-        conex.EliminarRepartidor(base, prov.getCedula());
+        conex.EliminarRepartidor(base, txt_consul_identificacion.getText());
         conex.Cerrarbd(base);
         tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
@@ -216,11 +249,20 @@ public class Reporte_Repartidor extends javax.swing.JFrame {
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
         // TODO add your handling code here:
         ConexionRepartidor conexion = new ConexionRepartidor();
-        ObjectContainer basep = conexion.BaseRepartidor();
-        Repartidor repar = new Repartidor();
-        conexion.ConsultarRepartidor(basep, repar.getCedula());
-        conexion.Cerrarbd(basep);
-        tablarepartidor.setModel(conexion.Repartidor());
+        Reporte_Repartidor repa=new Reporte_Repartidor();
+        ObjectContainer base = conexion.BaseRepartidor();
+        boolean confirmar =conexion.ConsultarRepartidor(base, txt_consul_identificacion.getText());
+        conexion.Cerrarbd(base);
+        if (confirmar == true) {
+            DatosRepartidor datos = new DatosRepartidor();
+            datos.Reparti(repa.Repartidor(txt_consul_identificacion.getText(), "cedula"),repa.Repartidor(txt_consul_identificacion.getText(), "nombre"),
+                    repa.Repartidor(txt_consul_identificacion.getText(), "apellido"),repa.Repartidor(txt_consul_identificacion.getText(), "telefono"),
+                    repa.Repartidor(txt_consul_identificacion.getText(), "direccion"),repa.Repartidor(txt_consul_identificacion.getText(), "placa"));
+            datos.setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Repartidor no se encuentra registrado");
+        }
     }//GEN-LAST:event_btt_consultarActionPerformed
 
     /**

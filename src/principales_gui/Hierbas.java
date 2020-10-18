@@ -54,9 +54,9 @@ public final class Hierbas extends javax.swing.JFrame {
                     dato = (int) TablaHierbas.getValueAt(TablaHierbas.getSelectedRow(), 2);
                     spCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
                     lblCodigo.setText(TablaHierbas.getValueAt(TablaHierbas.getSelectedRow(), 4).toString());
-                    lblNombre.setText(proveedor.Productos(lblCodigo.getText(), "nombre"));
-                    lblApellido.setText(proveedor.Productos(lblCodigo.getText(), "apellido"));
-                    lblTelefono.setText(proveedor.Productos(lblCodigo.getText(), "telefono"));
+                    lblNombre.setText(proveedor.Proveedores(lblCodigo.getText(), "nombre"));
+                    lblApellido.setText(proveedor.Proveedores(lblCodigo.getText(), "apellido"));
+                    lblTelefono.setText(proveedor.Proveedores(lblCodigo.getText(), "telefono"));
                 }
             }
         });

@@ -198,8 +198,7 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Principal principal = new Principal();
-        principal.setVisible(true);
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -211,6 +210,9 @@ public class Reportes extends javax.swing.JFrame {
 
     private void btnClientes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes3ActionPerformed
         // TODO add your handling code here:
+        Reporte_Clientes repartidro=new Reporte_Clientes();
+       repartidro.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnClientes3ActionPerformed
 
     /**

@@ -72,12 +72,29 @@ public class ConexionProveedor {
         Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
         ObjectSet resultado = basep.get(proveedor);
 
-        if (resultado.size() == 0) {
+        if (resultado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El Proveedor no se encuentra");
         } else {
             Proveedor eliminar = (Proveedor) resultado.next();
             basep.delete(eliminar);
             JOptionPane.showMessageDialog(null, "El Proveedor fue eliminado");
+        }
+    }
+    
+    public void ModificarProveedor(ObjectContainer basep, String ID_proveedor, String nombre, String apellido, String telefono, String direccion, String correo) {
+        Proveedor proveedor = new Proveedor(ID_proveedor, null, null, null, null, null);
+        ObjectSet resultado = basep.get(proveedor);
+        if (resultado.size() == 0) {
+            JOptionPane.showMessageDialog(null, "El proveedor no se encuentra");
+        } else {
+            Proveedor modificar = (Proveedor) resultado.next();
+            modificar.setNombre(nombre);
+            modificar.setApellido(apellido);
+            modificar.setTelefono(telefono);
+            modificar.setDireccion(direccion);
+           
+            JOptionPane.showMessageDialog(null, "El proveedor fue modificado");
+            basep.set(modificar);
         }
     }
 

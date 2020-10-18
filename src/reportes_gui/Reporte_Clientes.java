@@ -7,11 +7,14 @@ package reportes_gui;
 
 import Base.ConexionCliente;
 import clases.Cliente;
+import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import secundarias_gui.DatosCliente;
 
 /**
  *
@@ -85,6 +88,7 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
+        buteliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -140,6 +144,13 @@ public class Reporte_Clientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaClientes);
 
+        buteliminar.setText("ELIMINAR");
+        buteliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buteliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,6 +168,8 @@ public class Reporte_Clientes extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addComponent(btt_limpiar))
                             .addComponent(jLabel1))
+                        .addGap(71, 71, 71)
+                        .addComponent(buteliminar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -173,7 +186,8 @@ public class Reporte_Clientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btt_consultar)
-                    .addComponent(btt_limpiar))
+                    .addComponent(btt_limpiar)
+                    .addComponent(buteliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -195,9 +209,33 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btt_limpiarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
-
+        ConexionCliente conexion = new ConexionCliente();
+        Reporte_Clientes cliente=new Reporte_Clientes();
+        ObjectContainer base = conexion.BaseCliente();
+        boolean confirmar =conexion.ConsultarCliente(base, txtidentificacion.getText());
+        conexion.Cerrarbd(base);
+        if (confirmar == true) {
+            DatosCliente factura = new DatosCliente();
+            factura.Client(cliente.Cliente(txtidentificacion.getText(), "cedula"),cliente.Cliente(txtidentificacion.getText(), "nombre"),
+                    cliente.Cliente(txtidentificacion.getText(), "apellido"),cliente.Cliente(txtidentificacion.getText(), "telefono"),
+                    cliente.Cliente(txtidentificacion.getText(), "direccion"),cliente.Cliente(txtidentificacion.getText(), "correo"));
+            factura.setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Cliente no se encuentra registrado");
+        }
 
     }//GEN-LAST:event_btt_consultarActionPerformed
+
+    private void buteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buteliminarActionPerformed
+        // TODO add your handling code here:
+        ConexionCliente conex = new ConexionCliente();
+        ObjectContainer base = conex.BaseCliente();
+        
+        conex.EliminarCliente(base, txtidentificacion.getText());
+        conex.Cerrarbd(base);
+        tabla();
+    }//GEN-LAST:event_buteliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,13 +307,19 @@ public class Reporte_Clientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btt_consultar;
     private javax.swing.JButton btt_limpiar;
+    private javax.swing.JButton buteliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtidentificacion;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel {
+
+    public void tabla() {
+        tablaClientes.setModel(new ConexionCliente().Cliente());
+    }    
+    
+    class FondoPanel extends JPanel {
 
         private Image imagen;
 

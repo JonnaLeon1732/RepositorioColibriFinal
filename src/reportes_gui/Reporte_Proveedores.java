@@ -5,13 +5,16 @@
  */
 package reportes_gui;
 
+import Base.ConexionProducto;
 import Base.ConexionProveedor;
 import clases.Proveedor;
 import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import secundarias_gui.DatosProveedor;
 import secundarias_gui.Ingresar_Proveedor;
 
 /**
@@ -33,7 +36,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         tablaproveedor.setModel(conexion.Proveedor());
     }
 
-    public String Productos(String codigo, String accion) {
+    public String Proveedores(String codigo, String accion) {
         ConexionProveedor conexion = new ConexionProveedor();
         String valor = "";
         tablaproveedor.setModel(conexion.Proveedor());
@@ -55,7 +58,7 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         }
         return valor;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +75,6 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
         atras = new javax.swing.JButton();
         btt_consultar = new javax.swing.JButton();
         btt_crear = new javax.swing.JButton();
-        btt_modificar = new javax.swing.JButton();
         btt_eliminar = new javax.swing.JButton();
         txt_consul_identificacion = new javax.swing.JTextField();
         btt_limpiar = new javax.swing.JButton();
@@ -122,13 +124,6 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
             }
         });
 
-        btt_modificar.setText("MODIFICAR");
-        btt_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btt_modificarActionPerformed(evt);
-            }
-        });
-
         btt_eliminar.setText("ELIMINAR");
         btt_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,22 +153,20 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
                                 .addGap(295, 295, 295)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(200, 200, 200)
+                                .addComponent(btt_limpiar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(338, 338, 338)
+                                .addComponent(atras))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(btt_consultar)
                                 .addGap(29, 29, 29)
                                 .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(btt_crear)
-                                .addGap(18, 18, 18)
-                                .addComponent(btt_modificar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btt_eliminar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(btt_limpiar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(338, 338, 338)
-                                .addComponent(atras)))
+                                .addGap(74, 74, 74)
+                                .addComponent(btt_eliminar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -192,7 +185,6 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
                             .addComponent(txt_consul_identificacion)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btt_crear)
-                                .addComponent(btt_modificar)
                                 .addComponent(btt_eliminar)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btt_limpiar)
@@ -225,25 +217,33 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
         ConexionProveedor conex = new ConexionProveedor();
         ObjectContainer base = conex.BaseProveedor();
-        Proveedor prov = new Proveedor();
-        conex.EliminarProveedor(base, prov.getCedula());
+        conex.EliminarProveedor(base, txt_consul_identificacion.getText());
         conex.Cerrarbd(base);
+        ConexionProducto conexi = new ConexionProducto();
+        ObjectContainer baseP = conexi.BaseProducto();
+        conexi.ElimProdCompras(baseP,txt_consul_identificacion.getText());
+        conexi.Cerrarbd(baseP);
         tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
         // TODO add your handling code here:
         ConexionProveedor conexion = new ConexionProveedor();
-        ObjectContainer basep = conexion.BaseProveedor();
-        Proveedor provee = new Proveedor();
-        conexion.ConsultarProveedor(basep, provee.getCedula());
-        conexion.Cerrarbd(basep);
-        tablaproveedor.setModel(conexion.Proveedor());
+        Reporte_Proveedores provee = new Reporte_Proveedores();
+        ObjectContainer base = conexion.BaseProveedor();
+        boolean confirmar = conexion.ConsultarProveedor(base, txt_consul_identificacion.getText());
+        conexion.Cerrarbd(base);
+        if (confirmar == true) {
+            DatosProveedor datos = new DatosProveedor();
+            datos.Prove(provee.Proveedores(txt_consul_identificacion.getText(), "codigo"), provee.Proveedores(txt_consul_identificacion.getText(), "cedula"),
+                    provee.Proveedores(txt_consul_identificacion.getText(), "nombre"), provee.Proveedores(txt_consul_identificacion.getText(), "apellido"),
+                    provee.Proveedores(txt_consul_identificacion.getText(), "telefono"), provee.Proveedores(txt_consul_identificacion.getText(), "direccion"));
+            datos.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Proveedor no se encuentra registrado");
+        }
     }//GEN-LAST:event_btt_consultarActionPerformed
-
-    private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
-
-    }//GEN-LAST:event_btt_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,7 +287,6 @@ public class Reporte_Proveedores extends javax.swing.JFrame {
     private javax.swing.JButton btt_crear;
     private javax.swing.JButton btt_eliminar;
     private javax.swing.JButton btt_limpiar;
-    private javax.swing.JButton btt_modificar;
     private secundarias_gui.Ingresar_Proveedor ingresar_Proveedor1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -11,7 +11,9 @@ import com.db4o.ObjectContainer;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import secundarias_gui.DatosProducto;
 import secundarias_gui.Ingresar_Producto;
 
 /**
@@ -36,9 +38,10 @@ public class Reporte_Productos extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/iconos/colibri2.png")).getImage());
         tablaproducto.setModel(conexion.Productos());
     }
-        public String Productos(String codigo) {
+
+    public String Productos(String codigo) {
         ConexionProducto conexion = new ConexionProducto();
-        String valor = "";
+        String valor;
         tablaproducto.setModel(conexion.Productos());
         for (int i = 0; i < tablaproducto.getRowCount(); i++) {
             if (tablaproducto.getValueAt(i, 0).equals(codigo)) {
@@ -48,6 +51,24 @@ public class Reporte_Productos extends javax.swing.JFrame {
         valor = tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 5).toString();
         return valor;
     }
+
+    private void enviar(String codigo) {
+        ConexionProducto conexion = new ConexionProducto();
+        tablaproducto.setModel(conexion.Productos());
+        for (int i = 0; i < tablaproducto.getRowCount(); i++) {
+            if (tablaproducto.getValueAt(i, 0).equals(codigo)) {
+                tablaproducto.changeSelection(i, 0, false, false);
+                DatosProducto datos = new DatosProducto();
+                datos.Recibir(tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 1).toString(),
+                        tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 2).toString(),
+                        tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 3).toString(),
+                        tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 4).toString(),
+                        tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 5).toString());
+                datos.setVisible(true);
+            }
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +84,6 @@ public class Reporte_Productos extends javax.swing.JFrame {
         tablaproducto = new javax.swing.JTable();
         atras = new javax.swing.JButton();
         btt_crear = new javax.swing.JButton();
-        btt_modificar = new javax.swing.JButton();
         btt_eliminar = new javax.swing.JButton();
         txt_consul_identificacion = new javax.swing.JTextField();
         btt_limpiar = new javax.swing.JButton();
@@ -121,13 +141,6 @@ public class Reporte_Productos extends javax.swing.JFrame {
             }
         });
 
-        btt_modificar.setText("MODIFICAR");
-        btt_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btt_modificarActionPerformed(evt);
-            }
-        });
-
         btt_eliminar.setText("ELIMINAR");
         btt_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,14 +183,12 @@ public class Reporte_Productos extends javax.swing.JFrame {
                         .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(btt_crear)
-                        .addGap(18, 18, 18)
-                        .addComponent(btt_modificar)
-                        .addGap(18, 18, 18)
+                        .addGap(74, 74, 74)
                         .addComponent(btt_eliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addComponent(btt_limpiar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +203,6 @@ public class Reporte_Productos extends javax.swing.JFrame {
                     .addComponent(txt_consul_identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btt_crear)
-                        .addComponent(btt_modificar)
                         .addComponent(btt_eliminar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btt_limpiar)
@@ -224,22 +234,23 @@ public class Reporte_Productos extends javax.swing.JFrame {
 
     private void btt_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_consultarActionPerformed
         ConexionProducto conexion = new ConexionProducto();
-        ObjectContainer basep = conexion.BaseProducto();
-        Producto pro = new Producto();
-        conexion.ConsultarProducto(basep, pro.getCodigo());
-        conexion.Cerrarbd(basep);
-        tablaproducto.setModel(conexion.Productos());
+        Reporte_Productos cliente = new Reporte_Productos();
+        ObjectContainer base = conexion.BaseProducto();
+        boolean confirmar = conexion.ConsultarProducto(base, txt_consul_identificacion.getText());
+        conexion.Cerrarbd(base);
+        if (confirmar == true) {
+            enviar(txt_consul_identificacion.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "El producto no se encuentra registrado");
+        }
     }//GEN-LAST:event_btt_consultarActionPerformed
-
-    private void btt_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_modificarActionPerformed
-
-    }//GEN-LAST:event_btt_modificarActionPerformed
 
     private void btt_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_eliminarActionPerformed
         ConexionProducto conex = new ConexionProducto();
+        Producto prod = new Producto();
         ObjectContainer base = conex.BaseProducto();
-        Producto prov = new Producto();
-        conex.Eliminarproducto(base, prov.getCodigo());
+        String codigo=tablaproducto.getValueAt(tablaproducto.getSelectedRow(), 0).toString();
+        conex.Eliminarproducto(base,codigo);
         conex.Cerrarbd(base);
         tabla();
     }//GEN-LAST:event_btt_eliminarActionPerformed
@@ -290,7 +301,6 @@ public class Reporte_Productos extends javax.swing.JFrame {
     private javax.swing.JButton btt_crear;
     private javax.swing.JButton btt_eliminar;
     private javax.swing.JButton btt_limpiar;
-    private javax.swing.JButton btt_modificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaproducto;

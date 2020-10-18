@@ -467,7 +467,7 @@ public final class Ingresar_Factura extends javax.swing.JFrame {
             conexion.Cerrarbd(base);
             ConexionProducto conex = new ConexionProducto();
             ObjectContainer base2 = conex.BaseProducto();
-            conex.ModificarProducto(base2, TablaFactura.getValueAt(i, 0).toString(), Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()));
+            conex.ModificProdComp(base2, TablaFactura.getValueAt(i, 0).toString(), Integer.parseInt(TablaFactura.getValueAt(i, 3).toString()));
             conex.Cerrarbd(base2);
 
         }

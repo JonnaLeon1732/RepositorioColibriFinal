@@ -57,9 +57,9 @@ public final class Verduras extends javax.swing.JFrame {
                     dato = (int) TablaVerduras.getValueAt(TablaVerduras.getSelectedRow(), 2);
                     spCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 0, dato, 1));
                     lblCodigo.setText(TablaVerduras.getValueAt(TablaVerduras.getSelectedRow(), 4).toString());
-                    lblNombre.setText(proveedor.Productos(lblCodigo.getText(), "nombre"));
-                    lblApellido.setText(proveedor.Productos(lblCodigo.getText(), "apellido"));
-                    lblTelefono.setText(proveedor.Productos(lblCodigo.getText(), "telefono"));
+                    lblNombre.setText(proveedor.Proveedores(lblCodigo.getText(), "nombre"));
+                    lblApellido.setText(proveedor.Proveedores(lblCodigo.getText(), "apellido"));
+                    lblTelefono.setText(proveedor.Proveedores(lblCodigo.getText(), "telefono"));
                 }
             }
         });
